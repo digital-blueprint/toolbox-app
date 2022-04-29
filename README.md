@@ -42,19 +42,19 @@ To create your own app copy this Repository.
 
 ### /assets/*
 
-The main html construct is based in the asset folder: `dbp-frontend-starter-app.html.ejs`
+The main html construct is based in the asset folder: `dbp-overview-app.html.ejs`
 You can change here favicons, the color variables, fonts and the outer html construct.
 
 - To get started rename this file to `<your-app-name>.html.ejs`
 
-For favicon support in multiple browsers there exist one folder and twi other files. The icons - in different size - are based in the folder `icon`. The file `dbp-frontend-starter-app.browserconfig.xml.ejs` is for styled windows tiles. `manifest.json` tells the browser information about the website on different device. (short name, name, start url, icons, colors ...)
+For favicon support in multiple browsers there exist one folder and twi other files. The icons - in different size - are based in the folder `icon`. The file `dbp-overview-app.browserconfig.xml.ejs` is for styled windows tiles. `manifest.json` tells the browser information about the website on different device. (short name, name, start url, icons, colors ...)
 
-- Change `dbp-frontend-starter-app.browserconfig.xml.ejs` to `<your-app-name>.browserconfig.xml.ejs`
+- Change `dbp-overview-app.browserconfig.xml.ejs` to `<your-app-name>.browserconfig.xml.ejs`
     - (optional) Change the TitleColor
 - In `manifest.json` change the short_name, the name, the starter url and the path to the icon folder
     - (optional) Change the background_color and/or the theme_color
 
-The main structer - the topic - from the application is based in `dbp-frontend-starter-app.topic.metadata.json.ejs`
+The main structer - the topic - from the application is based in `dbp-overview-app.topic.metadata.json.ejs`
 For more information about the structure look at: [Components](https://gitlab.tugraz.at/dbp/web-components/frontend-docs/-/blob/master/components.md)
 
 - Change the ``name`` in german and english (or add another language if you support one)
@@ -76,10 +76,10 @@ The main logic is based in the `src` folder.
 
 There are at least two files. One for a topic, one or more for an activity and some other files with e.g.: helper functions. (In our case ``i18n.js`` for the translation).
 
-``dbp-frontend-starter-app.js`` is the entry point of the App. If you want to use it with the [app shell](https://gitlab.tugraz.at/dbp/web-components/toolkit/-/tree/master/packages/app-shell):
+``dbp-overview-app.js`` is the entry point of the App. If you want to use it with the [app shell](https://gitlab.tugraz.at/dbp/web-components/toolkit/-/tree/master/packages/app-shell):
 
-- Rename the file ``dbp-frontend-starter-app.js`` to ``<your-app-name.js``
-- Change the ``dbp-frontend-starter-app`` string to ``<your-app-name>``
+- Rename the file ``dbp-overview-app.js`` to ``<your-app-name.js``
+- Change the ``dbp-overview-app`` string to ``<your-app-name>``
 
 ``dbp-starter-activity.js`` is one activity of the topic. The main code of the activity is based there.
 

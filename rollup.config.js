@@ -20,7 +20,7 @@ import {
     getDistPath,
 } from './vendor/toolkit/rollup.utils.js';
 
-let appName = 'dbp-frontend-starter-app';
+let appName = 'dbp-overview-app';
 const pkg = require('./package.json');
 const appEnv = typeof process.env.APP_ENV !== 'undefined' ? process.env.APP_ENV : 'local';
 const watch = process.env.ROLLUP_WATCH === 'true';
@@ -53,8 +53,8 @@ export default (async () => {
     let privatePath = await getDistPath(pkg.name);
     return {
         input:
-            appEnv != 'test'
-                ? ['src/' + appName + '.js', 'src/dbp-starter-activity.js']
+            appEnv !== 'test'
+                ? ['src/' + appName + '.js']
                 : glob.sync('test/**/*.js'),
         output: {
             dir: 'dist',
@@ -142,6 +142,7 @@ export default (async () => {
                     {src: 'assets/*.css', dest: 'dist/' + (await getDistPath(pkg.name))},
                     {src: 'assets/*.ico', dest: 'dist/' + (await getDistPath(pkg.name))},
                     {src: 'assets/*.svg', dest: 'dist/' + (await getDistPath(pkg.name))},
+                    {src: 'assets/*.png', dest: 'dist/' + (await getDistPath(pkg.name))},
                     {src: 'assets/icon/*', dest: 'dist/' + (await getDistPath(pkg.name, 'icon'))},
                     {
                         src: await getPackagePath('@dbp-toolkit/font-source-sans-pro', 'files/*'),
@@ -157,10 +158,10 @@ export default (async () => {
                     },
                     {src: 'assets/manifest.json', dest: 'dist', rename: appName + '.manifest.json'},
                     {src: 'assets/*.metadata.json', dest: 'dist'},
-                    {
-                        src: await getPackagePath('@dbp-toolkit/common', 'assets/icons/*.svg'),
-                        dest: 'dist/' + (await getDistPath('@dbp-toolkit/common', 'icons')),
-                    },
+                //     {
+                //         src: await getPackagePath('@dbp-toolkit/common', 'assets/icons/*.svg'),
+                //         dest: 'dist/' + (await getDistPath('@dbp-toolkit/common', 'icons')),
+                //     },
                 ],
             }),
             prodBuild &&

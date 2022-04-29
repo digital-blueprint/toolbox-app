@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="white"/>
+
+    <!-- Meta Data for Search Engines -->
+    <meta title="My app | My University">
+    <meta name="description" content="My app description" />
+
+    <!-- Meta Data for open graph(facebook & co) -->
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="My app | My University" />
+    <meta property="og:description" content="My app description" />
+    <meta property="og:url" content="https://my-app.my-university.at/" />
+    <meta property="og:site_name" content="my app" />
+
+    <!-- Favicons -->
+    <link rel="shortcut icon" type="image/x-icon" href="<%= getPrivateUrl('icon/favicon.ico') %>">
+    <link rel="icon" type="image/svg+xml" href="<%= getPrivateUrl('icon/favicon.svg') %>" sizes="any">
+
+    <!-- PWA manfiest file -->
+    <link rel="manifest" href="<%= getUrl(name + '.manifest.json') %>">
+
+    <!-- PWA iphone -->
+    <link rel="apple-touch-icon" sizes="180x180" href="<%= getPrivateUrl('icon/apple-touch-icon.png') %>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<%= getPrivateUrl('icon/icon-32x32.png') %>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<%= getPrivateUrl('icon/icon-16x16.png') %>">
+    <link rel="mask-icon" href="<%= getPrivateUrl('icon/safari-pinned-tab.svg') %>" color="#e4154b">
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+
+    <!-- PWA Windows -->
+    <meta name="msapplication-config" content="<%= getUrl(name + '.browserconfig.xml') %>">
+
+    <title>DBP Overview</title>
+
+    <!-- App bundles-->
+    <script type="module" src="<%= getUrl(name + '.js') %>"></script>
+
+    <!-- Prevent Chrome/Edge from suggesting to translate the page -->
+    <meta name="google" content="notranslate">
+
+    <!-- Font related CSS -->
+    <style>
+        @import "<%= getPrivateUrl('fonts/source-sans-pro/300.css') %>";
+        @import "<%= getPrivateUrl('fonts/source-sans-pro/400.css') %>";
+        @import "<%= getPrivateUrl('fonts/source-sans-pro/600.css') %>";
+
+        body {
+            font-family: 'Source Sans Pro', 'Calibri', 'Arial', 'sans-serif';
+            font-weight: 300;
+            margin: 0;
+        }
+
+        /* style override */
+        html {
+        }
+
+        .light-theme{
+            --dbp-override-background: white;
+            --dbp-override-content: black;
+
+            --dbp-override-primary: #2a4491;
+            --dbp-override-secondary: black;
+            --dbp-override-secondary-surface: white;
+            --dbp-override-on-secondary-surface: black;
+            --dbp-override-secondary-surface-border-color: black;
+
+            --dbp-override-muted: #767676;
+            --dbp-override-accent: #c24f68;
+            --dbp-override-info: #2a4491;
+            --dbp-override-success: #188018;
+            --dbp-override-warning: #c15500;
+            --dbp-override-warning-surface: #ffad4d;
+            --dbp-override-on-warning-surface: black;
+            --dbp-override-danger: #de3535;
+
+            --dbp-override-border: 1px solid black;
+
+            --dbp-override-hover-background-color: black;
+            --dbp-override-hover-color: white;
+        }
+
+        .dark-theme{
+            --dbp-override-background: #151515;
+            --dbp-override-content: white;
+
+            --dbp-override-primary: #8ca4eb;
+            --dbp-override-secondary: white;
+            --dbp-override-secondary-surface: #151515;
+            --dbp-override-on-secondary-surface: white;
+            --dbp-override-secondary-surface-border-color: #151515;
+
+            --dbp-override-muted: #666666;
+            --dbp-override-accent: #c24f68;
+            --dbp-override-info: #8ca4eb;
+            --dbp-override-success: #7acc79;
+            --dbp-override-warning: #f99a41;
+            --dbp-override-on-warning-surface: black;
+            --dbp-override-danger: #de3535;
+
+            --dbp-override-border: 1px solid white;
+
+            --dbp-override-hover-background-color: white;
+            --dbp-override-hover-color: #151515;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            min-height: 50px;
+            padding: 0.5rem 1rem;
+            margin-bottom: 1rem;
+            background-color: white;
+            border-bottom: 1px solid blue;
+        }
+
+        .header a {
+            color: blue;
+            text-decoration: none;
+            align-self: flex-end;
+        }
+
+        .header-title {
+            font-size: 2rem;
+            font-weight: 600;
+            align-self: flex-end;
+        }
+
+        .header-subtitle {
+            margin-left: 1.2rem;
+            font-size: 1.2rem;
+            /*align-self: flex-end;*/
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .search-panel {
+            display: flex;
+        }
+
+        .search-panel__filters {
+            flex: 1;
+        }
+        .filter-block {
+            margin-bottom: 1rem;
+        }
+        .filter-heading {
+            width: 80%;
+            background-color: white;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-left: 0.5rem;
+        }
+        .search-panel__results {
+            flex: 2;
+        }
+
+        .ais-Highlight-highlighted {
+            color: inherit;
+            font-size: inherit;
+        }
+
+        #searchbox {
+            margin-bottom: 2rem;
+        }
+        #stats {
+            margin-bottom: 1rem;
+        }
+        #pagination {
+            margin: 2rem auto;
+            text-align: center;
+        }
+
+        .hit-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .hit-name img {
+            height: 48px;
+            width: 48px;
+            padding-right: 0.2rem;
+        }
+
+        .hit-document-type, .hit-content-type {
+            margin-top: 20px;
+            font-size: 0.8rem;
+        }
+
+        .links {
+            padding-top: 1rem;
+        }
+        .hit-repo img, .hit-doc img, .hit-demo img {
+            height: 24px;
+            width: 24px;
+            padding-left: 1rem;
+        }
+
+        .hit-license {
+            margin-top: 20px;
+        }
+        .hit-used-prog-langs {
+            font-size: 0.8rem;
+            margin-top: 20px;
+        }
+
+        .hit-rating {
+            margin-top: 1rem;
+            font-size: 0.8rem;
+        }
+
+
+        .ais-Hits-item {
+            padding: 20px;
+            box-shadow: none;
+            border: 1px solid lightgray;
+            width: calc(50% - 1rem);
+        }
+
+        .type {
+            border: 1px black solid;
+            padding: 0.2rem;
+            margin: 0.1rem;
+            display: inline-block;
+        }
+
+        .backend {
+            background-color: black;
+            color: white;
+        }
+
+        .frontend {
+            background-color: white;
+            color: black;
+        }
+
+        .bundle {
+            background-color: blue;
+            color: white;
+        }
+
+        .server {
+            background-color: #ff4444;
+            color: black;
+        }
+
+        .php {
+            background-color: lightblue;
+            color: black;
+        }
+        .javascript {
+            background-color: lightcoral;
+            color: black;
+        }
+        .docker {
+            background-color: lightcyan;
+            color: black;
+        }
+        .css {
+            background-color: lightpink;
+            color: black;
+        }
+        .java {
+            background-color: yellow;
+            color: black;
+        }
+        .html {
+            background-color: gray;
+            color: black;
+        }
+
+    </style>
+
+</head>
+
+<body class="antialiased">
+<header class="header">
+    <img src="<%= getPrivateUrl('dbp-logo.png') %>" alt="DBP Logo">
+    <h1 class="header-title">
+        <a href="/">DBP Software Overview</a>
+    </h1>
+    <div class="header-subtitle">using Typesense + InstantSearch.js</div>
+</header>
+<div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+
+    <div class="container">
+        <div class="search-panel">
+            <div class="search-panel__filters">
+                <div class="filter-block">
+                    <div class="filter-heading">Blueprints</div>
+                    <div id="blueprint-list"></div>
+                </div>
+                <div class="filter-block">
+                    <div class="filter-heading">Types</div>
+                    <div id="document-type-list"></div>
+                </div>
+                <div class="filter-block">
+                    <div class="filter-heading">Subtypes</div>
+                    <div id="content-type-list"></div>
+                </div>
+                <div class="filter-block">
+                    <div class="filter-heading">Programming Languages</div>
+                    <div id="languages-list"></div>
+                </div>
+                <div class="filter-block">
+                    <div class="filter-heading">License</div>
+                    <div id="license-list"></div>
+                </div>
+            </div>
+            <div class="search-panel__results">
+                <div id="searchbox"></div>
+                <div id="stats"></div>
+                <div id="hits"></div>
+            </div>
+        </div>
+
+        <div id="pagination"></div>
+    </div>
+
+</div>
+
+<!-- Error handling for too old browsers -->
+<script src="<%= getPrivateUrl('browser-check.js') %>" defer></script>
+<noscript>Diese Applikation benötigt Javascript / This application requires Javascript</noscript>
+</body>
+</html>
