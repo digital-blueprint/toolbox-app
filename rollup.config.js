@@ -131,7 +131,7 @@ export default (async () => {
             json(),
             urlPlugin({
                 limit: 0,
-                include: ['node_modules/suggestions/**/*.css', 'node_modules/select2/**/*.css'],
+                include: ['node_modules/suggestions/**/*.css', 'node_modules/instantsearch.css/**/*.css'],
                 emitFiles: true,
                 fileName: 'shared/[name].[hash][extname]',
             }),

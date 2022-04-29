@@ -39,6 +39,7 @@
         "@babel/runtime": "^7.17.9",
         "i18next": "^21.4.2",
         "instantsearch.js": "^4.40.5",
+        "instantsearch.css": "^7.4.5",
         "typesense-instantsearch-adapter": "^2.4.0"
     },
     "scripts": {
