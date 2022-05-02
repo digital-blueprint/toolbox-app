@@ -45,9 +45,7 @@ function getOrigin(url) {
 }
 
 config.CSP = `default-src 'self' 'unsafe-eval' 'unsafe-inline' \
-    ${getOrigin(config.matomoUrl)} ${getOrigin('http://localhost:8108')} ${getOrigin(config.keyCloakBaseURL)} ${getOrigin(
-    config.entryPointURL
-)};\
+    ${config.typesense.protocol + '://' + config.typesense.host + ':' + config.typesense.port}; \
     img-src * blob: data:`;
 
 export default (async () => {
@@ -98,6 +96,7 @@ export default (async () => {
                     matomoUrl: config.matomoUrl,
                     matomoSiteId: config.matomoSiteId,
                     buildInfo: getBuildInfo(appEnv),
+                    typesense: config.typesense,
                 },
             }),
             replace({

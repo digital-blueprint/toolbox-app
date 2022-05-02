@@ -283,7 +283,7 @@
 <header class="header">
     <img src="<%= getPrivateUrl('dbp-logo.png') %>" alt="DBP Logo">
     <h1 class="header-title">
-        <a href="/">DBP Software Overview</a>
+        <a href="/">DBP Overview</a>
     </h1>
     <div class="header-subtitle">using Typesense + InstantSearch.js</div>
 </header>
@@ -312,6 +312,10 @@
                     <div class="filter-heading">License</div>
                     <div id="license-list"></div>
                 </div>
+               <div class="filter-block">
+                    <div class="filter-heading">Maintained by</div>
+                    <div id="maintained-by-list"></div>
+                </div>
             </div>
             <div class="search-panel__results">
                 <div id="searchbox"></div>
@@ -324,7 +328,14 @@
     </div>
 
 </div>
-
+<script>
+    window.typesenseConfig = {
+        host: '<%= typesense.host %>',
+        port: '<%= typesense.port %>',
+        protocol: '<%= typesense.protocol %>',
+        key: '<%= typesense.key %>'
+    };
+</script>
 <!-- Error handling for too old browsers -->
 <noscript>Diese Applikation benötigt Javascript / This application requires Javascript</noscript>
 </body>

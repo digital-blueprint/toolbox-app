@@ -5,12 +5,12 @@ import TypesenseInstantSearchAdapter from 'typesense-instantsearch-adapter';
 
 const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
     server: {
-        apiKey: 'xyz', // Be sure to use an API key that only allows searches, in production
+        apiKey: window.typesenseConfig.key, // Be sure to use an API key that only allows searches, in production
         nodes: [
             {
-                host: 'localhost',
-                port: '8108',
-                protocol: 'http',
+                host: window.typesenseConfig.host,
+                port: window.typesenseConfig.port,
+                protocol: window.typesenseConfig.protocol,
             },
         ],
     },
@@ -94,6 +94,10 @@ search.addWidgets([
     refinementList({
         container: '#license-list',
         attribute: 'license',
+    }),
+    refinementList({
+        container: '#maintained-by-list',
+        attribute: 'maintained_by',
     }),
     stats({
         container: "#stats",
