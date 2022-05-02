@@ -42,12 +42,9 @@
     <!-- Prevent Chrome/Edge from suggesting to translate the page -->
     <meta name="google" content="notranslate">
 
+    <link rel="stylesheet" href="<%= getUrl('algolia-min.css') %>">
     <!-- Font related CSS -->
     <style>
-        @import "<%= getPrivateUrl('fonts/source-sans-pro/300.css') %>";
-        @import "<%= getPrivateUrl('fonts/source-sans-pro/400.css') %>";
-        @import "<%= getPrivateUrl('fonts/source-sans-pro/600.css') %>";
-
         body {
             font-family: 'Source Sans Pro', 'Calibri', 'Arial', 'sans-serif';
             font-weight: 300;
@@ -329,7 +326,6 @@
 </div>
 
 <!-- Error handling for too old browsers -->
-<script src="<%= getPrivateUrl('browser-check.js') %>" defer></script>
 <noscript>Diese Applikation benötigt Javascript / This application requires Javascript</noscript>
 </body>
 </html>

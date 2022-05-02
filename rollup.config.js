@@ -1,6 +1,7 @@
 import path from 'path';
 import url from 'url';
 import glob from 'glob';
+import replace from "rollup-plugin-replace";
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import copy from 'rollup-plugin-copy';
@@ -44,7 +45,7 @@ function getOrigin(url) {
 }
 
 config.CSP = `default-src 'self' 'unsafe-eval' 'unsafe-inline' \
-    ${getOrigin(config.matomoUrl)} ${getOrigin(config.keyCloakBaseURL)} ${getOrigin(
+    ${getOrigin(config.matomoUrl)} ${getOrigin('http://localhost:8108')} ${getOrigin(config.keyCloakBaseURL)} ${getOrigin(
     config.entryPointURL
 )};\
     img-src * blob: data:`;
@@ -99,6 +100,11 @@ export default (async () => {
                     buildInfo: getBuildInfo(appEnv),
                 },
             }),
+            replace({
+                // If you would like DEV messages, specify 'development'
+                // Otherwise use 'production'
+                'process.env.NODE_ENV': JSON.stringify('production'),
+            }),
             resolve({
                 // ignore node_modules from vendored packages
                 moduleDirectories: [path.join(process.cwd(), 'node_modules')],
@@ -145,17 +151,21 @@ export default (async () => {
                     {src: 'assets/*.png', dest: 'dist/' + (await getDistPath(pkg.name))},
                     {src: 'assets/icon/*', dest: 'dist/' + (await getDistPath(pkg.name, 'icon'))},
                     {
-                        src: await getPackagePath('@dbp-toolkit/font-source-sans-pro', 'files/*'),
-                        dest: 'dist/' + (await getDistPath(pkg.name, 'fonts/source-sans-pro')),
+                        src: await getPackagePath('instantsearch.css', 'themes/algolia-min.css'),
+                        dest: 'dist/',
                     },
-                    {
-                        src: await getPackagePath('@dbp-toolkit/common', 'src/spinner.js'),
-                        dest: 'dist/' + (await getDistPath(pkg.name)),
-                    },
-                    {
-                        src: await getPackagePath('@dbp-toolkit/common', 'misc/browser-check.js'),
-                        dest: 'dist/' + (await getDistPath(pkg.name)),
-                    },
+                    // {
+                    //     src: await getPackagePath('@dbp-toolkit/font-source-sans-pro', 'files/*'),
+                    //     dest: 'dist/' + (await getDistPath(pkg.name, 'fonts/source-sans-pro')),
+                    // },
+                    // {
+                    //     src: await getPackagePath('@dbp-toolkit/common', 'src/spinner.js'),
+                    //     dest: 'dist/' + (await getDistPath(pkg.name)),
+                    // },
+                    // {
+                    //     src: await getPackagePath('@dbp-toolkit/common', 'misc/browser-check.js'),
+                    //     dest: 'dist/' + (await getDistPath(pkg.name)),
+                    // },
                     {src: 'assets/manifest.json', dest: 'dist', rename: appName + '.manifest.json'},
                     {src: 'assets/*.metadata.json', dest: 'dist'},
                 //     {

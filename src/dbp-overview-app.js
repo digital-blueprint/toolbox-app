@@ -43,7 +43,7 @@ search.addWidgets([
                 return `
         <div>
           <div class="hit-name">
-            <img src=${item.link_icon || '/img/icons8-missing-32.png'} alt="link">
+            <img src=${item.link_icon || '/dist/local/dbp-overview-app/icons8-missing-32.png'} alt="link">
             ${item._highlightResult.name.value}
           </div>
           <div class="">${item._highlightResult.description.value}</div>
@@ -61,9 +61,9 @@ search.addWidgets([
           </div>
           <div class="hit-license">License: ${item.license}</div>
           <div class="links">
-          <span class="hit-repo">${item.link_repo ? `<a href=${item.link_repo}><img src="/img/Git-Icon-Black.png" alt="repository"></a>` : ''}</span>
-          <span class="hit-doc">${item.link_doc ? `<a href=${item.link_doc}><img src="/img/icons8-book-60.png" alt="documentation"></a>` : ''}</span>
-          <span class="hit-demo">${item.link_demo ? `<a href=${item.link_demo}><img src="/img/icons8-trial-50.png" alt="demo"></a>` : ''}</span>
+          <span class="hit-repo">${item.link_repo ? `<a href=${item.link_repo}><img src="/dist/local/dbp-overview-app/Git-Icon-Black.png" alt="repository"></a>` : ''}</span>
+          <span class="hit-doc">${item.link_doc ? `<a href=${item.link_doc}><img src="/dist/local/dbp-overview-app/icons8-book-60.png" alt="documentation"></a>` : ''}</span>
+          <span class="hit-demo">${item.link_demo ? `<a href=${item.link_demo}><img src="/dist/local/dbp-overview-app/icons8-trial-50.png" alt="demo"></a>` : ''}</span>
           </div>
           <div class="hit-rating">score: ${item.score}</div>
         </div>
@@ -72,7 +72,7 @@ search.addWidgets([
         },
     }),
     configure({
-        facets: ['type', 'used_prog_langs'],
+        facets: ['document_type', 'content_type', 'used_programming_languages'],
         maxValuesPerFacet: 20,
     }),
     refinementList({
