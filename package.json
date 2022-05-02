@@ -4,9 +4,6 @@
     "main": "src/dbp-overview-app.js",
     "license": "LGPL-2.1-or-later",
     "private": true,
-    "workspaces": [
-        "vendor/toolkit/packages/*"
-    ],
     "devDependencies": {
         "@babel/core": "^7.10.3",
         "@babel/preset-env": "^7.10.3",
