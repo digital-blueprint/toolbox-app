@@ -1,7 +1,19 @@
 import instantsearch from "instantsearch.js";
 import { searchBox, configure, hits, refinementList, stats, pagination } from 'instantsearch.js/es/widgets';
+import { licenses } from '../assets/licenses/spdx.json';
 
 import TypesenseInstantSearchAdapter from 'typesense-instantsearch-adapter';
+
+const spdxLicenses = licenses;
+
+function formatLicense(license) {
+    const spdxInfo = spdxLicenses.find(item => item.licenseId === license);
+    if (spdxInfo === undefined) {
+        console.log('license "' + license + '" not found.');
+        return license;
+    }
+    return `<a href="${spdxInfo.reference}">${spdxInfo.name}</a>`;
+}
 
 const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
     server: {
@@ -59,7 +71,7 @@ search.addWidgets([
             <div>used programming languages:</div>
             ${item._highlightResult.used_programming_languages.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}">${a.value}</div>`).join('')}
           </div>
-          <div class="hit-license">License: ${item.license}</div>
+          <div class="hit-license">License: ${item.license.map(l => '<span>'+formatLicense(l)+'</span>').join('')}</div>
           <div class="links">
           <span class="hit-repo">${item.link_repo ? `<a href=${item.link_repo}><img src="local/dbp-overview-app/Git-Icon-Black.png" alt="repository"></a>` : ''}</span>
           <span class="hit-doc">${item.link_doc ? `<a href=${item.link_doc}><img src="local/dbp-overview-app/icons8-book-60.png" alt="documentation"></a>` : ''}</span>
