@@ -18,21 +18,21 @@ export default {
         }
     },
     development: {
-        basePath: '/apps/starter-app/',
+        basePath: '/',
         typesense: {
             host: 'typesense-dev.tugraz.at',
             port: '443',
             protocol: 'https',
-            key: '',
+            key: 'bRQ0Hrg9SAPGR3CVu5hm5bBTggUhsq0e',
         }
     },
     demo: {
-        basePath: '/apps/starter-app/',
+        basePath: '/',
         typesense: {
             host: 'typesense-dev.tugraz.at',
             port: '443',
             protocol: 'https',
-            key: '',
+            key: 'bRQ0Hrg9SAPGR3CVu5hm5bBTggUhsq0e',
         }
     },
     production: {
@@ -41,7 +41,7 @@ export default {
             host: 'typesense-dev.tugraz.at',
             port: '443',
             protocol: 'https',
-            key: '',
+            key: 'bRQ0Hrg9SAPGR3CVu5hm5bBTggUhsq0e',
         }
     },
 };
