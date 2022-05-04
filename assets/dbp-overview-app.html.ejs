@@ -37,7 +37,18 @@
     <title>DBP Overview</title>
 
     <!-- App bundles-->
-    <script type="module" src="<%= getUrl(name + '.js') %>"></script>
+    <script type="module">
+        import {init} from "<%= getUrl(name + '.js') %>";
+
+        let typesenseConfig = {
+            host: '<%= typesense.host %>',
+            port: '<%= typesense.port %>',
+            protocol: '<%= typesense.protocol %>',
+            key: '<%= typesense.key %>'
+        };
+
+        init(typesenseConfig);
+    </script>
 
     <!-- Prevent Chrome/Edge from suggesting to translate the page -->
     <meta name="google" content="notranslate">

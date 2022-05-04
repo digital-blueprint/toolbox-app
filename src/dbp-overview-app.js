@@ -1,9 +1,8 @@
 import instantsearch from "instantsearch.js";
 import { searchBox, configure, hits, refinementList, stats, pagination } from 'instantsearch.js/es/widgets';
-import { licenses } from '../assets/licenses/spdx.json';
-
 import TypesenseInstantSearchAdapter from 'typesense-instantsearch-adapter';
 
+import { licenses } from '../assets/licenses/spdx.json';
 const spdxLicenses = licenses;
 
 function formatLicense(license) {
@@ -15,44 +14,45 @@ function formatLicense(license) {
     return `<a href="${spdxInfo.reference}">${spdxInfo.name}</a>`;
 }
 
-const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
-    server: {
-        apiKey: window.typesenseConfig.key, // Be sure to use an API key that only allows searches, in production
-        nodes: [
-            {
-                host: window.typesenseConfig.host,
-                port: window.typesenseConfig.port,
-                protocol: window.typesenseConfig.protocol,
-            },
-        ],
-    },
-    // The following parameters are directly passed to Typesense's search API endpoint.
-    //  So you can pass any parameters supported by the search endpoint below.
-    //  queryBy is required.
-    //  filterBy is managed and overridden by InstantSearch.js. To set it, you want to use one of the filter widgets like refinementList or use the `configure` widget.
-    additionalSearchParameters: {
-        queryBy: "name,description,document_type,content_type,maintained_by,used_programming_languages"
-    },
-});
-const searchClient = typesenseInstantsearchAdapter.searchClient;
+export function init(typesenseConfig) {
+    const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
+        server: {
+            apiKey: typesenseConfig.key, // Be sure to use an API key that only allows searches, in production
+            nodes: [
+                {
+                    host: typesenseConfig.host,
+                    port: typesenseConfig.port,
+                    protocol: typesenseConfig.protocol,
+                },
+            ],
+        },
+        // The following parameters are directly passed to Typesense's search API endpoint.
+        //  So you can pass any parameters supported by the search endpoint below.
+        //  queryBy is required.
+        //  filterBy is managed and overridden by InstantSearch.js. To set it, you want to use one of the filter widgets like refinementList or use the `configure` widget.
+        additionalSearchParameters: {
+            queryBy: "name,description,document_type,content_type,maintained_by,used_programming_languages"
+        },
+    });
+    const searchClient = typesenseInstantsearchAdapter.searchClient;
 
-const search = instantsearch({
-    searchClient,
-    indexName: 'software-overview',
-});
+    const search = instantsearch({
+        searchClient,
+        indexName: 'software-overview',
+    });
 
-search.addWidgets([
-    searchBox({
-        container: '#searchbox',
-    }),
-    configure({
-        hitsPerPage: 8,
-    }),
-    hits({
-        container: '#hits',
-        templates: {
-            item(item) {
-                return `
+    search.addWidgets([
+        searchBox({
+            container: '#searchbox',
+        }),
+        configure({
+            hitsPerPage: 8,
+        }),
+        hits({
+            container: '#hits',
+            templates: {
+                item(item) {
+                    return `
         <div>
           <div class="hit-name">
             <img src=${item.link_icon || 'local/dbp-overview-app/icons8-missing-32.png'} alt="link">
@@ -71,7 +71,7 @@ search.addWidgets([
             <div>used programming languages:</div>
             ${item._highlightResult.used_programming_languages.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}">${a.value}</div>`).join('')}
           </div>
-          <div class="hit-license">License: ${item.license.map(l => '<span>'+formatLicense(l)+'</span>').join('')}</div>
+          <div class="hit-license">License: ${item.license.map(l => '<span>' + formatLicense(l) + '</span>').join('')}</div>
           <div class="links">
           <span class="hit-repo">${item.link_repo ? `<a href=${item.link_repo}><img src="local/dbp-overview-app/Git-Icon-Black.png" alt="repository"></a>` : ''}</span>
           <span class="hit-doc">${item.link_doc ? `<a href=${item.link_doc}><img src="local/dbp-overview-app/icons8-book-60.png" alt="documentation"></a>` : ''}</span>
@@ -80,48 +80,51 @@ search.addWidgets([
           <div class="hit-rating">score: ${item.score}</div>
         </div>
       `;
+                },
             },
-        },
-    }),
-    configure({
-        facets: ['document_type', 'content_type', 'used_programming_languages'],
-        maxValuesPerFacet: 20,
-    }),
-    refinementList({
-        container: '#blueprint-list',
-        attribute: 'blueprint',
-    }),
-    refinementList({
-        container: '#document-type-list',
-        attribute: 'document_type',
-    }),
-    refinementList({
-        container: '#content-type-list',
-        attribute: 'content_type',
-    }),
-    refinementList({
-        container: '#languages-list',
-        attribute: 'used_programming_languages',
-    }),
-    refinementList({
-        container: '#license-list',
-        attribute: 'license',
-    }),
-    refinementList({
-        container: '#maintained-by-list',
-        attribute: 'maintained_by',
-    }),
-    stats({
-        container: "#stats",
-        templates: {
-            body(hit) {
-                return `⚡ ${hit.nbHits} results found in ${hit.processingTimeMS}ms`;
+        }),
+        configure({
+            facets: ['document_type', 'content_type', 'used_programming_languages'],
+            maxValuesPerFacet: 20,
+        }),
+        refinementList({
+            container: '#blueprint-list',
+            attribute: 'blueprint',
+        }),
+        refinementList({
+            container: '#document-type-list',
+            attribute: 'document_type',
+        }),
+        refinementList({
+            container: '#content-type-list',
+            attribute: 'content_type',
+        }),
+        refinementList({
+            container: '#languages-list',
+            attribute: 'used_programming_languages',
+        }),
+        refinementList({
+            container: '#license-list',
+            attribute: 'license',
+        }),
+        refinementList({
+            container: '#maintained-by-list',
+            attribute: 'maintained_by',
+        }),
+        stats({
+            container: "#stats",
+            templates: {
+                body(hit) {
+                    return `⚡ ${hit.nbHits} results found in ${hit.processingTimeMS}ms`;
+                }
             }
-        }
-    }),
-    pagination({
-        container: '#pagination',
-    }),
-]);
+        }),
+        pagination({
+            container: '#pagination',
+        }),
+    ]);
 
-search.start();
+    search.start();
+
+    return true;
+}

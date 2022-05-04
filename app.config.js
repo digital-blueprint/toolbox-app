@@ -5,7 +5,7 @@ export default {
             host: 'typesense-dev.tugraz.at',
             port: '443',
             protocol: 'https',
-            key: '',
+            key: 'bRQ0Hrg9SAPGR3CVu5hm5bBTggUhsq0e',
         }
     },
     local: {
