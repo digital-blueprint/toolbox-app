@@ -10,12 +10,12 @@
     <meta name="description" content="My app description" />
 
     <!-- Meta Data for open graph(facebook & co) -->
-    <meta property="og:locale" content="de_DE" />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="My app | My University" />
-    <meta property="og:description" content="My app description" />
-    <meta property="og:url" content="https://my-app.my-university.at/" />
-    <meta property="og:site_name" content="my app" />
+    <meta property="og:title" content="DBP Overview | Digital Blueprint" />
+    <meta property="og:description" content="Search for Digital Blueprints in Open Source Software" />
+    <meta property="og:url" content="https://s-o-dev.tugraz.at/" />
+    <meta property="og:site_name" content="dbp overview" />
 
     <!-- Favicons -->
     <link rel="shortcut icon" type="image/x-icon" href="<%= getPrivateUrl('icon/favicon.ico') %>">
@@ -285,7 +285,10 @@
             background-color: gray;
             color: black;
         }
-
+        footer p {
+            text-align: right;
+            padding-right: 20px;
+        }
     </style>
 
 </head>
@@ -298,7 +301,7 @@
     </h1>
     <div class="header-subtitle">using Typesense + InstantSearch.js</div>
 </header>
-<div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+<div class="relative flex items-top justify-center sm:items-center">
 
     <div class="container">
         <div class="search-panel">
@@ -340,16 +343,13 @@
 
         <div id="pagination"></div>
     </div>
-
 </div>
-<script>
-    window.typesenseConfig = {
-        host: '<%= typesense.host %>',
-        port: '<%= typesense.port %>',
-        protocol: '<%= typesense.protocol %>',
-        key: '<%= typesense.key %>'
-    };
-</script>
+<footer>
+    <p>
+        Version <a href="<%= buildInfo.url %>"><%= buildInfo.info %></a>
+        built for environment <span title="built at <%= buildInfo.time %>"><em><%= buildInfo.env %></em></span>
+    </p>
+</footer>
 <!-- Error handling for too old browsers -->
 <noscript>Diese Applikation benötigt Javascript / This application requires Javascript</noscript>
 </body>
