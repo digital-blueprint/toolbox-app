@@ -1,5 +1,5 @@
 import instantsearch from "instantsearch.js";
-import { searchBox, configure, hits, refinementList, stats, pagination } from 'instantsearch.js/es/widgets';
+import { searchBox, configure, hits, refinementList, toggleRefinement, stats, pagination } from 'instantsearch.js/es/widgets';
 import TypesenseInstantSearchAdapter from 'typesense-instantsearch-adapter';
 
 import { licenses } from '../assets/licenses/spdx.json';
@@ -84,7 +84,7 @@ export function init(typesenseConfig) {
             },
         }),
         configure({
-            facets: ['document_type', 'content_type', 'used_programming_languages'],
+            facets: ['document_type', 'content_type', 'used_programming_languages', 'license'],
             maxValuesPerFacet: 20,
         }),
         refinementList({
@@ -111,11 +111,18 @@ export function init(typesenseConfig) {
             container: '#maintained-by-list',
             attribute: 'maintained_by',
         }),
+        toggleRefinement({
+            container: '#labs-toggle',
+            attribute: 'labs',
+            templates: {
+                labelText: 'laboratory experiments ({{ count }})',
+            },
+        }),
         stats({
             container: "#stats",
             templates: {
                 body(hit) {
-                    return `⚡ ${hit.nbHits} results found in ${hit.processingTimeMS}ms`;
+                    return `${hit.nbHits} results found in ${hit.processingTimeMS}ms`;
                 }
             }
         }),
