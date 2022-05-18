@@ -165,6 +165,7 @@
             padding-top: 5px;
             padding-bottom: 5px;
             padding-left: 0.5rem;
+            margin-bottom: 5px;
         }
         .search-panel__results {
             flex: 2;
@@ -236,31 +237,46 @@
 
         .type {
             border: 1px black solid;
-            padding: 0.2rem;
-            margin: 0.1rem;
+            padding: 0.3rem;
+            margin: 0.2rem;
             display: inline-block;
         }
 
-        .backend {
-            background-color: black;
-            color: white;
-        }
-
-        .frontend {
+        /* document type */
+        .software {
             background-color: white;
             color: black;
         }
 
-        .bundle {
+        .resource {
+            background-color: black;
+            color: white;
+        }
+
+        .service {
             background-color: blue;
             color: white;
         }
 
-        .server {
-            background-color: #ff4444;
+        /* content type */
+        .api {
+            background-color: #ff7777;
+            color: black;
+        }
+        .application {
+            background-color: #7aff8f;
+            color: black;
+        }
+        .supporting-software {
+            background-color: #878faf;
+            color: black;
+        }
+        .admin-tool {
+            background-color: sandybrown;
             color: black;
         }
 
+        /* used programming languages */
         .php {
             background-color: lightblue;
             color: black;
@@ -283,11 +299,27 @@
         }
         .html {
             background-color: gray;
-            color: black;
+            color: white;
         }
+        /* infrastructure */
         footer p {
             text-align: right;
             padding-right: 20px;
+        }
+        .text-panel {
+            padding-left: 20px;
+            font-weight: bolder;
+        }
+        .text-panel-block {
+            padding-bottom: 20px;
+        }
+        .text-panel-header {
+            font-size: x-large;
+            padding-bottom: 10px;
+        }
+        .text-panel-text {
+            font-size: larger;
+            padding-bottom: 5px;
         }
     </style>
 
@@ -338,6 +370,20 @@
                 <div id="searchbox"></div>
                 <div id="stats"></div>
                 <div id="hits"></div>
+            </div>
+            <div class="text-panel">
+                <div class="text-panel-block">
+                    <div class="text-panel-header">Get Started</div>
+                    <div class="text-panel-text"><a href="https://dbp-demo.tugraz.at/dev-guide/relay/">Quick Start Guide</a></div>
+                    <div class="text-panel-text"><a href="https://dbp-demo.tugraz.at/dev-guide/relay/getting_started/">Architecture</a></div>
+                    <div class="text-panel-text"><a href="https://dbp-demo.tugraz.at/dev-guide/contribute/">How to contribute</a></div>
+                </div>
+                <div>
+                    <div class="text-panel-header">Useful Links</div>
+                    <div class="text-panel-text"><a href="https://dbp-demo.tugraz.at/dev-guide/relay/faq/">FAQ</a></div>
+                    <div class="text-panel-text"><a href="https://dbp-demo.tugraz.at/dev-guide/frontend/theming/">Integrators guide</a></div>
+                    <div class="text-panel-text"><a href="https://dbp-demo.tugraz.at/dev-guide">Developers guide</a></div>
+                </div>
             </div>
         </div>
 
