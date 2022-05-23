@@ -111,12 +111,9 @@ export function init(typesenseConfig) {
             container: '#maintained-by-list',
             attribute: 'maintained_by',
         }),
-        toggleRefinement({
-            container: '#labs-toggle',
+        refinementList({
+            container: '#labs-list',
             attribute: 'labs',
-            templates: {
-                labelText: 'laboratory experiments ({{ count }})',
-            },
         }),
         stats({
             container: "#stats",
