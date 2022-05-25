@@ -14,12 +14,6 @@ function formatLicense(license) {
     return `<a href="${spdxInfo.reference}">${spdxInfo.name}</a>`;
 }
 
-
-function openMobileFilterModal() {
-    
-    return `<a href="">abc</a>`;
-}
-
 export function init(typesenseConfig) {
     const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
         server: {
