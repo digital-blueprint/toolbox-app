@@ -1,10 +1,16 @@
 import instantsearch from "instantsearch.js";
-import { searchBox, configure, hits, refinementList, toggleRefinement, stats, pagination } from 'instantsearch.js/es/widgets';
+import { searchBox, configure, hits, refinementList, stats, pagination } from 'instantsearch.js/es/widgets';
 import TypesenseInstantSearchAdapter from 'typesense-instantsearch-adapter';
 
 import { licenses } from '../assets/licenses/spdx.json';
 const spdxLicenses = licenses;
 
+/*
+ * format a SPDX licence tag to a name with link to its description
+ *
+ * @param  license string SPDX tag
+ * @return string HTML
+ */
 function formatLicense(license) {
     const spdxInfo = spdxLicenses.find(item => item.licenseId === license);
     if (spdxInfo === undefined) {
@@ -14,6 +20,13 @@ function formatLicense(license) {
     return `<a href="${spdxInfo.reference}">${spdxInfo.name}</a>`;
 }
 
+let searchIndex = null;
+
+/*
+ * initialize the search adapter and local page updater
+ *
+ * @param typesenseConfig object
+ */
 export function init(typesenseConfig) {
     const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
         server: {
@@ -129,6 +142,22 @@ export function init(typesenseConfig) {
     ]);
 
     search.start();
+    searchIndex = search;
 
     return true;
+}
+
+/*
+ * filter the search index by release date
+ *
+ * @param timespan number timespan in sec
+ */
+export function filter(timespan) {
+    const start = Date.now()/1000 - timespan;
+    searchIndex.client.search({}, {
+        filters: `release_date >= ${start}`
+    }).then(({hits}) => {
+        console.log(hits);
+    });
+    console.dir(searchIndex);
 }

@@ -38,7 +38,7 @@
 
     <!-- App bundles-->
     <script type="module">
-        import {init} from "<%= getUrl(name + '.js') %>";
+        import {init, filter} from "<%= getUrl(name + '.js') %>";
 
         let typesenseConfig = {
             host: '<%= typesense.host %>',
@@ -48,6 +48,21 @@
         };
 
         init(typesenseConfig);
+
+        function filter_changed() {
+            // console.dir(window.searchIndex);
+
+            const filterActive = document.getElementById('filter-changed').checked;
+            const timespan = document.getElementById('timespan').value;
+            console.log('filter:');
+            console.dir(filterActive);
+            console.dir(timespan);
+            if (filterActive) {
+                filter(timespan);
+            }
+        }
+        document.getElementById('filter-changed').onchange = filter_changed;
+        document.getElementById('timespan').onchange = filter_changed;
     </script>
 
     <!-- Prevent Chrome/Edge from suggesting to translate the page -->
@@ -365,6 +380,21 @@
                 <div class="filter-block">
                     <div class="filter-heading">Labs/Experiments</div>
                     <div id="labs-list"></div>
+                </div>
+                <div class="filter-block">
+                    <div class="filter-heading">Changed</div>
+                    <div id="changed">
+                        <input type="checkbox" id="filter-changed" name="changed_filter" value="1">
+                        <label for="filter-changed">on changed in the last</label>
+                        <select name="timespan" id="timespan">
+                            <option value="86400">24 hours</option>
+                            <option value="604800">7 days</option>
+                            <option value="2678400">31 days</option>
+                            <option value="7948800">3 months</option>
+                            <option value="15811200">6 months</option>
+                            <option value="31622400">year</option>
+                        </select>
+                    </div>
                 </div>
             </div>
             <div class="search-panel__results">
