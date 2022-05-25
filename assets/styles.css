@@ -64,11 +64,11 @@ body {
     flex-direction: column;
     min-height: 340px;
     background-color: white; /** var(--dbp-override-background); */
-    padding-left: 9rem;
+    padding-left: 10rem; /*14*/
     padding-top: 7rem;
     background-image: url('/dist/local/dbp-overview-app/dbp_logo_chevrons_on_white.svg');
     background-repeat: no-repeat;
-    background-position: 17rem 0;
+    background-position: 17rem -20px; /*21*/
     background-size: 30rem;
     position: sticky;
     top: -348px;
