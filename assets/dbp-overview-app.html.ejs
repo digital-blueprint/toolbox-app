@@ -53,304 +53,31 @@
     <!-- Prevent Chrome/Edge from suggesting to translate the page -->
     <meta name="google" content="notranslate">
 
+    <!-- algolia default css -->
     <link rel="stylesheet" href="<%= getUrl('algolia-min.css') %>">
-    <!-- Font related CSS -->
-    <style>
-        body {
-            font-family: 'Source Sans Pro', 'Calibri', 'Arial', 'sans-serif';
-            font-weight: 300;
-            margin: 0;
-        }
 
-        /* style override */
-        html {
-        }
-
-        .light-theme{
-            --dbp-override-background: white;
-            --dbp-override-content: black;
-
-            --dbp-override-primary: #2a4491;
-            --dbp-override-secondary: black;
-            --dbp-override-secondary-surface: white;
-            --dbp-override-on-secondary-surface: black;
-            --dbp-override-secondary-surface-border-color: black;
-
-            --dbp-override-muted: #767676;
-            --dbp-override-accent: #c24f68;
-            --dbp-override-info: #2a4491;
-            --dbp-override-success: #188018;
-            --dbp-override-warning: #c15500;
-            --dbp-override-warning-surface: #ffad4d;
-            --dbp-override-on-warning-surface: black;
-            --dbp-override-danger: #de3535;
-
-            --dbp-override-border: 1px solid black;
-
-            --dbp-override-hover-background-color: black;
-            --dbp-override-hover-color: white;
-        }
-
-        .dark-theme{
-            --dbp-override-background: #151515;
-            --dbp-override-content: white;
-
-            --dbp-override-primary: #8ca4eb;
-            --dbp-override-secondary: white;
-            --dbp-override-secondary-surface: #151515;
-            --dbp-override-on-secondary-surface: white;
-            --dbp-override-secondary-surface-border-color: #151515;
-
-            --dbp-override-muted: #666666;
-            --dbp-override-accent: #c24f68;
-            --dbp-override-info: #8ca4eb;
-            --dbp-override-success: #7acc79;
-            --dbp-override-warning: #f99a41;
-            --dbp-override-on-warning-surface: black;
-            --dbp-override-danger: #de3535;
-
-            --dbp-override-border: 1px solid white;
-
-            --dbp-override-hover-background-color: white;
-            --dbp-override-hover-color: #151515;
-        }
-
-        .header {
-            display: flex;
-            align-items: center;
-            min-height: 50px;
-            padding: 0.5rem 1rem;
-            margin-bottom: 1rem;
-            background-color: white;
-            border-bottom: 1px solid blue;
-        }
-
-        .header a {
-            color: blue;
-            text-decoration: none;
-            align-self: flex-end;
-        }
-
-        .header-title {
-            font-size: 2rem;
-            font-weight: 600;
-            align-self: flex-end;
-        }
-
-        .header-subtitle {
-            margin-left: 1.2rem;
-            font-size: 1.2rem;
-            /*align-self: flex-end;*/
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem;
-        }
-
-        .search-panel {
-            display: flex;
-        }
-
-        .search-panel__filters {
-            flex: 1;
-        }
-        .filter-block {
-            margin-bottom: 1rem;
-        }
-        .filter-heading {
-            width: 80%;
-            background-color: white;
-            padding-top: 5px;
-            padding-bottom: 5px;
-            padding-left: 0.5rem;
-            margin-bottom: 5px;
-        }
-        .search-panel__results {
-            flex: 2;
-        }
-
-        .ais-Highlight-highlighted {
-            color: inherit;
-            font-size: inherit;
-        }
-
-        #searchbox {
-            margin-bottom: 2rem;
-        }
-        #stats {
-            margin-bottom: 1rem;
-        }
-        #pagination {
-            margin: 2rem auto;
-            text-align: center;
-        }
-
-        .hit-name {
-            font-size: 1.1rem;
-            font-weight: bold;
-            margin-top: 10px;
-            display: flex;
-            align-items: center;
-        }
-        .hit-name-img {
-            height: 48px;
-            width: 48px;
-            padding-right: 0.6rem;
-        }
-
-        .labs-img {
-            height: 24px;
-            width: 24px;
-            padding-left: 0.6rem;
-        }
-
-        .filter-heading .labs-img {
-            height: 18px;
-            width: 18px;
-            padding-left: 0.6rem;
-        }
-
-        .hit-types {
-            display: flex;
-            flex-flow: row wrap;
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-        .hit-document-type, .hit-content-type {
-            font-size: 0.8rem;
-            flex: 2;
-        }
-
-        .links {
-            padding-top: 1rem;
-        }
-        .hit-repo img, .hit-doc img, .hit-demo img {
-            height: 24px;
-            width: 24px;
-            padding-left: 1rem;
-        }
-
-        .hit-license {
-            margin-top: 20px;
-        }
-        .hit-used-prog-langs {
-            font-size: 0.8rem;
-            margin-top: 20px;
-        }
-
-        .hit-rating {
-            margin-top: 1rem;
-            font-size: 0.8rem;
-        }
-
-
-        .ais-Hits-item {
-            padding: 20px;
-            box-shadow: none;
-            border: 1px solid lightgray;
-            width: calc(50% - 1rem);
-        }
-
-        .type {
-            border: 1px black solid;
-            padding: 0.3rem;
-            margin: 0.2rem;
-            display: inline-block;
-        }
-
-        /* document type */
-        .software {
-            background-color: white;
-            color: black;
-        }
-
-        .resource {
-            background-color: black;
-            color: white;
-        }
-
-        .service {
-            background-color: blue;
-            color: white;
-        }
-
-        /* content type */
-        .api {
-            background-color: #ff7777;
-            color: black;
-        }
-        .application {
-            background-color: #7aff8f;
-            color: black;
-        }
-        .supporting-software {
-            background-color: #878faf;
-            color: black;
-        }
-        .admin-tool {
-            background-color: sandybrown;
-            color: black;
-        }
-
-        /* used programming languages */
-        .php {
-            background-color: lightblue;
-            color: black;
-        }
-        .javascript {
-            background-color: lightcoral;
-            color: black;
-        }
-        .docker {
-            background-color: lightcyan;
-            color: black;
-        }
-        .css {
-            background-color: lightpink;
-            color: black;
-        }
-        .java {
-            background-color: yellow;
-            color: black;
-        }
-        .html {
-            background-color: gray;
-            color: white;
-        }
-        /* infrastructure */
-        footer p {
-            text-align: right;
-            padding-right: 20px;
-        }
-        .text-panel {
-            padding-left: 20px;
-            font-weight: bolder;
-        }
-        .text-panel-block {
-            padding-bottom: 20px;
-        }
-        .text-panel-header {
-            font-size: x-large;
-            padding-bottom: 10px;
-        }
-        .text-panel-text {
-            font-size: larger;
-            padding-bottom: 5px;
-        }
-    </style>
-
+    <!-- custom css -->
+    <link rel="stylesheet" href="<%= getPrivateUrl('styles.css') %>">
 </head>
 
 <body class="antialiased">
-<header class="header">
-    <img src="<%= getPrivateUrl('dbp-logo.png') %>" alt="DBP Logo">
+<div class="header-top">
+    <div class="logo">
+        <img src="<%= getPrivateUrl('dbp_logo_on_white.svg') %>" alt="DBP Logo">
+    </div>
+    <div class="contact">        
+        <img src="<%= getPrivateUrl('facebook2.svg') %>" alt="Facebook">
+        <img src="<%= getPrivateUrl('instagram2.svg') %>" alt="Instagram">
+        <img src="<%= getPrivateUrl('mail2.svg') %>" alt="Mail">
+    </div>
+</div>
+<header class="header border-shadow">
     <h1 class="header-title">
-        <a href="/">DBP Overview</a>
+        <a href="/">DBP Software Overview</a>
     </h1>
     <div class="header-subtitle">using Typesense + InstantSearch.js</div>
 </header>
+<div class="header-bottom"></div>
 <div class="relative flex items-top justify-center sm:items-center">
 
     <div class="container">
@@ -387,7 +114,17 @@
             </div>
             <div class="search-panel__results">
                 <div id="searchbox"></div>
-                <div id="stats"></div>
+                <div class="stats-container">
+                    <div id="stats"></div>
+                    <div class="filter-mobile">
+                        <div class="description">Filter Results</div>
+                        <div 
+                            onclick="openMobileFilterModal()"
+                        >
+                            <img src="<%= getPrivateUrl('filter.svg') %>" alt="Filter">
+                        </div>
+                    </div>
+                </div>
                 <div id="hits"></div>
             </div>
             <div class="text-panel">

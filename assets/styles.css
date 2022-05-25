@@ -1,0 +1,485 @@
+
+@font-face { font-family: Lato; src: url('font/Lato-Light.ttf'); }
+
+body {
+    font-family: 'Lato', 'Calibri', 'Arial', 'sans-serif';
+    font-weight: 300;
+    margin: 0;
+}
+
+.light-theme {
+    --dbp-override-background: #ffffff;
+    --dbp-override-content: #222120;
+    --dbp-override-content-surface: var(--dbp-override-content);
+    --dbp-override-on-content-surface: var(--dbp-override-background);
+
+    --dbp-override-primary: #3775c1;
+    --dbp-override-primary-surface: var(--dbp-override-primary);
+    --dbp-override-on-primary-surface: var(--dbp-override-on-content-surface);
+    --dbp-override-primary-surface-border-color: var(--dbp-override-primary-surface);
+
+    --dbp-override-secondary: #222120;
+    --dbp-override-secondary-surface: #ffffff;
+    --dbp-override-on-secondary-surface: var(--dbp-override-on-content-surface);
+    --dbp-override-secondary-surface-border-color: var(--dbp-override-secondary-surface);
+
+    --dbp-override-muted: #767676;
+    --dbp-override-muted-surface: var(--dbp-override-muted);
+    --dbp-override-on-muted-surface: var(--dbp-override-on-content-surface);
+    --dbp-override-muted-surface-border-color: var(--dbp-override-muted-surface);
+
+    --dbp-override-accent: #9e1e4d;
+    --dbp-override-accent-surface: var(--dbp-override-accent);
+    --dbp-override-on-accent-surface: var(--dbp-override-on-content-surface);
+    --dbp-override-accent-surface-border-color: var(--dbp-override-accent-surface);
+
+    --dbp-override-info: #38808a;
+    --dbp-override-info-surface: var(--dbp-override-info);
+    --dbp-override-on-info-surface: var(--dbp-override-on-content-surface);
+    --dbp-override-info-surface-border-color: var(--dbp-override-info-surface);
+
+    --dbp-override-success: #338555;
+    --dbp-override-success-surface: #5ec189;
+    --dbp-override-on-success-surface: #222120;
+    --dbp-override-success-surface-border-color: var(--dbp-override-success-surface);
+
+    --dbp-override-warning: #bf8808;
+    --dbp-override-warning-surface: #f9cc66;
+    --dbp-override-on-warning-surface: #222120;
+    --dbp-override-warning-surface-border-color: var(--dbp-override-warning-surface);
+
+
+    --dbp-override-danger: #cc3232;
+    --dbp-override-danger-surface: var(--dbp-override-danger);
+    --dbp-override-on-danger-surface: var(--dbp-override-on-content-surface);
+    --dbp-override-danger-surface-border-color: var(--dbp-override-danger-surface);
+
+
+    --dbp-override-border: 1px solid #000000;
+    --dbp-override-border-radius: 0px;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    min-height: 340px;
+    background-color: white; /** var(--dbp-override-background); */
+    padding-left: 9rem;
+    padding-top: 7rem;
+    background-image: url('/dist/local/dbp-overview-app/dbp_logo_chevrons_on_white.svg');
+    background-repeat: no-repeat;
+    background-position: 17rem 0;
+    background-size: 30rem;
+    position: sticky;
+    top: -348px;
+    z-index: 10;
+}
+
+.border-shadow {
+    -webkit-box-shadow: 0px 10px 35px rgb(212, 212, 212);
+    box-shadow: 0px 10px 35px rgb(212, 212, 212);
+}
+
+.header a {
+    color: var(--dbp-override-content);
+    text-decoration: none;
+}
+
+.header-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.header-top {
+    position: sticky;
+    top: 0;
+    background-color: white; /** var(--dbp-override-background); */
+    z-index: 10;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    z-index: 11;
+}
+
+.header-subtitle {
+    font-size: 1.2rem;
+}
+
+.header-bottom {
+    position: sticky;
+    top: 64px;
+    width: 100%;
+    background-color: white; /** var(--dbp-override-background); */
+    z-index: 10;
+}
+
+.header-top .logo {
+    padding-left: 4rem;
+    padding-top: 1rem;
+}
+
+.header-top .logo img {
+    width: 270px;
+}
+
+.header-top .contact {
+    padding-right: 2rem;
+    padding-top: 2.5rem;
+}
+
+.header-top .contact img {
+    padding-right: 0.5rem;
+    width: 1.2rem;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+    padding-top: 7rem;
+}
+
+.search-panel {
+    display: flex;
+}
+
+.search-panel__filters {
+    flex: 1;
+}
+.filter-block {
+    margin-bottom: 1rem;
+}
+.filter-heading {
+    width: 80%;
+    background-color: white; /** var(--dbp-override-background); */
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 0.5rem;
+    margin-bottom: 5px;
+}
+.search-panel__results {
+    flex: 2;
+}
+
+.ais-Highlight-highlighted {
+    color: inherit;
+    font-size: inherit;
+}
+
+#searchbox {
+    margin-bottom: 2rem;
+}
+#stats {
+    margin-bottom: 1rem;
+}
+
+.filter-mobile {
+    display: none;
+}
+
+#pagination {
+    margin: 2rem auto;
+    text-align: center;
+}
+
+.hit-name {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+.hit-name-img {
+    height: 48px;
+    width: 48px;
+    padding-right: 0.6rem;
+}
+
+.labs-img {
+    height: 24px;
+    width: 24px;
+    padding-left: 0.6rem;
+}
+
+.filter-heading .labs-img {
+    height: 18px;
+    width: 18px;
+    padding-left: 0.6rem;
+}
+
+.hit-types {
+    display: flex;
+    flex-flow: row wrap;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.hit-document-type, .hit-content-type {
+    font-size: 0.8rem;
+    flex: 2;
+}
+
+.links {
+    padding-top: 1rem;
+}
+.hit-repo img, .hit-doc img, .hit-demo img {
+    height: 24px;
+    width: 24px;
+    padding-left: 1rem;
+}
+
+.hit-license {
+    margin-top: 20px;
+}
+.hit-used-prog-langs {
+    font-size: 0.8rem;
+    margin-top: 20px;
+}
+
+.hit-rating {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+}
+
+
+.ais-Hits-item {
+    padding: 20px;
+    box-shadow: none;
+    border: 1px solid lightgray;
+    width: calc(50% - 1rem);
+}
+
+.type {
+    border: 1px black solid;
+    padding: 0.3rem;
+    margin: 0.2rem;
+    display: inline-block;
+}
+
+/* document type */
+.software {
+    background-color: white;
+    color: black;
+}
+
+.resource {
+    background-color: black;
+    color: white;
+}
+
+.service {
+    background-color: blue;
+    color: white;
+}
+
+/* content type */
+.api {
+    background-color: #9e1e4d; /* #ff7777; */
+    color: white; /* black; */
+    font-weight: 400;
+}
+.application {
+    background-color: #7aff8f;
+    color: black;
+}
+.supporting-software {
+    background-color: #878faf;
+    color: black;
+}
+.admin-tool {
+    background-color: sandybrown;
+    color: black;
+}
+
+/* used programming languages */
+.php {
+    background-color: lightblue;
+    color: black;
+}
+.javascript {
+    background-color: lightcoral;
+    color: black;
+}
+.docker {
+    background-color: lightcyan;
+    color: black;
+}
+.css {
+    background-color: lightpink;
+    color: black;
+}
+.java {
+    background-color: yellow;
+    color: black;
+}
+.html {
+    background-color: gray;
+    color: white;
+}
+/* infrastructure */
+footer p {
+    text-align: right;
+    padding-right: 20px;
+}
+.text-panel {
+    /* padding-left: 20px; */
+    /* font-weight: bolder; */
+    flex: 1;
+}
+.text-panel-block {
+    padding-bottom: 20px;
+}
+.text-panel-header {
+    /* font-size: x-large; */
+    /* font-weight: 400; */
+    padding-bottom: 10px;
+    padding-left: 20%;
+    width: 80%;
+}
+.text-panel-text {
+    font-size: larger;
+    padding-bottom: 5px;
+    padding-left: 20%;
+}
+
+.ais-Pagination-link {
+    border-radius: 0;
+    background-color: #ffffff;
+    color: #222120;
+    border-color: #222120;
+}
+
+.ais-Pagination-item.ais-Pagination-item--page.ais-Pagination-item--selected .ais-Pagination-link {
+    color: #ffffff;
+    background-color: #222120;
+    border-color: #222120;
+}
+
+.ais-Pagination-item--disabled .ais-Pagination-link {
+    color: #767676;
+    border-color: #767676;
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding-left: 0;
+        padding-top: 0;
+        text-align: center;
+        padding-bottom: 2rem;
+        min-height: 100px;
+        top: -72px;
+    }
+
+    .border-shadow {
+        -webkit-box-shadow: 0px 8px 12px rgb(212 212 212);
+        box-shadow: 0px 8px 12px rgb(212 212 212);
+    }
+
+    .header-title {
+        font-size: 1.7rem;
+        padding-top: 0.4rem;
+    }
+
+    .header-top .logo {
+        padding-left: 0.5rem;
+        padding-top: 0.7rem;
+    }
+
+    .header-top .logo img {
+        width: 2.5rem;
+        content: url('/dist/local/dbp-overview-app/dbp_logo_small_on_white.svg');
+    }
+
+    .header-top .contact {
+        padding-top: 1.2rem;
+        padding-right: 0.8rem;
+    }
+
+    .header-top .contact img {
+        width: 1.5rem;
+        padding-left: 0.8rem;
+        padding-right: 0;
+    }
+
+    .container {
+        padding-top: 2rem;
+    }
+
+    .container .search-panel {
+        display: block;
+    }
+
+    .search-panel__filters {
+        display: none; /**TODO**/
+    }
+
+    .text-panel {
+        /** TODO show at the end (below pagination) **/
+        padding-top: 2rem;
+    }
+
+    .ais-Hits-item {
+        width: calc(100% - 1rem);
+    }
+
+    #searchbox {
+        margin-bottom: 1rem;
+    }
+
+    .hit-name {
+        margin-top: 0;
+    }
+
+    .hit-types {
+        display: flex;
+        flex-flow: row wrap;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .hit-document-type, .hit-content-type{
+        /* margin-top: 16px; */
+        font-size: 0.8rem;
+        flex: 2;
+    }
+
+    .filter-mobile {
+        display: block;
+        color: #3a4570;
+        font-size: .8rem;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .filter-mobile .description {
+        padding-right: 0.4rem;
+        padding-top: 0.2rem;
+    }
+
+    .filter-mobile img {
+        width: 1.5rem;
+    }
+
+    .stats-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    #stats {
+        margin-bottom: 0;
+    }
+
+    #pagination { /**TODO should be sticky at the moment the user scrolls into the above sticky position**/
+        position: sticky; 
+        bottom: 0;
+        background: white;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+}
