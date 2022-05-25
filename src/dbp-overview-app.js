@@ -55,8 +55,9 @@ export function init(typesenseConfig) {
                     return `
         <div>
           <div class="hit-name">
-            <img src=${item.link_icon || 'local/dbp-overview-app/icons8-missing-32.png'} alt="link">
+            <img class="hit-name-img" src=${item.link_icon || 'local/dbp-overview-app/icons8-missing-32.png'} alt="link">
             ${item._highlightResult.name.value}
+            ${item.labs.includes('yes') ? '<img class="labs-img" src="local/dbp-overview-app/lab_flask.svg" alt="labs">' : ''}
           </div>
           <div class="">${item._highlightResult.description.value}</div>
           <div class="hit-document-type">

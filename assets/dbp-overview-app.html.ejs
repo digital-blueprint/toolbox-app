@@ -194,10 +194,22 @@
             display: flex;
             align-items: center;
         }
-        .hit-name img {
+        .hit-name-img {
             height: 48px;
             width: 48px;
-            padding-right: 0.2rem;
+            padding-right: 0.6rem;
+        }
+
+        .labs-img {
+            height: 24px;
+            width: 24px;
+            padding-left: 0.6rem;
+        }
+
+        .filter-heading .labs-img {
+            height: 18px;
+            width: 18px;
+            padding-left: 0.6rem;
         }
 
         .hit-document-type, .hit-content-type {
@@ -363,7 +375,7 @@
                     <div id="maintained-by-list"></div>
                 </div>
                 <div class="filter-block">
-                    <div class="filter-heading">Labs/Experiments</div>
+                    <div class="filter-heading">Labs/Experiments <img class="labs-img" src="local/dbp-overview-app/lab_flask.svg" alt="labs"></div>
                     <div id="labs-list"></div>
                 </div>
             </div>
