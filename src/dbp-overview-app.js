@@ -1,5 +1,5 @@
 import instantsearch from "instantsearch.js";
-import { searchBox, configure, hits, refinementList, toggleRefinement, stats, pagination } from 'instantsearch.js/es/widgets';
+import { searchBox, configure, hits, refinementList, stats, pagination } from 'instantsearch.js/es/widgets';
 import TypesenseInstantSearchAdapter from 'typesense-instantsearch-adapter';
 
 import { licenses } from '../assets/licenses/spdx.json';
@@ -60,13 +60,15 @@ export function init(typesenseConfig) {
             ${item.labs.includes('yes') ? '<img class="labs-img" src="local/dbp-overview-app/lab_flask.svg" alt="labs">' : ''}
           </div>
           <div class="">${item._highlightResult.description.value}</div>
-          <div class="hit-document-type">
-            <div>type of project:</div>
-            ${item._highlightResult.document_type.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}">${a.value}</div>`).join('')}
-          </div>
-          <div class="hit-content-type">
-            <div>subtype of project:</div>
-            ${item._highlightResult.content_type.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}">${a.value}</div>`).join('')}
+          <div class="hit-types">
+              <div class="hit-document-type">
+                <div>type of project:</div>
+                ${item._highlightResult.document_type.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}">${a.value}</div>`).join('')}
+              </div>
+              <div class="hit-content-type">
+                <div>subtype of project:</div>
+                ${item._highlightResult.content_type.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}">${a.value}</div>`).join('')}
+              </div>
           </div>
           <div class="hit-used-programming-languages">
             <div>used programming languages:</div>
