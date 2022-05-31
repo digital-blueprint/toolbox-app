@@ -1,8 +1,8 @@
 
-@font-face { font-family: Lato; src: url('font/Lato-Light.ttf'); }
+@font-face { font-family: Lato; src: url('/dist/local/dbp-overview-app/font/Lato-Light.ttf'); }
 
 body {
-    font-family: 'Lato', 'Calibri', 'Arial', 'sans-serif';
+    font-family: Lato, 'Calibri', 'Arial', 'sans-serif';
     font-weight: 300;
     margin: 0;
 }
@@ -54,9 +54,13 @@ body {
     --dbp-override-on-danger-surface: var(--dbp-override-on-content-surface);
     --dbp-override-danger-surface-border-color: var(--dbp-override-danger-surface);
 
-
     --dbp-override-border: 1px solid #000000;
     --dbp-override-border-radius: 0px;
+}
+
+a {
+    color: #3775c1;
+    font-weight: 700;
 }
 
 .header {
@@ -215,6 +219,12 @@ body {
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+.hit-used-programming-languages {
+    font-size: 0.8rem;
+    margin-top: 20px;
+}
+
 .hit-document-type, .hit-content-type {
     font-size: 0.8rem;
     flex: 2;
@@ -230,6 +240,7 @@ body {
 }
 
 .hit-license {
+    font-size: 0.8rem;
     margin-top: 20px;
 }
 .hit-used-prog-langs {
@@ -273,53 +284,53 @@ body {
 }
 
 .service {
-    background-color: blue;
+    background-color: #3b56a0;
     color: white;
 }
 
 /* content type */
 .api {
-    background-color: #9e1e4d; /* #ff7777; */
-    color: white; /* black; */
+    background-color: #9e1e4d;
+    color: white;
     font-weight: 400;
 }
 .application {
-    background-color: #7aff8f;
-    color: black;
+    background-color: #50417a;
+    color: white;
 }
 .supporting-software {
     background-color: #878faf;
     color: black;
 }
 .admin-tool {
-    background-color: sandybrown;
-    color: black;
+    background-color: #6e648a;
+    color: white;
 }
 
 /* used programming languages */
 .php {
-    background-color: lightblue;
-    color: black;
+    background-color: #5b6b9f;
+    color: white;
 }
 .javascript {
-    background-color: lightcoral;
-    color: black;
+    background-color: #9c6b83;
+    color: white;
 }
 .docker {
-    background-color: lightcyan;
+    background-color: #c8dbfb;
     color: black;
 }
 .css {
-    background-color: lightpink;
+    background-color: #dbc8cc;
     color: black;
 }
 .java {
-    background-color: yellow;
-    color: black;
+    background-color: #716387;
+    color: white;
 }
 .html {
-    background-color: gray;
-    color: white;
+    background-color: #f1e4e6;
+    color: black;
 }
 /* infrastructure */
 footer p {
@@ -327,22 +338,17 @@ footer p {
     padding-right: 20px;
 }
 .text-panel {
-    /* padding-left: 20px; */
-    /* font-weight: bolder; */
     flex: 1;
 }
 .text-panel-block {
     padding-bottom: 20px;
 }
 .text-panel-header {
-    /* font-size: x-large; */
-    /* font-weight: 400; */
     padding-bottom: 10px;
     padding-left: 20%;
     width: 80%;
 }
 .text-panel-text {
-    font-size: larger;
     padding-bottom: 5px;
     padding-left: 20%;
 }
@@ -363,6 +369,16 @@ footer p {
 .ais-Pagination-item--disabled .ais-Pagination-link {
     color: #767676;
     border-color: #767676;
+}
+
+.ais-Pagination-link:hover {
+    color: #ffffff;
+    background-color: #222120;
+    border-color: #222120;
+}
+
+.ais-Stats, .ais-SearchBox, .ais-RefinementList, .ais-Hits-item, .ais-Hits  {
+    color: #222120;
 }
 
 @media (max-width: 768px) {
@@ -415,7 +431,7 @@ footer p {
     }
 
     .search-panel__filters {
-        display: none; /**TODO**/
+        /* display: none; *TODO* */
     }
 
     .text-panel {
@@ -450,7 +466,7 @@ footer p {
 
     .filter-mobile {
         display: block;
-        color: #3a4570;
+        color: #222120;
         font-size: .8rem;
         box-sizing: border-box;
         display: flex;
@@ -479,7 +495,7 @@ footer p {
         margin-bottom: 0;
     }
 
-    #pagination { /**TODO should be sticky at the moment the user scrolls into the above sticky position**/
+    #pagination {
         position: sticky; 
         bottom: 0;
         background: white;
