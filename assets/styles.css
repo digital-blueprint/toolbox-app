@@ -143,6 +143,7 @@ a {
     margin: 0 auto;
     padding: 1rem;
     padding-top: 7rem;
+    background: white;
 }
 
 .search-panel {
@@ -225,7 +226,7 @@ a {
     margin-top: 20px;
 }
 
-.hit-document-type, .hit-content-type {
+.hit-document-type, .hit-content-type, .hit-release {
     font-size: 0.8rem;
     flex: 2;
 }
@@ -262,7 +263,7 @@ a {
 }
 
 .release {
-    font-weight: 500;
+    font-weight: 700;
 }
 
 .type {

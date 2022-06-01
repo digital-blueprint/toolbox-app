@@ -79,7 +79,8 @@ export function init(typesenseConfig, dateFilter) {
             ${item._highlightResult.used_programming_languages.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}">${a.value}</div>`).join('')}
           </div>
           <div class="hit-license">License: ${item.license.map(l => '<span>' + formatLicense(l) + '</span>').join('')}</div>
-          <div class="hit-release">release: ${item.release_date > 0 ? formattedTime + ',' : ''} <span class="release">${item.release_version}</span></div>
+          ${item.release_date > 0 ? `<div class="hit-release">release date: ${formattedTime}</div>` : ''}
+          ${!!item.release_version ? `<div class="hit-release">version <span class="release">${item.release_version}</span></div>` : ''}
           <div class="links">
               <span class="hit-repo">${item.link_repo ? `<a href=${item.link_repo}><img src="local/dbp-overview-app/Git-Icon-Black.png" alt="repository"></a>` : ''}</span>
               <span class="hit-doc">${item.link_doc ? `<a href=${item.link_doc}><img src="local/dbp-overview-app/icons8-book-60.png" alt="documentation"></a>` : ''}</span>
