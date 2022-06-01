@@ -47,7 +47,19 @@
             key: '<%= typesense.key %>'
         };
 
-        init(typesenseConfig);
+        init(typesenseConfig, {active: false, range: 86400});
+
+        function filter_changed() {
+            const dateFilter = {
+                active: document.getElementById('filter-changed').checked,
+                range: document.getElementById('timespan').value,
+            };
+            console.log('filter_changed()');
+            console.dir(dateFilter);
+            init(typesenseConfig, dateFilter);
+        }
+        document.getElementById('filter-changed').onchange = filter_changed;
+        document.getElementById('timespan').onchange = filter_changed;
     </script>
 
     <!-- Prevent Chrome/Edge from suggesting to translate the page -->
@@ -245,12 +257,15 @@
             font-size: 0.8rem;
         }
 
-
         .ais-Hits-item {
             padding: 20px;
             box-shadow: none;
             border: 1px solid lightgray;
             width: calc(50% - 1rem);
+        }
+
+        .release {
+            font-weight: 500;
         }
 
         .type {
@@ -383,6 +398,21 @@
                 <div class="filter-block">
                     <div class="filter-heading">Labs/Experiments <img class="labs-img" src="local/dbp-overview-app/lab_flask.svg" alt="labs"></div>
                     <div id="labs-list"></div>
+                </div>
+                <div class="filter-block">
+                    <div class="filter-heading">Changed</div>
+                    <div id="changed">
+                        <input type="checkbox" id="filter-changed" name="changed_filter" value="1">
+                        <label for="filter-changed">on changed in the last</label>
+                        <select name="timespan" id="timespan">
+                            <option value="86400">24 hours</option>
+                            <option value="604800">7 days</option>
+                            <option value="2678400">31 days</option>
+                            <option value="7948800">3 months</option>
+                            <option value="15811200">6 months</option>
+                            <option value="31622400">year</option>
+                        </select>
+                    </div>
                 </div>
             </div>
             <div class="search-panel__results">

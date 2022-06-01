@@ -14,7 +14,7 @@ function formatLicense(license) {
     return `<a href="${spdxInfo.reference}">${spdxInfo.name}</a>`;
 }
 
-export function init(typesenseConfig) {
+export function init(typesenseConfig, dateFilter) {
     const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
         server: {
             apiKey: typesenseConfig.key, // Be sure to use an API key that only allows searches, in production
@@ -31,12 +31,12 @@ export function init(typesenseConfig) {
         //  queryBy is required.
         //  filterBy is managed and overridden by InstantSearch.js. To set it, you want to use one of the filter widgets like refinementList or use the `configure` widget.
         additionalSearchParameters: {
-            queryBy: "name,description,document_type,content_type,maintained_by,used_programming_languages"
+            queryBy: "name,description,document_type,content_type,maintained_by,used_programming_languages",
         },
     });
     const searchClient = typesenseInstantsearchAdapter.searchClient;
 
-    const search = instantsearch({
+    let search = instantsearch({
         searchClient,
         indexName: 'software-overview',
     });
@@ -47,11 +47,15 @@ export function init(typesenseConfig) {
         }),
         configure({
             hitsPerPage: 8,
+            numericFilters: ['release_date >= ' + (dateFilter.active ? Math.floor(Date.now()/1000 - dateFilter.range) : 1577836800)]
         }),
         hits({
             container: '#hits',
             templates: {
                 item(item) {
+                    const d = new Date(item.release_date*1000);
+                    const formattedTime = d.getFullYear() + '-' + ('0' + d.getMonth()).substr(-2) + '-'  + ('0' + d.getDay()).substr(-2);
+
                     return `
         <div>
           <div class="hit-name">
@@ -75,10 +79,11 @@ export function init(typesenseConfig) {
             ${item._highlightResult.used_programming_languages.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}">${a.value}</div>`).join('')}
           </div>
           <div class="hit-license">License: ${item.license.map(l => '<span>' + formatLicense(l) + '</span>').join('')}</div>
+          <div class="hit-release">release: ${item.release_date > 0 ? formattedTime + ',' : ''} <span class="release">${item.release_version}</span></div>
           <div class="links">
-          <span class="hit-repo">${item.link_repo ? `<a href=${item.link_repo}><img src="local/dbp-overview-app/Git-Icon-Black.png" alt="repository"></a>` : ''}</span>
-          <span class="hit-doc">${item.link_doc ? `<a href=${item.link_doc}><img src="local/dbp-overview-app/icons8-book-60.png" alt="documentation"></a>` : ''}</span>
-          <span class="hit-demo">${item.link_demo ? `<a href=${item.link_demo}><img src="local/dbp-overview-app/icons8-trial-50.png" alt="demo"></a>` : ''}</span>
+              <span class="hit-repo">${item.link_repo ? `<a href=${item.link_repo}><img src="local/dbp-overview-app/Git-Icon-Black.png" alt="repository"></a>` : ''}</span>
+              <span class="hit-doc">${item.link_doc ? `<a href=${item.link_doc}><img src="local/dbp-overview-app/icons8-book-60.png" alt="documentation"></a>` : ''}</span>
+              <span class="hit-demo">${item.link_demo ? `<a href=${item.link_demo}><img src="local/dbp-overview-app/icons8-trial-50.png" alt="demo"></a>` : ''}</span>
           </div>
           <div class="hit-rating">score: ${item.score}</div>
         </div>
