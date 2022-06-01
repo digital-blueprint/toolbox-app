@@ -1,5 +1,5 @@
 
-@font-face { font-family: Lato; src: url('/dist/local/dbp-overview-app/font/Lato-Light.ttf'); }
+@font-face { font-family: Lato; src: url('font/Lato-Light.ttf'); }
 
 body {
     font-family: Lato, 'Calibri', 'Arial', 'sans-serif';
@@ -70,7 +70,7 @@ a {
     background-color: white; /** var(--dbp-override-background); */
     padding-left: 10rem; /*14*/
     padding-top: 7rem;
-    background-image: url('/dist/local/dbp-overview-app/dbp_logo_chevrons_on_white.svg');
+    background-image: url('dbp_logo_chevrons_on_white.svg');
     background-repeat: no-repeat;
     background-position: 17rem -20px; /*21*/
     background-size: 30rem;
@@ -409,7 +409,7 @@ footer p {
 
     .header-top .logo img {
         width: 2.5rem;
-        content: url('/dist/local/dbp-overview-app/dbp_logo_small_on_white.svg');
+        content: url('dbp_logo_small_on_white.svg');
     }
 
     .header-top .contact {
