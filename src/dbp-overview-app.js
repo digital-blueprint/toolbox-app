@@ -31,7 +31,7 @@ export function init(typesenseConfig, dateFilter) {
         //  queryBy is required.
         //  filterBy is managed and overridden by InstantSearch.js. To set it, you want to use one of the filter widgets like refinementList or use the `configure` widget.
         additionalSearchParameters: {
-            queryBy: "name,description,document_type,content_type,maintained_by,used_programming_languages",
+            queryBy: "name,description,target_audience,document_type,content_type,maintained_by,used_programming_languages",
         },
     });
     const searchClient = typesenseInstantsearchAdapter.searchClient;
@@ -82,9 +82,10 @@ export function init(typesenseConfig, dateFilter) {
           ${item.release_date > 0 ? `<div class="hit-release">release date: ${formattedTime}</div>` : ''}
           ${!!item.release_version ? `<div class="hit-release">version <span class="release">${item.release_version}</span></div>` : ''}
           <div class="links">
-              <span class="hit-repo">${item.link_repo ? `<a href=${item.link_repo}><img src="local/dbp-overview-app/Git-Icon-Black.png" alt="repository"></a>` : ''}</span>
-              <span class="hit-doc">${item.link_doc ? `<a href=${item.link_doc}><img src="local/dbp-overview-app/icons8-book-60.png" alt="documentation"></a>` : ''}</span>
-              <span class="hit-demo">${item.link_demo ? `<a href=${item.link_demo}><img src="local/dbp-overview-app/icons8-trial-50.png" alt="demo"></a>` : ''}</span>
+              <span class="hit-repo">${item.link_repo ? `<a href=${item.link_repo} rel="noopener noreferrer" target="_blank"><img src="local/dbp-overview-app/Git-Icon-Black.png" alt="repository"></a>` : ''}</span>
+              <span class="hit-doc">${item.link_doc ? `<a href=${item.link_doc} rel="noopener noreferrer" target="_blank"><img src="local/dbp-overview-app/icons8-book-60.png" alt="documentation"></a>` : ''}</span>
+              <span class="hit-demo">${item.link_demo ? `<a href=${item.link_demo} rel="noopener noreferrer" target="_blank"><img src="local/dbp-overview-app/icons8-trial-50.png" alt="demo"></a>` : ''}</span>
+              <span class="hit-changelog">${item.link_changelog ? `<a href=${item.link_changelog} rel="noopener noreferrer" target="_blank"><img src="local/dbp-overview-app/changelog.png" alt="changelog"></a>` : ''}</span>
           </div>
           <div class="hit-rating">score: ${item.score}</div>
         </div>
@@ -95,6 +96,10 @@ export function init(typesenseConfig, dateFilter) {
         configure({
             facets: ['document_type', 'content_type', 'used_programming_languages', 'license'],
             maxValuesPerFacet: 20,
+        }),
+        refinementList({
+            container: '#targetaudience-list',
+            attribute: 'target_audience',
         }),
         refinementList({
             container: '#blueprint-list',

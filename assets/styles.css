@@ -235,7 +235,7 @@ a {
 .links {
     padding-top: 1rem;
 }
-.hit-repo img, .hit-doc img, .hit-demo img {
+.hit-repo img, .hit-doc img, .hit-demo img, .hit-changelog img {
     height: 24px;
     width: 24px;
     padding-left: 1rem;

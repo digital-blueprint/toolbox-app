@@ -193,7 +193,7 @@ export default (async () => {
                 ? serve({
                       contentBase: '.',
                       host: '127.0.0.1',
-                      port: 8001,
+                      port: 8009,
                       historyApiFallback: config.basePath + appName + '.html',
                       https: await generateTLSConfig(),
                       headers: {
