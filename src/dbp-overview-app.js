@@ -100,6 +100,12 @@ export function init(typesenseConfig, dateFilter) {
         refinementList({
             container: '#targetaudience-list',
             attribute: 'target_audience',
+            transformItems(items) {
+                return items.map(item => ({
+                    ...item,
+                    highlighted: item.highlighted.charAt(0).toUpperCase() + item.highlighted.slice(1),
+                }));
+            },
         }),
         refinementList({
             container: '#blueprint-list',
@@ -120,6 +126,12 @@ export function init(typesenseConfig, dateFilter) {
         refinementList({
             container: '#license-list',
             attribute: 'license',
+            transformItems(items) {
+                return items.map(item => ({
+                    ...item,
+                    highlighted: item.highlighted.replaceAll('-', ' '),
+                }));
+            },
         }),
         refinementList({
             container: '#maintained-by-list',
