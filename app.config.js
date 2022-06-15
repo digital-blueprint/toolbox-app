@@ -6,16 +6,18 @@ export default {
             port: '443',
             protocol: 'https',
             key: 'bRQ0Hrg9SAPGR3CVu5hm5bBTggUhsq0e',
-        }
+        },
+        email: 'test@localhost.lan'
     },
     local: {
-        basePath: '/dist/',
+        basePath: '/',
         typesense: {
             host: 'localhost',
             port: '8108',
             protocol: 'http',
             key: 'xyz',
-        }
+        },
+        email: 'test@localhost.lan'
     },
     development: {
         basePath: '/',
@@ -24,7 +26,8 @@ export default {
             port: '443',
             protocol: 'https',
             key: 'bRQ0Hrg9SAPGR3CVu5hm5bBTggUhsq0e',
-        }
+        },
+        email: 'test@localhost.lan'
     },
     demo: {
         basePath: '/',
@@ -33,7 +36,8 @@ export default {
             port: '443',
             protocol: 'https',
             key: 'bRQ0Hrg9SAPGR3CVu5hm5bBTggUhsq0e',
-        }
+        },
+        email: 'digitale.projekte@tugraz.at'
     },
     production: {
         basePath: '/',
@@ -42,6 +46,7 @@ export default {
             port: '443',
             protocol: 'https',
             key: 'bRQ0Hrg9SAPGR3CVu5hm5bBTggUhsq0e',
-        }
+        },
+        email: 'digitale.projekte@tugraz.at'
     },
 };

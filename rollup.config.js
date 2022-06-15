@@ -87,16 +87,11 @@ export default (async () => {
                         return url.resolve(`${config.basePath}${privatePath}/`, p);
                     },
                     name: appName,
-                    entryPointURL: config.entryPointURL,
                     basePath: config.basePath,
-                    keyCloakBaseURL: config.keyCloakBaseURL,
-                    keyCloakRealm: config.keyCloakRealm,
-                    keyCloakClientId: config.keyCloakClientId,
                     CSP: config.CSP,
-                    matomoUrl: config.matomoUrl,
-                    matomoSiteId: config.matomoSiteId,
                     buildInfo: getBuildInfo(appEnv),
                     typesense: config.typesense,
+                    email: config.email
                 },
             }),
             replace({
