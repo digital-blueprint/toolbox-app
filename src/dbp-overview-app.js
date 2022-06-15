@@ -61,7 +61,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
           <div class="hit-name">
             <img class="hit-name-img" src=${item.link_icon || `${privatePath}/icons8-missing-32.png`} alt="link">
             ${item._highlightResult.name.value}
-            ${item.labs.includes('yes') ? '<img class="labs-img" src="${privatePath}/lab_flask.svg" alt="labs">' : ''}
+            ${item.labs.includes('yes') ? `<img class="labs-img" src="${privatePath}/lab_flask.svg" alt="labs">` : ''}
           </div>
           <div class="">${item._highlightResult.description.value}</div>
           <div class="hit-types">
