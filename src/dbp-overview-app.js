@@ -80,14 +80,14 @@ export function init(typesenseConfig, dateFilter) {
           </div>
           <div class="hit-license">License: ${item.license.map(l => '<span>' + formatLicense(l) + '</span>').join('')}</div>
           ${item.release_date > 0 ? `<div class="hit-release">release date: ${formattedTime}</div>` : ''}
-          ${!!item.release_version ? `<div class="hit-release">version <span class="release">${item.release_version}</span></div>` : ''}
+          ${item.release_version ? `<div class="hit-release">version <span class="release">${item.release_version}</span></div>` : ''}
           <div class="links">
               <span class="hit-repo">${item.link_repo ? `<a href=${item.link_repo} rel="noopener noreferrer" target="_blank"><img src="local/dbp-overview-app/Git-Icon-Black.png" alt="repository"></a>` : ''}</span>
               <span class="hit-doc">${item.link_doc ? `<a href=${item.link_doc} rel="noopener noreferrer" target="_blank"><img src="local/dbp-overview-app/icons8-book-60.png" alt="documentation"></a>` : ''}</span>
               <span class="hit-demo">${item.link_demo ? `<a href=${item.link_demo} rel="noopener noreferrer" target="_blank"><img src="local/dbp-overview-app/icons8-trial-50.png" alt="demo"></a>` : ''}</span>
               <span class="hit-changelog">${item.link_changelog ? `<a href=${item.link_changelog} rel="noopener noreferrer" target="_blank"><img src="local/dbp-overview-app/changelog.png" alt="changelog"></a>` : ''}</span>
           </div>
-          <div class="hit-rating">score: ${item.score}</div>
+          <div class="hit-rating">[${item.sort}]</div>
         </div>
       `;
                 },
