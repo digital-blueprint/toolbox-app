@@ -14,7 +14,7 @@ function formatLicense(license) {
     return `<a href="${spdxInfo.reference}">${spdxInfo.name}</a>`;
 }
 
-export function init(typesenseConfig, dateFilter) {
+export function init(typesenseConfig, dateFilter, privatePath) {
     const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
         server: {
             apiKey: typesenseConfig.key, // Be sure to use an API key that only allows searches, in production
@@ -59,9 +59,9 @@ export function init(typesenseConfig, dateFilter) {
                     return `
         <div>
           <div class="hit-name">
-            <img class="hit-name-img" src=${item.link_icon || 'local/dbp-overview-app/icons8-missing-32.png'} alt="link">
+            <img class="hit-name-img" src=${item.link_icon || `${privatePath}/icons8-missing-32.png`} alt="link">
             ${item._highlightResult.name.value}
-            ${item.labs.includes('yes') ? '<img class="labs-img" src="local/dbp-overview-app/lab_flask.svg" alt="labs">' : ''}
+            ${item.labs.includes('yes') ? '<img class="labs-img" src="${privatePath}/lab_flask.svg" alt="labs">' : ''}
           </div>
           <div class="">${item._highlightResult.description.value}</div>
           <div class="hit-types">
@@ -82,10 +82,10 @@ export function init(typesenseConfig, dateFilter) {
           ${item.release_date > 0 ? `<div class="hit-release">release date: ${formattedTime}</div>` : ''}
           ${item.release_version ? `<div class="hit-release">version <span class="release">${item.release_version}</span></div>` : ''}
           <div class="links">
-              <span class="hit-repo">${item.link_repo ? `<a href=${item.link_repo} rel="noopener noreferrer" target="_blank"><img src="local/dbp-overview-app/Git-Icon-Black.png" alt="repository"></a>` : ''}</span>
-              <span class="hit-doc">${item.link_doc ? `<a href=${item.link_doc} rel="noopener noreferrer" target="_blank"><img src="local/dbp-overview-app/icons8-book-60.png" alt="documentation"></a>` : ''}</span>
-              <span class="hit-demo">${item.link_demo ? `<a href=${item.link_demo} rel="noopener noreferrer" target="_blank"><img src="local/dbp-overview-app/icons8-trial-50.png" alt="demo"></a>` : ''}</span>
-              <span class="hit-changelog">${item.link_changelog ? `<a href=${item.link_changelog} rel="noopener noreferrer" target="_blank"><img src="local/dbp-overview-app/changelog.png" alt="changelog"></a>` : ''}</span>
+              <span class="hit-repo">${item.link_repo ? `<a href=${item.link_repo} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/Git-Icon-Black.png" alt="repository"></a>` : ''}</span>
+              <span class="hit-doc">${item.link_doc ? `<a href=${item.link_doc} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/icons8-book-60.png" alt="documentation"></a>` : ''}</span>
+              <span class="hit-demo">${item.link_demo ? `<a href=${item.link_demo} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/icons8-trial-50.png" alt="demo"></a>` : ''}</span>
+              <span class="hit-changelog">${item.link_changelog ? `<a href=${item.link_changelog} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/changelog.png" alt="changelog"></a>` : ''}</span>
           </div>
           <div class="hit-rating">[${item.sort}]</div>
         </div>
