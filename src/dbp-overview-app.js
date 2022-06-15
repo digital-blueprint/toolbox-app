@@ -47,7 +47,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
         }),
         configure({
             hitsPerPage: 8,
-            numericFilters: ['release_date >= ' + (dateFilter.active ? Math.floor(Date.now()/1000 - dateFilter.range) : 1577836800)]
+            numericFilters: ['release_date >= ' + (dateFilter.active ? Math.floor(Date.now()/1000 - dateFilter.range) : 1546300800 /* 2019-01-01 00:00:00 */)]
         }),
         hits({
             container: '#hits',
