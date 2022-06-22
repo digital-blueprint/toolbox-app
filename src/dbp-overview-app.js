@@ -26,12 +26,8 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                 },
             ],
         },
-        // The following parameters are directly passed to Typesense's search API endpoint.
-        //  So you can pass any parameters supported by the search endpoint below.
-        //  queryBy is required.
-        //  filterBy is managed and overridden by InstantSearch.js. To set it, you want to use one of the filter widgets like refinementList or use the `configure` widget.
         additionalSearchParameters: {
-            queryBy: "name,description,target_audience,document_type,content_type,maintained_by,used_programming_languages",
+            query_by: "name,description,target_audience,document_type,content_type,maintained_by,used_programming_languages",
         },
     });
     const searchClient = typesenseInstantsearchAdapter.searchClient;
@@ -44,6 +40,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
     search.addWidgets([
         searchBox({
             container: '#searchbox',
+            autofocus: true,
         }),
         configure({
             hitsPerPage: 8,
