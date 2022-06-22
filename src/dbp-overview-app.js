@@ -51,7 +51,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
             templates: {
                 item(item) {
                     const d = new Date(item.release_date*1000);
-                    const formattedTime = d.getFullYear() + '-' + ('0' + d.getMonth()).substr(-2) + '-'  + ('0' + d.getDay()).substr(-2);
+                    const formattedTime = d.getFullYear() + '-' + ('0' + (d.getMonth()+1)).substr(-2) + '-'  + ('0' + d.getDate()).substr(-2);
 
                     return `
         <div>
