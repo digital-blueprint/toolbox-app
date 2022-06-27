@@ -52,9 +52,11 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                 item(item) {
                     const d = new Date(item.release_date*1000);
                     const formattedTime = d.getFullYear() + '-' + ('0' + (d.getMonth()+1)).substr(-2) + '-'  + ('0' + d.getDate()).substr(-2);
+                    const daysStillNew = 31;
+                    const isNew = ((new Date()).valueOf() - daysStillNew*86400000) < d.valueOf();
 
                     return `
-        <div>
+        <div style="position: relative; height: 100%; width: 100%">
           <div class="hit-name">
             <img class="hit-name-img" src=${item.link_icon || `${privatePath}/icons8-missing-32.png`} alt="link">
             ${item._highlightResult.name.value}
@@ -85,6 +87,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
               <span class="hit-changelog">${item.link_changelog ? `<a href=${item.link_changelog} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/changelog.png" alt="changelog"></a>` : ''}</span>
           </div>
           <div class="hit-rating">[${item.sort}]</div>
+          ${ isNew ? `<div class="ribbon ribbon-bottom-right"><span>new !</span></div>` : ''}
         </div>
       `;
                 },
