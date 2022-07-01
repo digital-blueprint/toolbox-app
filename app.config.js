@@ -27,26 +27,26 @@ export default {
             protocol: 'https',
             key: 'bRQ0Hrg9SAPGR3CVu5hm5bBTggUhsq0e',
         },
-        email: 'test@localhost.lan'
+        email: 'eugen.neuber@tugraz.at'
     },
     demo: {
         basePath: '/',
         typesense: {
-            host: 'typesense-dev.tugraz.at',
+            host: 'typesense-demo.tugraz.at',
             port: '443',
             protocol: 'https',
-            key: 'bRQ0Hrg9SAPGR3CVu5hm5bBTggUhsq0e',
+            key: '8TuZ6RG3HZicFLIf7KjmHG2GJwYTWepk',
         },
-        email: 'digitale.projekte@tugraz.at'
+        email: 'hello@digitalblueprint.at'
     },
     production: {
         basePath: '/',
         typesense: {
-            host: 'typesense-dev.tugraz.at',
+            host: 'typesense-demo.tugraz.at',
             port: '443',
             protocol: 'https',
-            key: 'bRQ0Hrg9SAPGR3CVu5hm5bBTggUhsq0e',
+            key: '8TuZ6RG3HZicFLIf7KjmHG2GJwYTWepk',
         },
-        email: 'digitale.projekte@tugraz.at'
+        email: 'hello@digitalblueprint.at'
     },
 };
