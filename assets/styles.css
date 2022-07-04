@@ -1,8 +1,8 @@
 
-@font-face { font-family: Lato; src: url('font/Lato-Light.ttf'); }
+@font-face { font-family: NunitoSans; src: url('font/NunitoSans-Light.ttf'); }
 
 body {
-    font-family: Lato, 'Calibri', 'Arial', 'sans-serif';
+    font-family: NunitoSans, 'Calibri', 'Arial', 'sans-serif';
     font-weight: 300;
     margin: 0;
 }
@@ -93,6 +93,7 @@ a {
     font-size: 2rem;
     font-weight: 600;
     margin-bottom: 0;
+    letter-spacing: 0.1rem;
 }
 
 .header-top {
@@ -107,7 +108,7 @@ a {
 }
 
 .header-subtitle {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
 }
 
 .header-bottom {
@@ -138,7 +139,8 @@ a {
 }
 
 .container {
-    max-width: 1400px;
+    /* max-width: 1400px; */
+    max-width: calc(100vw - 11rem);
     margin: 0 auto;
     padding: 1rem;
     padding-top: 7rem;
@@ -166,7 +168,7 @@ a {
     font-weight: 700;
 }
 .search-panel__results {
-    flex: 2;
+    flex: 3;
 }
 
 .ais-Highlight-highlighted {
@@ -215,16 +217,9 @@ a {
     padding-left: 0.6rem;
 }
 
-.hit-types {
-    display: flex;
-    flex-flow: row wrap;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
 .hit-used-programming-languages {
     font-size: 0.8rem;
-    margin-top: 20px;
+    margin: 10px 0;
 }
 
 .hit-document-type, .hit-content-type, .hit-release {
@@ -243,7 +238,7 @@ a {
 
 .hit-license {
     font-size: 0.8rem;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 .hit-used-prog-langs {
     font-size: 0.8rem;
@@ -509,7 +504,21 @@ footer p {
     transform: rotate(-45deg); /* -225deg); */
 }
 
+#text-panel-mobile {
+    display: none;
+}
+
+li.ais-Hits-item > div:first-child {
+    display: grid;
+    grid-template-rows: auto 50px auto;
+}
+
 @media (max-width: 768px) {
+
+    .mobile-hidden {
+        display: none;
+    }
+
     .header {
         padding-left: 0;
         padding-top: 0;
@@ -525,7 +534,7 @@ footer p {
     }
 
     .header-title {
-        font-size: 1.7rem;
+        font-size: 1.5rem;
         padding-top: 0.4rem;
     }
 
@@ -558,10 +567,6 @@ footer p {
         display: block;
     }
 
-    .search-panel__filters {
-        /* display: none; *TODO* */
-    }
-
     .text-panel {
         /** TODO show at the end (below pagination) **/
         padding-top: 2rem;
@@ -582,8 +587,7 @@ footer p {
     .hit-types {
         display: flex;
         flex-flow: row wrap;
-        margin-top: 20px;
-        margin-bottom: 20px;
+        margin: 20px 0 10px 0;
     }
 
     .hit-document-type, .hit-content-type{
@@ -628,5 +632,29 @@ footer p {
         background: white;
         padding-top: 0.5rem;
         padding-bottom: 0.5rem;
+    }
+
+    #text-panel-desktop {
+        display: none;
+    }
+
+    #text-panel-mobile {
+        display: block;
+    }
+
+    .text-panel {
+        padding-top: 0;
+    }
+
+    .text-panel-header,
+    .text-panel-text {
+        text-align: center;
+        padding-left: 0;
+        width: auto;
+    }
+
+    footer p {
+        text-align: center;
+        padding: 0 8px;
     }
 }

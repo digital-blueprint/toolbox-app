@@ -36,6 +36,17 @@
 
     <title>DBP Software Overview</title>
 
+    <script>
+        function view_filters() {
+            if (document.getElementsByClassName('search-panel__filters')[0].classList.contains('mobile-hidden')) {
+                document.getElementsByClassName('search-panel__filters')[0].classList.remove('mobile-hidden');
+            } else {
+                document.getElementsByClassName('search-panel__filters')[0].classList.add('mobile-hidden');
+            }
+            console.log('view_filters()');
+        }
+    </script>
+
     <!-- App bundles-->
     <script type="module">
         import {init} from "<%= getUrl(name + '.js') %>";
@@ -99,7 +110,7 @@
 
     <div class="container">
         <div class="search-panel">
-            <div class="search-panel__filters">
+            <div class="search-panel__filters mobile-hidden">
                 <div class="filter-block">
                     <div class="filter-heading">Target Audience</div>
                     <div id="targetaudience-list"></div>
@@ -157,7 +168,7 @@
                     <div class="filter-mobile">
                         <div class="description">Filter Results</div>
                         <div id="mobile-filter-btn"
-                            onclick=""
+                            onclick="view_filters()"
                         >
                             <img src="<%= getPrivateUrl('filter.svg') %>" alt="Filter">
                         </div>
@@ -165,7 +176,7 @@
                 </div>
                 <div id="hits"></div>
             </div>
-            <div class="text-panel">
+            <div class="text-panel" id="text-panel-desktop">
                 <div class="text-panel-block">
                     <div class="text-panel-header">Get Started</div>
                     <div class="text-panel-text"><a href="https://dbp-demo.tugraz.at/dev-guide/relay/">Quick Start Guide</a></div>
@@ -182,6 +193,20 @@
         </div>
 
         <div id="pagination"></div>
+        <div class="text-panel" id="text-panel-mobile">
+            <div class="text-panel-block">
+                <div class="text-panel-header">Get Started</div>
+                <div class="text-panel-text"><a href="https://dbp-demo.tugraz.at/dev-guide/relay/">Quick Start Guide</a></div>
+                <div class="text-panel-text"><a href="https://dbp-demo.tugraz.at/dev-guide/relay/getting_started/">Architecture</a></div>
+                <div class="text-panel-text"><a href="https://dbp-demo.tugraz.at/dev-guide/contribute/">How to contribute</a></div>
+            </div>
+            <div>
+                <div class="text-panel-header">Useful Links</div>
+                <div class="text-panel-text"><a href="https://dbp-demo.tugraz.at/dev-guide/relay/faq/">FAQ</a></div>
+                <div class="text-panel-text"><a href="https://dbp-demo.tugraz.at/dev-guide/frontend/theming/">Integrators guide</a></div>
+                <div class="text-panel-text"><a href="https://dbp-demo.tugraz.at/dev-guide">Developers guide</a></div>
+            </div>
+        </div>
     </div>
 </div>
 <footer>
