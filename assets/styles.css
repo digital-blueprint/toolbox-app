@@ -482,7 +482,7 @@ footer p {
 
 /* bottom right*/
 .ribbon-bottom-right {
-    bottom: -10px;
+    bottom: -20px;
     right: -20px; /* -10px; */ /* this is ugly */
 }
 .ribbon-bottom-right::before,
