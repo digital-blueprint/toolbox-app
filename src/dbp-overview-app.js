@@ -126,7 +126,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                                 <input type="checkbox" class="ais-RefinementList-checkbox" value="${item.value}" ${ item.isRefined ? 'checked' : '' }>
                                 <span class="ais-RefinementList-labelText">${nameStart}</span>
                                 ${ nameRest ? `<br><div style="display:inline-block;width:26px;"></div><span class="ais-RefinementList-labelText">(${nameRest}</span>` : ''}
-                                <span class="ais-RefinementList-count">${item.count}</span>
+                                <span class="ais-RefinementList-count">(${item.count})</span>
                             </label>
                         </div>`;
                 }
