@@ -65,29 +65,31 @@ export function init(typesenseConfig, dateFilter, privatePath) {
           <div class="">${item._highlightResult.description.value}</div>
           <div class="hit-types">
               <div class="hit-document-type">
-                <div>type of project:</div>
+                <div>Type of project:</div>
                 ${item._highlightResult.document_type.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'document-type-'+a.value}').click();">${a.value}</div>`).join('')}
               </div>
               <div class="hit-content-type">
-                <div>subtype of project:</div>
+                <div>Subtype of project:</div>
                 ${item._highlightResult.content_type.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'content-type-'+a.value}').click();">${a.value}</div>`).join('')}
               </div>
           </div>
           <div class="hit-used-programming-languages">
-            <div>used programming languages:</div>
+            <div>Used programming languages:</div>
             ${item._highlightResult.used_programming_languages.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'prog-lang-'+a.value}').click();">${a.value}</div>`).join('')}
           </div>
           <div class="hit-license">License: ${item.license.map(l => '<span>' + formatLicense(l) + '</span>').join('')}</div>
-          ${item.release_date > 0 ? `<div class="hit-release">release date: ${formattedTime}</div>` : ''}
-          ${item.release_version ? `<div class="hit-release">version <span class="release">${item.release_version}</span></div>` : ''}
+          ${item.release_date > 0 ? `<div class="hit-release">Release date: ${formattedTime}</div>` : ''}
+          ${item.release_version ? `<div class="hit-release">Version <span class="release">${item.release_version}</span></div>` : ''}
           <div class="links">
-              ${ item.link_repo || item.link_doc || item.link_demo || item.link_changelog ? `<span class="hit-links">links:</span>` : ''}
+              ${ item.link_repo || item.link_doc || item.link_demo || item.link_changelog ? `<span class="hit-links">Links:</span>` : ''}
               <span class="hit-repo">${item.link_repo ? `<a href=${item.link_repo} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/Git-Icon-Black.png" alt="repository"></a>` : ''}</span>
               <span class="hit-doc">${item.link_doc ? `<a href=${item.link_doc} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/icons8-book-60.png" alt="documentation"></a>` : ''}</span>
               <span class="hit-demo">${item.link_demo ? `<a href=${item.link_demo} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/icons8-trial-50.png" alt="demo"></a>` : ''}</span>
               <span class="hit-changelog">${item.link_changelog ? `<a href=${item.link_changelog} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/changelog.png" alt="changelog"></a>` : ''}</span>
           </div>
-          <div class="hit-rating">[${item.sort}]</div>
+            <!--
+            <div class="hit-rating">[${item.sort}]</div>
+            -->
           ${ isNew ? `<div class="ribbon ribbon-bottom-right"><span>new</span></div>` : ''}
         </div>
       `;
