@@ -81,13 +81,14 @@ export function init(typesenseConfig, dateFilter, privatePath) {
           ${item.release_date > 0 ? `<div class="hit-release">release date: ${formattedTime}</div>` : ''}
           ${item.release_version ? `<div class="hit-release">version <span class="release">${item.release_version}</span></div>` : ''}
           <div class="links">
+              ${ item.link_repo || item.link_doc || item.link_demo || item.link_changelog ? `<span class="hit-links">links:</span>` : ''}
               <span class="hit-repo">${item.link_repo ? `<a href=${item.link_repo} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/Git-Icon-Black.png" alt="repository"></a>` : ''}</span>
               <span class="hit-doc">${item.link_doc ? `<a href=${item.link_doc} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/icons8-book-60.png" alt="documentation"></a>` : ''}</span>
               <span class="hit-demo">${item.link_demo ? `<a href=${item.link_demo} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/icons8-trial-50.png" alt="demo"></a>` : ''}</span>
               <span class="hit-changelog">${item.link_changelog ? `<a href=${item.link_changelog} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/changelog.png" alt="changelog"></a>` : ''}</span>
           </div>
           <div class="hit-rating">[${item.sort}]</div>
-          ${ isNew ? `<div class="ribbon ribbon-bottom-right"><span>new !</span></div>` : ''}
+          ${ isNew ? `<div class="ribbon ribbon-bottom-right"><span>new</span></div>` : ''}
         </div>
       `;
                 },
@@ -106,6 +107,18 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                     highlighted: item.highlighted.charAt(0).toUpperCase() + item.highlighted.slice(1),
                 }));
             },
+            templates: {
+                item(item) {
+                    return `
+                        <div>
+                            <label class="ais-RefinementList-label">
+                                <input type="checkbox" class="ais-RefinementList-checkbox" value="${item.value}" ${item.isRefined ? 'checked' : ''}>
+                                <span class="ais-RefinementList-labelText">${item.highlighted}</span>
+                                <span class="ais-RefinementList-count">(${item.count})</span>
+                            </label>
+                        </div>`;
+                }
+            },
         }),
         refinementList({
             container: '#blueprint-list',
@@ -115,18 +128,18 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                     const nameParts = item.highlighted.split('(');
                     let nameStart = nameParts.shift();
                     let nameRest = nameParts.join('(');
-                    if (item.highlighted.length < 42) {
-                        nameStart = item.highlighted;
-                        nameRest = '';
-                    }
+                    // if (item.highlighted.length < 42) {
+                    //     nameStart = item.highlighted;
+                    //     nameRest = '';
+                    // }
 
                     return `
                         <div>
                             <label class="ais-RefinementList-label">
                                 <input type="checkbox" class="ais-RefinementList-checkbox" value="${item.value}" ${ item.isRefined ? 'checked' : '' }>
                                 <span class="ais-RefinementList-labelText">${nameStart}</span>
-                                ${ nameRest ? `<br><div style="display:inline-block;width:26px;"></div><span class="ais-RefinementList-labelText">(${nameRest}</span>` : ''}
                                 <span class="ais-RefinementList-count">(${item.count})</span>
+                                ${ nameRest ? `<br><div style="display:inline-block;width:26px;"></div><span class="ais-RefinementList-labelText">(${nameRest}</span>` : ''}
                             </label>
                         </div>`;
                 }
@@ -135,14 +148,50 @@ export function init(typesenseConfig, dateFilter, privatePath) {
         refinementList({
             container: '#document-type-list',
             attribute: 'document_type',
+            templates: {
+                item(item) {
+                    return `
+                        <div>
+                            <label class="ais-RefinementList-label">
+                                <input type="checkbox" class="ais-RefinementList-checkbox" value="${item.value}" ${item.isRefined ? 'checked' : ''}>
+                                <span class="ais-RefinementList-labelText">${item.highlighted}</span>
+                                <span class="ais-RefinementList-count">(${item.count})</span>
+                            </label>
+                        </div>`;
+                }
+            },
         }),
         refinementList({
             container: '#content-type-list',
             attribute: 'content_type',
+            templates: {
+                item(item) {
+                    return `
+                        <div>
+                            <label class="ais-RefinementList-label">
+                                <input type="checkbox" class="ais-RefinementList-checkbox" value="${item.value}" ${item.isRefined ? 'checked' : ''}>
+                                <span class="ais-RefinementList-labelText">${item.highlighted}</span>
+                                <span class="ais-RefinementList-count">(${item.count})</span>
+                            </label>
+                        </div>`;
+                }
+            },
         }),
         refinementList({
             container: '#languages-list',
             attribute: 'used_programming_languages',
+            templates: {
+                item(item) {
+                    return `
+                        <div>
+                            <label class="ais-RefinementList-label">
+                                <input type="checkbox" class="ais-RefinementList-checkbox" value="${item.value}" ${item.isRefined ? 'checked' : ''}>
+                                <span class="ais-RefinementList-labelText">${item.highlighted}</span>
+                                <span class="ais-RefinementList-count">(${item.count})</span>
+                            </label>
+                        </div>`;
+                }
+            },
         }),
         refinementList({
             container: '#license-list',
@@ -153,14 +202,50 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                     highlighted: item.highlighted.replaceAll('-', ' '),
                 }));
             },
+            templates: {
+                item(item) {
+                    return `
+                        <div>
+                            <label class="ais-RefinementList-label">
+                                <input type="checkbox" class="ais-RefinementList-checkbox" value="${item.value}" ${item.isRefined ? 'checked' : ''}>
+                                <span class="ais-RefinementList-labelText">${item.highlighted}</span>
+                                <span class="ais-RefinementList-count">(${item.count})</span>
+                            </label>
+                        </div>`;
+                }
+            },
         }),
         refinementList({
             container: '#maintained-by-list',
             attribute: 'maintained_by',
+            templates: {
+                item(item) {
+                    return `
+                        <div>
+                            <label class="ais-RefinementList-label">
+                                <input type="checkbox" class="ais-RefinementList-checkbox" value="${item.value}" ${item.isRefined ? 'checked' : ''}>
+                                <span class="ais-RefinementList-labelText">${item.highlighted}</span>
+                                <span class="ais-RefinementList-count">(${item.count})</span>
+                            </label>
+                        </div>`;
+                }
+            },
         }),
         refinementList({
             container: '#labs-list',
             attribute: 'labs',
+            templates: {
+                item(item) {
+                    return `
+                        <div>
+                            <label class="ais-RefinementList-label">
+                                <input type="checkbox" class="ais-RefinementList-checkbox" value="${item.value}" ${item.isRefined ? 'checked' : ''}>
+                                <span class="ais-RefinementList-labelText">${item.highlighted}</span>
+                                <span class="ais-RefinementList-count">(${item.count})</span>
+                            </label>
+                        </div>`;
+                }
+            },
         }),
         stats({
             container: "#stats",

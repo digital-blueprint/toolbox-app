@@ -240,14 +240,20 @@ a {
     font-size: 0.8rem;
     margin-top: 10px;
 }
+
 .hit-used-prog-langs {
     font-size: 0.8rem;
     margin-top: 20px;
 }
 
+.hit-links {
+    font-size: 0.8rem;
+}
+
 .hit-rating {
     margin-top: 1rem;
     font-size: 0.8rem;
+    color: white;
 }
 
 
