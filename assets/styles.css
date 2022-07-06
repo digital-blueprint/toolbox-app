@@ -600,6 +600,7 @@ li.ais-Hits-item > div:first-child {
 
     .container {
         padding-top: 2rem;
+        max-width: initial;
     }
 
     .container .search-panel {
