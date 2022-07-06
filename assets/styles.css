@@ -279,16 +279,19 @@ a {
 .software {
     background-color: white;
     color: black;
+    cursor: default;
 }
 
-.resource {
+.resources {
     background-color: black;
     color: white;
+    cursor: default;
 }
 
 .service {
     background-color: #3b56a0;
     color: white;
+    cursor: default;
 }
 
 /* content type */
@@ -296,44 +299,64 @@ a {
     background-color: #9e1e4d;
     color: white;
     font-weight: 400;
+    cursor: default;
 }
 .application {
     background-color: #50417a;
     color: white;
+    cursor: default;
 }
 .supporting-software {
     background-color: #878faf;
     color: black;
+    cursor: default;
 }
 .admin-tool {
     background-color: #6e648a;
     color: white;
+    cursor: default;
 }
 
 /* used programming languages */
 .php {
     background-color: #5b6b9f;
     color: white;
+    cursor: default;
 }
 .javascript {
     background-color: #9c6b83;
     color: white;
+    cursor: default;
 }
 .docker {
     background-color: #c8dbfb;
     color: black;
+    cursor: default;
 }
 .css {
     background-color: #dbc8cc;
     color: black;
+    cursor: default;
 }
 .java {
     background-color: #716387;
     color: white;
+    cursor: default;
 }
 .html {
     background-color: #f1e4e6;
     color: black;
+    cursor: default;
+}
+.bash {
+    background-color: #f1e4e6;
+    color: black;
+    cursor: default;
+}
+.kotlin {
+    background-color: #f1e4e6;
+    color: black;
+    cursor: default;
 }
 /* infrastructure */
 footer p {

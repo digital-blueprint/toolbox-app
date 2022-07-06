@@ -66,16 +66,16 @@ export function init(typesenseConfig, dateFilter, privatePath) {
           <div class="hit-types">
               <div class="hit-document-type">
                 <div>type of project:</div>
-                ${item._highlightResult.document_type.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}">${a.value}</div>`).join('')}
+                ${item._highlightResult.document_type.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'document-type-'+a.value}').click();">${a.value}</div>`).join('')}
               </div>
               <div class="hit-content-type">
                 <div>subtype of project:</div>
-                ${item._highlightResult.content_type.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}">${a.value}</div>`).join('')}
+                ${item._highlightResult.content_type.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'content-type-'+a.value}').click();">${a.value}</div>`).join('')}
               </div>
           </div>
           <div class="hit-used-programming-languages">
             <div>used programming languages:</div>
-            ${item._highlightResult.used_programming_languages.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}">${a.value}</div>`).join('')}
+            ${item._highlightResult.used_programming_languages.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'prog-lang-'+a.value}').click();">${a.value}</div>`).join('')}
           </div>
           <div class="hit-license">License: ${item.license.map(l => '<span>' + formatLicense(l) + '</span>').join('')}</div>
           ${item.release_date > 0 ? `<div class="hit-release">release date: ${formattedTime}</div>` : ''}
@@ -153,7 +153,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                     return `
                         <div>
                             <label class="ais-RefinementList-label">
-                                <input type="checkbox" class="ais-RefinementList-checkbox" value="${item.value}" ${item.isRefined ? 'checked' : ''}>
+                                <input type="checkbox" class="ais-RefinementList-checkbox" value="${item.value}" ${item.isRefined ? 'checked' : ''} id="document-type-${item.value}">
                                 <span class="ais-RefinementList-labelText">${item.highlighted}</span>
                                 <span class="ais-RefinementList-count">(${item.count})</span>
                             </label>
@@ -169,7 +169,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                     return `
                         <div>
                             <label class="ais-RefinementList-label">
-                                <input type="checkbox" class="ais-RefinementList-checkbox" value="${item.value}" ${item.isRefined ? 'checked' : ''}>
+                                <input type="checkbox" class="ais-RefinementList-checkbox" value="${item.value}" ${item.isRefined ? 'checked' : ''} id="content-type-${item.value}">
                                 <span class="ais-RefinementList-labelText">${item.highlighted}</span>
                                 <span class="ais-RefinementList-count">(${item.count})</span>
                             </label>
@@ -185,7 +185,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                     return `
                         <div>
                             <label class="ais-RefinementList-label">
-                                <input type="checkbox" class="ais-RefinementList-checkbox" value="${item.value}" ${item.isRefined ? 'checked' : ''}>
+                                <input type="checkbox" class="ais-RefinementList-checkbox" value="${item.value}" ${item.isRefined ? 'checked' : ''} id="prog-lang-${item.value}">
                                 <span class="ais-RefinementList-labelText">${item.highlighted}</span>
                                 <span class="ais-RefinementList-count">(${item.count})</span>
                             </label>
