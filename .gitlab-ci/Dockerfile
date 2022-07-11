@@ -20,10 +20,10 @@ RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.lis
 RUN apt-get update && apt-get install -y \
     nodejs \
     yarn \
-    #chromium \
+    chromium \
     # libgbm1: newer chromium from puppeteer
-    #libgbm1 \
-    #firefox-esr \
+    libgbm1 \
+    firefox-esr \
     composer \
     php-zip \
     rsync \
