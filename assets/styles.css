@@ -68,11 +68,11 @@ a {
     flex-direction: column;
     min-height: 340px;
     background-color: white;
-    padding-left: 10rem; /*14*/
+    padding-left: 13rem; /*10*/
     padding-top: 7rem;
     background-image: url('dbp_logo_chevrons_on_white.svg');
     background-repeat: no-repeat;
-    background-position: 17rem -20px; /*21*/
+    background-position: 20rem -20px; /*17*/
     background-size: 30rem;
     position: sticky;
     top: -348px;
@@ -139,9 +139,10 @@ a {
 }
 
 .container {
-    /* max-width: 1400px; */
-    max-width: calc(100vw - 11rem);
-    margin: 0 auto;
+    max-width: 2000px;
+    /* max-width: calc(100vw - 11rem); */
+    /* margin: 0 auto; */
+    margin: 0 4rem;
     padding: 1rem;
     padding-top: 7rem;
     background: white;
@@ -278,19 +279,19 @@ a {
 .software {
     background-color: white;
     color: black;
-    cursor: default;
+    cursor: pointer;
 }
 
 .resources {
     background-color: black;
     color: white;
-    cursor: default;
+    cursor: pointer;
 }
 
 .service {
     background-color: #3b56a0;
     color: white;
-    cursor: default;
+    cursor: pointer;
 }
 
 /* content type */
@@ -298,64 +299,64 @@ a {
     background-color: #9e1e4d;
     color: white;
     font-weight: 400;
-    cursor: default;
+    cursor: pointer;
 }
 .application {
     background-color: #50417a;
     color: white;
-    cursor: default;
+    cursor: pointer;
 }
 .supporting-software {
     background-color: #878faf;
     color: black;
-    cursor: default;
+    cursor: pointer;
 }
 .admin-tool {
     background-color: #6e648a;
     color: white;
-    cursor: default;
+    cursor: pointer;
 }
 
 /* used programming languages */
 .php {
     background-color: #5b6b9f;
     color: white;
-    cursor: default;
+    cursor: pointer;
 }
 .javascript {
     background-color: #9c6b83;
     color: white;
-    cursor: default;
+    cursor: pointer;
 }
 .docker {
     background-color: #c8dbfb;
     color: black;
-    cursor: default;
+    cursor: pointer;
 }
 .css {
     background-color: #dbc8cc;
     color: black;
-    cursor: default;
+    cursor: pointer;
 }
 .java {
     background-color: #716387;
     color: white;
-    cursor: default;
+    cursor: pointer;
 }
 .html {
     background-color: #f1e4e6;
     color: black;
-    cursor: default;
+    cursor: pointer;
 }
 .bash {
     background-color: #f1e4e6;
     color: black;
-    cursor: default;
+    cursor: pointer;
 }
 .kotlin {
     background-color: #f1e4e6;
     color: black;
-    cursor: default;
+    cursor: pointer;
 }
 /* infrastructure */
 footer p {
@@ -394,6 +395,15 @@ footer a {
     padding-bottom: 5px;
     padding-left: 20%;
 }
+
+.ais-Pagination-list {
+    /* -webkit-box-pack: center; 
+    -ms-flex-pack: center;
+    justify-content: center; */
+    -webkit-box-pack: end; 
+    -ms-flex-pack: end;
+    justify-content: end;
+  }
 
 .ais-Pagination-link {
     border-radius: 0;
