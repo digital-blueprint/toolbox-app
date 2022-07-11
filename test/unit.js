@@ -5,14 +5,18 @@ import {init} from '../src/dbp-overview-app.js';
 suite('dbp-overview-app integration', () => {
     let searchbox;
     let hits;
+    let targetAudience;
     let blueprintList;
     let documentTypeList;
     let contentTypeList;
     let languagesList;
     let licenseList;
     let maintainedByList;
+    let labsList;
     let stats;
     let pagination;
+    let cb;
+    let sel;
 
     suiteSetup(async () => {
         searchbox = document.createElement('div');
@@ -21,6 +25,9 @@ suite('dbp-overview-app integration', () => {
         hits = document.createElement('div');
         hits.id = 'hits';
         document.body.append(hits);
+        targetAudience = document.createElement('div');
+        targetAudience.id = 'targetaudience-list';
+        document.body.append(targetAudience);
         blueprintList = document.createElement('div');
         blueprintList.id = 'blueprint-list';
         document.body.append(blueprintList);
@@ -39,36 +46,49 @@ suite('dbp-overview-app integration', () => {
         maintainedByList = document.createElement('div');
         maintainedByList.id = 'maintained-by-list';
         document.body.append(maintainedByList);
+        labsList = document.createElement('div');
+        labsList.id = 'labs-list';
+        document.body.append(labsList);
         stats = document.createElement('div');
         stats.id = 'stats';
         document.body.append(stats);
         pagination = document.createElement('div');
         pagination.id = 'pagination';
         document.body.append(pagination);
+        cb = document.createElement('input');
+        cb.id = 'filter-changed';
+        document.body.append(cb);
+        sel = document.createElement('select');
+        sel.id = 'timespan';
+        document.body.append(sel);
     });
 
     suiteTeardown(() => {
         searchbox.remove();
         hits.remove();
+        targetAudience.remove();
         blueprintList.remove();
         documentTypeList.remove();
         contentTypeList.remove();
         languagesList.remove();
         licenseList.remove();
         maintainedByList.remove();
+        labsList.remove();
         stats.remove();
         pagination.remove();
+        cb.remove();
+        sel.remove();
     });
 
     test('should render', () => {
         let typesenseConfig = {
-            host: 'localhost',
-            port: '8108',
-            protocol: 'http',
-            key: 'xyz'
+            host: 'typesense-dev.tugraz.at',
+            port: '443',
+            protocol: 'https',
+            key: 'bRQ0Hrg9SAPGR3CVu5hm5bBTggUhsq0e',
         };
 
-        let ok = init(typesenseConfig);
+        let ok = init(typesenseConfig, {active: false, range: 86400}, '');
         assert(ok);
     });
 });
