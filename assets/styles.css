@@ -278,7 +278,7 @@ a {
 /* document type */
 .software {
     background-color: white;
-    color: black;
+    color: #222120;
     cursor: pointer;
 }
 
@@ -371,7 +371,6 @@ footer p {
 .hello {
     font-size: 1.5rem;
 }
-
 footer a {
     color: white;
     text-decoration: none;
