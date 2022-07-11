@@ -67,7 +67,7 @@ a {
     display: flex;
     flex-direction: column;
     min-height: 340px;
-    background-color: white; /** var(--dbp-override-background); */
+    background-color: white;
     padding-left: 10rem; /*14*/
     padding-top: 7rem;
     background-image: url('dbp_logo_chevrons_on_white.svg');
@@ -99,7 +99,7 @@ a {
 .header-top {
     position: sticky;
     top: 0;
-    background-color: white; /** var(--dbp-override-background); */
+    background-color: white;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -115,7 +115,7 @@ a {
     position: sticky;
     top: 64px;
     width: 100%;
-    background-color: white; /** var(--dbp-override-background); */
+    background-color: white;
     z-index: 10;
 }
 
@@ -135,7 +135,7 @@ a {
 
 .header-top .contact img {
     padding-right: 0.5rem;
-    width: 1.2rem;
+    width: 1.7rem;
 }
 
 .container {
@@ -359,8 +359,25 @@ a {
 }
 /* infrastructure */
 footer p {
-    text-align: right;
-    padding-right: 20px;
+    /* text-align: right;
+    padding-right: 20px; */
+    text-align: center;
+    background: #222120;
+    margin: 0px;
+    color: white;
+    padding: 50px;
+}
+.hello {
+    font-size: 1.5rem;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    padding: 3px 0;
+    margin: 0 10px;
+    transition: all 0.2s ease-in-out;
+    font-weight: 300;
 }
 .text-panel {
     flex: 1;
@@ -553,6 +570,10 @@ li.ais-Hits-item > div:first-child {
 
 @media (max-width: 768px) {
 
+    .container {
+        max-width: unset;
+    }
+
     .mobile-hidden {
         display: none;
     }
@@ -566,13 +587,17 @@ li.ais-Hits-item > div:first-child {
         top: -72px;
     }
 
+    .header-subtitle {
+        font-size: 1.2rem;
+    }
+
     .border-shadow {
         -webkit-box-shadow: 0 8px 12px rgb(212 212 212);
         box-shadow: 0 8px 12px rgb(212 212 212);
     }
 
     .header-title {
-        font-size: 1.5rem;
+        font-size: 1.7rem;
         padding-top: 0.4rem;
     }
 
@@ -693,7 +718,23 @@ li.ais-Hits-item > div:first-child {
     }
 
     footer p {
-        text-align: center;
-        padding: 0 8px;
+        /* text-align: center;
+        padding: 0 8px; */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
     }
+
+    footer a {
+        border-bottom: 1px solid white;
+    }
+
+    footer a:first-child {
+        border-bottom: none;
+      }
+
+    footer p span {
+        display: none;
+      }
 }
