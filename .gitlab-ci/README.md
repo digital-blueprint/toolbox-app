@@ -1,4 +1,6 @@
+# GitLab CI Docker Container
+
 * In case of an incompatible change increase the tag version number in build.sh
 * ./build.sh
 * (first time) sudo docker login registry.gitlab.tugraz.at
-* sudo docker push registry.gitlab.tugraz.at/dbp/web-components/dbp-starter-app/main:v1
+* sudo docker push registry.gitlab.tugraz.at/vpu-private/dbp-overview/dbp-overview-app/main:v1
