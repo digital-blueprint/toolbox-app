@@ -68,11 +68,11 @@ a {
     flex-direction: column;
     min-height: 340px;
     background-color: white;
-    padding-left: 13rem; /*10*/
+    padding-left: 15rem; /*10*/
     padding-top: 7rem;
     background-image: url('dbp_logo_chevrons_on_white.svg');
     background-repeat: no-repeat;
-    background-position: 20rem -20px; /*17*/
+    background-position: 22rem -20px; /*17*/
     background-size: 30rem;
     position: sticky;
     top: -348px;
@@ -120,7 +120,7 @@ a {
 }
 
 .header-top .logo {
-    padding-left: 4rem;
+    padding-left: 6rem; /* 4 */
     padding-top: 1rem;
 }
 
@@ -129,7 +129,7 @@ a {
 }
 
 .header-top .contact {
-    padding-right: 2rem;
+    padding-right: 5rem; /* 2 */
     padding-top: 2.5rem;
 }
 
@@ -142,7 +142,7 @@ a {
     max-width: 2000px;
     /* max-width: calc(100vw - 11rem); */
     /* margin: 0 auto; */
-    margin: 0 4rem;
+    margin: 0 6rem; /* 4 */
     padding: 1rem;
     padding-top: 7rem;
     background: white;
@@ -437,8 +437,20 @@ footer a {
     background-color: unset;
 }
 
+.ais-RefinementList-productName {
+    /* display: inline-block; */
+    width: 26px;
+    /* line-break: anywhere; */
+}
+
 .ais-SearchBox-input {
     border-radius: 0;
+}
+
+.hit-types-subtypes {
+    display: flex;
+    flex-flow: row wrap;
+    margin: 20px 0 10px 0;
 }
 
 /* ribbon */
@@ -581,6 +593,7 @@ li.ais-Hits-item > div:first-child {
 
     .container {
         max-width: unset;
+        margin: 0;
     }
 
     .mobile-hidden {

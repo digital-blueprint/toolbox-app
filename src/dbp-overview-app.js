@@ -64,6 +64,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
           </div>
           <div class="">${item._highlightResult.description.value}</div>
           <div class="hit-types">
+            <div class="hit-types-subtypes">
               <div class="hit-document-type">
                 <div>Type of project:</div>
                 ${item._highlightResult.document_type.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'document-type-'+a.value}').click();">${a.value}</div>`).join('')}
@@ -72,6 +73,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                 <div>Subtype of project:</div>
                 ${item._highlightResult.content_type.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'content-type-'+a.value}').click();">${a.value}</div>`).join('')}
               </div>
+            </div>
           </div>
           <div class="hit-used-programming-languages">
             <div>Used programming languages:</div>
@@ -141,6 +143,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                                 <input type="checkbox" class="ais-RefinementList-checkbox" value="${item.value}" ${ item.isRefined ? 'checked' : '' }>
                                 <span class="ais-RefinementList-labelText">${nameStart}</span>
                                 <span class="ais-RefinementList-count">(${item.count})</span>
+                                <!-- <span class="ais-RefinementList-productName">(${nameRest}</span> -->
                                 ${ nameRest ? `<br><div style="display:inline-block;width:26px;"></div><span class="ais-RefinementList-labelText">(${nameRest}</span>` : ''}
                             </label>
                         </div>`;
