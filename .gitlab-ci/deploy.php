@@ -30,17 +30,17 @@ set('rsync_dest','{{release_path}}');
 host('demo')
     ->stage('demo')
     ->hostname('typesense@vpu01-demo.tugraz.at')
-    ->set('deploy_path', '/home/typesense/public_html');
+    ->set('deploy_path', '/home/typesense/');
 
 host('development')
     ->stage('development')
     ->hostname('typesense@vpu01-dev.tugraz.at')
-    ->set('deploy_path', '/home/typesense/public_html');
+    ->set('deploy_path', '/home/typesense/');
 
 host('production')
     ->stage('production')
     ->hostname('typesense@vpu01-prod.tugraz.at')
-    ->set('deploy_path', '/home/typesense/public_html');
+    ->set('deploy_path', '/home/typesense/');
 
 task('build', function () {
     $stage = get('stage');
