@@ -2,7 +2,7 @@ export default {
     test: {
         basePath: '/',
         typesense: {
-            host: 'typesense-dev.tugraz.at',
+            host: 'toolbox-backend-dev.tugraz.at',
             port: '443',
             protocol: 'https',
             key: 'bRQ0Hrg9SAPGR3CVu5hm5bBTggUhsq0e',
@@ -22,7 +22,7 @@ export default {
     development: {
         basePath: '/',
         typesense: {
-            host: 'typesense-dev.tugraz.at',
+            host: 'toolbox-backend-dev.tugraz.at',
             port: '443',
             protocol: 'https',
             key: 'bRQ0Hrg9SAPGR3CVu5hm5bBTggUhsq0e',
@@ -32,7 +32,7 @@ export default {
     demo: {
         basePath: '/',
         typesense: {
-            host: 'typesense-demo.tugraz.at',
+            host: 'toolbox-backend-demo.tugraz.at',
             port: '443',
             protocol: 'https',
             key: '8TuZ6RG3HZicFLIf7KjmHG2GJwYTWepk',
@@ -42,10 +42,10 @@ export default {
     production: {
         basePath: '/',
         typesense: {
-            host: 'typesense-demo.tugraz.at',
+            host: 'toolbox-backend.digital-blueprint.org',
             port: '443',
             protocol: 'https',
-            key: '8TuZ6RG3HZicFLIf7KjmHG2GJwYTWepk',
+            key: '',
         },
         email: 'hello@digitalblueprint.at'
     },

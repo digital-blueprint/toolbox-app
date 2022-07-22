@@ -45,13 +45,25 @@ linting:
     # Simple health check
     - curl --max-time 10 --retry 3 --output /dev/null --silent --show-error --fail --location "${CI_ENVIRONMENT_URL}"
 
+deploy_prod:
+  only:
+    refs:
+      - prod
+  environment:
+    name: prod
+    url: https://toolbox.digital-blueprint.org
+  variables:
+    DEPLOY_HOST: vpu01-demo.tugraz.at
+    DEPLOY_KEY: "$DEPLOY_SSH_KEY"
+  <<: *deploy_defaults
+
 deploy_demo:
   only:
     refs:
       - demo
   environment:
     name: demo
-    url: https://s-o-demo.tugraz.at
+    url: https://toolbox-demo.tugraz.at
   variables:
     DEPLOY_HOST: vpu01-demo.tugraz.at
     DEPLOY_KEY: "$DEPLOY_SSH_KEY"
@@ -63,7 +75,7 @@ deploy_development:
       - main
   environment:
     name: development
-    url: https://s-o-dev.tugraz.at
+    url: https://toolbox-dev.tugraz.at
   variables:
     DEPLOY_HOST: vpu01-dev.tugraz.at
     DEPLOY_KEY: "$DEPLOY_SSH_KEY"
