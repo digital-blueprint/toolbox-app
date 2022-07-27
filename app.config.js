@@ -45,7 +45,7 @@ export default {
             host: 'toolbox-backend.digital-blueprint.org',
             port: '443',
             protocol: 'https',
-            key: '',
+            key: 'ejtFEuR6LsYabwb9m4yEi4KHlmvWXagU',
         },
         email: 'hello@digitalblueprint.at'
     },
