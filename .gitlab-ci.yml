@@ -50,7 +50,7 @@ deploy_prod:
     refs:
       - prod
   environment:
-    name: prod
+    name: production
     url: https://toolbox.digital-blueprint.org
   variables:
     DEPLOY_HOST: vpu01-demo.tugraz.at
