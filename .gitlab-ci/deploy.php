@@ -39,7 +39,7 @@ host('development')
 
 host('production')
     ->stage('production')
-    ->hostname('typesense@vpu01-demo.tugraz.at')
+    ->hostname('toolboxprod@vpu01-demo.tugraz.at')
     ->set('deploy_path', '/home/toolboxprod/');
 
 task('build', function () {
