@@ -48,7 +48,7 @@ linting:
 deploy_prod:
   only:
     refs:
-      - prod
+      - production
   environment:
     name: production
     url: https://toolbox.digital-blueprint.org
