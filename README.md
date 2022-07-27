@@ -2,7 +2,7 @@
 
 [GitLab Repository](https://gitlab.tugraz.at/vpu-private/dbp-overview/dbp-overview-app)
 
-This is an experimental app to display search results for a typesense instance running in GitLab's CI.
+This is an experimental app to display search results for a typesense instance updated by GitLab's CI.
 See [DBP Overview Feeder](https://gitlab.tugraz.at/vpu-private/dbp-overview/dbp-overview-feeder)
 
 ## Local development
