@@ -116,10 +116,6 @@
                     <div id="targetaudience-list"></div>
                 </div>
                 <div class="filter-block">
-                    <div class="filter-heading">Blueprints</div>
-                    <div id="blueprint-list"></div>
-                </div>
-                <div class="filter-block">
                     <div class="filter-heading">Types</div>
                     <div id="document-type-list"></div>
                 </div>
@@ -147,7 +143,8 @@
                     <div class="filter-heading">Release date</div>
                     <div id="changed">
                         <input type="checkbox" id="filter-changed" name="changed_filter" value="1">
-                        <label for="filter-changed">released within</label>
+                        <label for="filter-changed">released</label>
+                        <label for="timespan">within</label>
                         <select name="timespan" id="timespan">
                             <!--
                             <option value="86400">24 hours</option>
@@ -163,6 +160,11 @@
             </div>
             <div class="search-panel__results">
                 <div id="searchbox"></div>
+                <div class="filter-block">
+                    <div class="filter-heading">Blueprints</div>
+                    <div id="current-blueprints"></div>
+                    <div id="blueprint-list"></div>
+                </div>
                 <div class="stats-container">
                     <div id="stats"></div>
                     <div class="filter-mobile">

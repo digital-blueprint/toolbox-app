@@ -1,5 +1,5 @@
 import instantsearch from "instantsearch.js";
-import { searchBox, configure, hits, refinementList, stats, pagination } from 'instantsearch.js/es/widgets';
+import { searchBox, configure, hits, refinementList, currentRefinements, stats, pagination } from 'instantsearch.js/es/widgets';
 import TypesenseInstantSearchAdapter from 'typesense-instantsearch-adapter';
 
 import { licenses } from '../assets/licenses/spdx.json';
@@ -54,6 +54,8 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                     const formattedTime = d.getFullYear() + '-' + ('0' + (d.getMonth()+1)).substr(-2) + '-'  + ('0' + d.getDate()).substr(-2);
                     const daysStillNew = 31;
                     const isNew = ((new Date()).valueOf() - daysStillNew*86400000) < d.valueOf();
+                    const a=item._highlightResult.blueprint[0];
+                    const b=item._highlightResult.blueprint.slice(1);
 
                     return `
         <div style="position: relative; height: 100%; width: 100%">
@@ -63,6 +65,12 @@ export function init(typesenseConfig, dateFilter, privatePath) {
             ${item.labs.includes('yes') ? `<img class="labs-img" src="${privatePath}/lab_flask.svg" alt="labs">` : ''}
           </div>
           <div class="">${item._highlightResult.description.value}</div>
+          <div class="hit-content-type">
+            <div>Used in blueprint:</div>
+            <div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'blueprint-'+a.value}').click();">${a.value.match(/\(([^)]+)\)/)[1]}</div>
+            ${b.length > 0 ? `<div>and in:</div>` : ''}
+            ${b.length > 0 ? b.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'blueprint-'+a.value}').click();">${a.value.match(/\(([^)]+)\)/)[1]}</div>`).join('') : ''}
+          </div>
           <div class="hit-types">
             <div class="hit-types-subtypes">
               <div class="hit-document-type">
@@ -73,7 +81,6 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                 <div>Subtype of project:</div>
                 ${item._highlightResult.content_type.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'content-type-'+a.value}').click();">${a.value}</div>`).join('')}
               </div>
-            </div>
           </div>
           <div class="hit-used-programming-languages">
             <div>Used programming languages:</div>
@@ -84,10 +91,10 @@ export function init(typesenseConfig, dateFilter, privatePath) {
           ${item.release_version ? `<div class="hit-release">Version <span class="release">${item.release_version}</span></div>` : ''}
           <div class="links">
               ${ item.link_repo || item.link_doc || item.link_demo || item.link_changelog ? `<span class="hit-links">Links:</span>` : ''}
-              <span class="hit-repo">${item.link_repo ? `<a href=${item.link_repo} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/Git-Icon-Black.png" alt="repository"></a>` : ''}</span>
-              <span class="hit-doc">${item.link_doc ? `<a href=${item.link_doc} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/icons8-book-60.png" alt="documentation"></a>` : ''}</span>
-              <span class="hit-demo">${item.link_demo ? `<a href=${item.link_demo} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/open-select-hand-gesture.svg" alt="demo"></a>` : ''}</span>
-              <span class="hit-changelog">${item.link_changelog ? `<a href=${item.link_changelog} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/changelog.png" alt="changelog"></a>` : ''}</span>
+              <span class="hit-repo">${item.link_repo ? `<a href=${item.link_repo} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/Git-Icon-Black.png" alt="repository" title="repository"></a>` : ''}</span>
+              <span class="hit-doc">${item.link_doc ? `<a href=${item.link_doc} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/icons8-book-60.png" alt="documentation" title="documentation"></a>` : ''}</span>
+              <span class="hit-demo">${item.link_demo ? `<a href=${item.link_demo} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/open-select-hand-gesture.svg" alt="demo" title="demo"></a>` : ''}</span>
+              <span class="hit-changelog">${item.link_changelog ? `<a href=${item.link_changelog} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/changelog.png" alt="changelog" title="changelog"></a>` : ''}</span>
           </div>
             <!--
             <div class="hit-rating">[${item.sort}]</div>
@@ -127,28 +134,40 @@ export function init(typesenseConfig, dateFilter, privatePath) {
         refinementList({
             container: '#blueprint-list',
             attribute: 'blueprint',
+            cssClasses: { list: ['flex']},
             templates: {
                 item(item) {
                     const nameParts = item.highlighted.split('(');
                     let nameStart = nameParts.shift();
-                    let nameRest = nameParts.join('(');
-                    // if (item.highlighted.length < 42) {
-                    //     nameStart = item.highlighted;
-                    //     nameRest = '';
-                    // }
 
                     return `
                         <div>
                             <label class="ais-RefinementList-label">
-                                <input type="checkbox" class="ais-RefinementList-checkbox" value="${item.value}" ${ item.isRefined ? 'checked' : '' }>
+                                <input type="checkbox" class="ais-RefinementList-checkbox"
+                                       value="${item.value}" ${ item.isRefined ? 'checked' : '' } id="blueprint-${item.value}"
+                                       style="display:none;">
                                 <span class="ais-RefinementList-labelText">${nameStart}</span>
-                                <span class="ais-RefinementList-count">(${item.count})</span>
-                                <!-- <span class="ais-RefinementList-productName">(${nameRest}</span> -->
-                                ${ nameRest ? `<br><div style="display:inline-block;width:26px;"></div><span class="ais-RefinementList-labelText">(${nameRest}</span>` : ''}
                             </label>
                         </div>`;
                 }
             },
+        }),
+        currentRefinements({
+            container: '#current-blueprints',
+            includedAttributes: ['blueprint'],
+            cssClasses: { list: ['flex']},
+            // transformItems: function (items) {
+            //     return items.map(item => {
+            //         item.refinements = item.refinements.map(i => {
+            //             const nameParts = i.value.split('(');
+            //             i.value = nameParts.shift();
+            //
+            //             return i;
+            //         });
+            //         console.dir(item);
+            //         return item;
+            //     });
+            // },
         }),
         refinementList({
             container: '#document-type-list',

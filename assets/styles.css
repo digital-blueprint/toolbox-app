@@ -364,7 +364,7 @@ footer p {
     padding-right: 20px; */
     text-align: center;
     background: #222120;
-    margin: 0px;
+    margin: 0;
     color: white;
     padding: 50px;
 }
@@ -426,6 +426,11 @@ footer a {
     color: #ffffff;
     background-color: #222120;
     border-color: #222120;
+}
+
+.flex {
+    display: flex;
+    white-space: nowrap;
 }
 
 .ais-Stats, .ais-SearchBox, .ais-RefinementList, .ais-Hits-item, .ais-Hits  {
