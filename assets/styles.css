@@ -430,7 +430,7 @@ footer a {
 
 .flex {
     display: flex;
-    white-space: nowrap;
+    flex-flow: wrap;
 }
 
 .ais-Stats, .ais-SearchBox, .ais-RefinementList, .ais-Hits-item, .ais-Hits  {
@@ -446,6 +446,19 @@ footer a {
     /* display: inline-block; */
     width: 26px;
     /* line-break: anywhere; */
+}
+
+.ais-CurrentRefinements-item {
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #9f2424;
+    color: white;
+    font-size: 1rem;
+}
+
+.ais-CurrentRefinements-label {
+    display: none;
 }
 
 .ais-SearchBox-input {

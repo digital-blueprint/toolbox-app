@@ -1,5 +1,12 @@
 import instantsearch from "instantsearch.js";
-import { searchBox, configure, hits, refinementList, currentRefinements, stats, pagination } from 'instantsearch.js/es/widgets';
+import {
+    searchBox,
+    configure,
+    hits,
+    refinementList, /*currentRefinements,*/
+    stats,
+    pagination,
+} from 'instantsearch.js/es/widgets';
 import TypesenseInstantSearchAdapter from 'typesense-instantsearch-adapter';
 
 import { licenses } from '../assets/licenses/spdx.json';
@@ -35,6 +42,12 @@ export function init(typesenseConfig, dateFilter, privatePath) {
     let search = instantsearch({
         searchClient,
         indexName: 'software-overview',
+        // onStateChange({ uiState, setUiState }) {
+        //     // Custom logic
+        //     console.dir([uiState, setUiState]);
+        //
+        //     setUiState(uiState);
+        // },
     });
 
     search.addWidgets([
@@ -54,8 +67,29 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                     const formattedTime = d.getFullYear() + '-' + ('0' + (d.getMonth()+1)).substr(-2) + '-'  + ('0' + d.getDate()).substr(-2);
                     const daysStillNew = 31;
                     const isNew = ((new Date()).valueOf() - daysStillNew*86400000) < d.valueOf();
-                    const a=item._highlightResult.blueprint[0];
-                    const b=item._highlightResult.blueprint.slice(1);
+                    const blueprints = search.renderState['software-overview'].refinementList.blueprint.items;
+
+                    let refinedBlueprints = [];
+                    let nonRefinedBlueprints = [];
+                    item._highlightResult.blueprint.forEach(i => {
+                        let found = false;
+                        blueprints.forEach(j => {
+                            if (i.value === j.value && j.isRefined && !found) {
+                                found = true;
+                                refinedBlueprints.push(i);
+                                // console.log([i.value, j.value, j.isRefined]);
+                            }
+                        });
+                        if (!found) {
+                            nonRefinedBlueprints.push(i);
+                            //console.log([i.value]);
+                        }
+                    });
+
+                    console.log('blueprints for ' + item.name);
+                    // console.dir(item.blueprint);
+                    // console.dir([refinedBlueprints, nonRefinedBlueprints]);
+                    console.dir(item);
 
                     return `
         <div style="position: relative; height: 100%; width: 100%">
@@ -66,10 +100,10 @@ export function init(typesenseConfig, dateFilter, privatePath) {
           </div>
           <div class="">${item._highlightResult.description.value}</div>
           <div class="hit-content-type">
-            <div>Used in blueprint:</div>
-            <div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'blueprint-'+a.value}').click();">${a.value.match(/\(([^)]+)\)/)[1]}</div>
-            ${b.length > 0 ? `<div>and in:</div>` : ''}
-            ${b.length > 0 ? b.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'blueprint-'+a.value}').click();">${a.value.match(/\(([^)]+)\)/)[1]}</div>`).join('') : ''}
+            <div>Used in this blueprints:</div>
+            ${refinedBlueprints.length > 0 ? refinedBlueprints.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'blueprint-'+a.value}').click(); ">${a.value.match(/\(([^)]+)\)/)[1]}</div>`).join('') : ''}
+            ${refinedBlueprints.length > 0 && nonRefinedBlueprints.length > 0 ? `<div>and also in:</div>` : ''}
+            ${nonRefinedBlueprints.length > 0 ? nonRefinedBlueprints.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'blueprint-'+a.value}').click();">${a.value.match(/\(([^)]+)\)/)[1]}</div>`).join('') : ''}
           </div>
           <div class="hit-types">
             <div class="hit-types-subtypes">
@@ -141,7 +175,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                     let nameStart = nameParts.shift();
 
                     return `
-                        <div>
+                        <div style="margin: 5px; padding: 5px; border-radius: 5px; background-color: ${ item.isRefined ? 'red' : 'blue'}; color: white;">
                             <label class="ais-RefinementList-label">
                                 <input type="checkbox" class="ais-RefinementList-checkbox"
                                        value="${item.value}" ${ item.isRefined ? 'checked' : '' } id="blueprint-${item.value}"
@@ -152,23 +186,22 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                 }
             },
         }),
-        currentRefinements({
-            container: '#current-blueprints',
-            includedAttributes: ['blueprint'],
-            cssClasses: { list: ['flex']},
-            // transformItems: function (items) {
-            //     return items.map(item => {
-            //         item.refinements = item.refinements.map(i => {
-            //             const nameParts = i.value.split('(');
-            //             i.value = nameParts.shift();
-            //
-            //             return i;
-            //         });
-            //         console.dir(item);
-            //         return item;
-            //     });
-            // },
-        }),
+        // currentRefinements({
+        //     container: '#current-blueprints',
+        //     includedAttributes: ['blueprint'],
+        //     cssClasses: { list: ['flex']},
+        //     transformItems: function (items) {
+        //         return items.map(item => {
+        //             item.refinements = item.refinements.map(i => {
+        //                 const nameParts = i.value.split('(');
+        //                 i.label = nameParts.shift();
+        //
+        //                 return i;
+        //             });
+        //             return item;
+        //         });
+        //     },
+        // }),
         refinementList({
             container: '#document-type-list',
             attribute: 'document_type',
