@@ -4,6 +4,7 @@ import {
     configure,
     hits,
     refinementList, /*currentRefinements,*/
+    hierarchicalMenu,
     stats,
     pagination,
 } from 'instantsearch.js/es/widgets';
@@ -89,7 +90,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                     console.log('blueprints for ' + item.name);
                     // console.dir(item.blueprint);
                     // console.dir([refinedBlueprints, nonRefinedBlueprints]);
-                    console.dir(item);
+                    // console.dir(item);
 
                     return `
         <div style="position: relative; height: 100%; width: 100%">
@@ -101,9 +102,9 @@ export function init(typesenseConfig, dateFilter, privatePath) {
           <div class="">${item._highlightResult.description.value}</div>
           <div class="hit-content-type">
             <div>Used in this blueprints:</div>
-            ${refinedBlueprints.length > 0 ? refinedBlueprints.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'blueprint-'+a.value}').click(); ">${a.value.match(/\(([^)]+)\)/)[1]}</div>`).join('') : ''}
+            ${refinedBlueprints.length > 0 ? refinedBlueprints.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'blueprint-'+a.value}').click();" title="${a.value.split('(').shift()}">${a.value /*.match(/\(([^)]+)\)/)[1]*/}</div>`).join('') : ''}
             ${refinedBlueprints.length > 0 && nonRefinedBlueprints.length > 0 ? `<div>and also in:</div>` : ''}
-            ${nonRefinedBlueprints.length > 0 ? nonRefinedBlueprints.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'blueprint-'+a.value}').click();">${a.value.match(/\(([^)]+)\)/)[1]}</div>`).join('') : ''}
+            ${nonRefinedBlueprints.length > 0 ? nonRefinedBlueprints.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'blueprint-'+a.value}').click();" title="${a.value.split('(').shift()}">${a.value /*.match(/\(([^)]+)\)/)[1]*/}</div>`).join('') : ''}
           </div>
           <div class="hit-types">
             <div class="hit-types-subtypes">
@@ -172,19 +173,28 @@ export function init(typesenseConfig, dateFilter, privatePath) {
             templates: {
                 item(item) {
                     const nameParts = item.highlighted.split('(');
-                    let nameStart = nameParts.shift();
+                    //const nameStart = nameParts.shift();
+                    const fancyName = nameParts.shift().replace(')', '');
 
                     return `
                         <div style="margin: 5px; padding: 5px; border-radius: 5px; background-color: ${ item.isRefined ? 'red' : 'blue'}; color: white;">
-                            <label class="ais-RefinementList-label">
+                            <label class="ais-RefinementList-label" title="${fancyName}">
                                 <input type="checkbox" class="ais-RefinementList-checkbox"
                                        value="${item.value}" ${ item.isRefined ? 'checked' : '' } id="blueprint-${item.value}"
                                        style="display:none;">
-                                <span class="ais-RefinementList-labelText">${nameStart}</span>
+                                <span class="ais-RefinementList-labelText">${item.highlighted}</span>
                             </label>
                         </div>`;
                 }
             },
+            operator: 'and',
+        }),
+        hierarchicalMenu({
+            container: '#blueprint-menu',
+            attributes: [
+                'hierarchicalBlueprints.lvl0',
+                'hierarchicalBlueprints.lvl1',
+            ],
         }),
         // currentRefinements({
         //     container: '#current-blueprints',
