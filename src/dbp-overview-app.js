@@ -195,6 +195,16 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                 'hierarchicalBlueprints.lvl0',
                 'hierarchicalBlueprints.lvl1',
             ],
+            templates: {
+                item(item) {
+                    return `
+                      <a class="" href="${item.url}" style="color: ${item.isRefined ? 'red' : 'black'}; font-size: 1rem; font-weight: 400; line-height: 1.5;text-decoration: none;">
+                        <span class="ais-RefinementList-labelText">${item.label}</span>
+                        <span class="ais-RefinementList-count">(${item.count})</span>
+                      </a>
+                    `;
+                }
+            },
         }),
         // currentRefinements({
         //     container: '#current-blueprints',
