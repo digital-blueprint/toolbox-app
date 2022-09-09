@@ -175,9 +175,10 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                     const nameParts = item.highlighted.split('(');
                     //const nameStart = nameParts.shift();
                     const fancyName = nameParts.shift().replace(')', '');
+                    const isDBP = item.highlighted.toLowerCase().includes('dbp');
 
                     return `
-                        <div style="margin: 5px; padding: 5px; border-radius: 5px; background-color: ${ item.isRefined ? 'red' : 'blue'}; color: white;">
+                        <div style="margin: 5px; padding: 5px; border-radius: 5px; background-color: ${ item.isRefined ? 'red' : (isDBP ? 'blue' : '#335588')}; color: white;">
                             <label class="ais-RefinementList-label" title="${fancyName}">
                                 <input type="checkbox" class="ais-RefinementList-checkbox"
                                        value="${item.value}" ${ item.isRefined ? 'checked' : '' } id="blueprint-${item.value}"
@@ -297,13 +298,15 @@ export function init(typesenseConfig, dateFilter, privatePath) {
             attribute: 'maintained_by',
             templates: {
                 item(item) {
+                    const byUs = item.highlighted.toLowerCase().includes('tu graz');
                     return `
-                        <div>
+                        <div style="display:flex; justify-content: space-between; width:100%;">
                             <label class="ais-RefinementList-label">
                                 <input type="checkbox" class="ais-RefinementList-checkbox" value="${item.value}" ${item.isRefined ? 'checked' : ''}>
                                 <span class="ais-RefinementList-labelText">${item.highlighted}</span>
                                 <span class="ais-RefinementList-count">(${item.count})</span>
                             </label>
+                            <div style="margin:2px;padding-left: 10px;padding-right:10px;background-color: ${byUs ? 'blue' : '#335588'}">&nbsp;</div>
                         </div>`;
                 }
             },
