@@ -3,7 +3,7 @@ import {
     searchBox,
     configure,
     hits,
-    refinementList, /*currentRefinements,*/
+    refinementList, currentRefinements,
     hierarchicalMenu,
     stats,
     pagination,
@@ -62,30 +62,31 @@ export function init(typesenseConfig, dateFilter, privatePath) {
         }),
         hits({
             container: '#hits',
+            sort: ['blueprint'],
             templates: {
                 item(item) {
                     const d = new Date(item.release_date*1000);
                     const formattedTime = d.getFullYear() + '-' + ('0' + (d.getMonth()+1)).substr(-2) + '-'  + ('0' + d.getDate()).substr(-2);
                     const daysStillNew = 31;
                     const isNew = ((new Date()).valueOf() - daysStillNew*86400000) < d.valueOf();
-                    const blueprints = search.renderState['software-overview'].refinementList.blueprint.items;
+                    // const blueprints = search.renderState['software-overview'].refinementList.blueprint.items;
 
-                    let refinedBlueprints = [];
-                    let nonRefinedBlueprints = [];
-                    item._highlightResult.blueprint.forEach(i => {
-                        let found = false;
-                        blueprints.forEach(j => {
-                            if (i.value === j.value && j.isRefined && !found) {
-                                found = true;
-                                refinedBlueprints.push(i);
-                                // console.log([i.value, j.value, j.isRefined]);
-                            }
-                        });
-                        if (!found) {
-                            nonRefinedBlueprints.push(i);
-                            //console.log([i.value]);
-                        }
-                    });
+                    // let refinedBlueprints = [];
+                    // let nonRefinedBlueprints = [];
+                    // item._highlightResult.blueprint.forEach(i => {
+                    //     let found = false;
+                    //     blueprints.forEach(j => {
+                    //         if (i.value === j.value && j.isRefined && !found) {
+                    //             found = true;
+                    //             refinedBlueprints.push(i);
+                    //             // console.log([i.value, j.value, j.isRefined]);
+                    //         }
+                    //     });
+                    //     if (!found) {
+                    //         nonRefinedBlueprints.push(i);
+                    //         //console.log([i.value]);
+                    //     }
+                    // });
 
                     console.log('blueprints for ' + item.name);
                     // console.dir(item.blueprint);
@@ -101,10 +102,11 @@ export function init(typesenseConfig, dateFilter, privatePath) {
           </div>
           <div class="">${item._highlightResult.description.value}</div>
           <div class="hit-content-type">
-            <div>Used in this blueprints:</div>
-            ${refinedBlueprints.length > 0 ? refinedBlueprints.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'blueprint-'+a.value}').click();" title="${a.value.split('(').shift()}">${a.value /*.match(/\(([^)]+)\)/)[1]*/}</div>`).join('') : ''}
-            ${refinedBlueprints.length > 0 && nonRefinedBlueprints.length > 0 ? `<div>and also in:</div>` : ''}
-            ${nonRefinedBlueprints.length > 0 ? nonRefinedBlueprints.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'blueprint-'+a.value}').click();" title="${a.value.split('(').shift()}">${a.value /*.match(/\(([^)]+)\)/)[1]*/}</div>`).join('') : ''}
+            <div>This component is used in this blueprints:</div>
+            <select style="width:100%;margin:5px;"
+                    size="${Math.min(3, Math.max(3, item._highlightResult.blueprint.length))}">
+            ${item._highlightResult.blueprint.map(a => `<option value="${a.value}">${a.value}</option>`)}
+            </select>
           </div>
           <div class="hit-types">
             <div class="hit-types-subtypes">
@@ -166,30 +168,30 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                 }
             },
         }),
-        refinementList({
-            container: '#blueprint-list',
-            attribute: 'blueprint',
-            cssClasses: { list: ['flex']},
-            templates: {
-                item(item) {
-                    const nameParts = item.highlighted.split('(');
-                    //const nameStart = nameParts.shift();
-                    const fancyName = nameParts.shift().replace(')', '');
-                    const isDBP = item.highlighted.toLowerCase().includes('dbp');
-
-                    return `
-                        <div style="margin: 5px; padding: 5px; border-radius: 5px; background-color: ${ item.isRefined ? 'red' : (isDBP ? 'blue' : '#335588')}; color: white;">
-                            <label class="ais-RefinementList-label" title="${fancyName}">
-                                <input type="checkbox" class="ais-RefinementList-checkbox"
-                                       value="${item.value}" ${ item.isRefined ? 'checked' : '' } id="blueprint-${item.value}"
-                                       style="display:none;">
-                                <span class="ais-RefinementList-labelText">${item.highlighted}</span>
-                            </label>
-                        </div>`;
-                }
-            },
-            operator: 'and',
-        }),
+        // refinementList({
+        //     container: '#blueprint-list',
+        //     attribute: 'blueprint',
+        //     cssClasses: { list: ['flex']},
+        //     templates: {
+        //         item(item) {
+        //             const nameParts = item.highlighted.split('(');
+        //             //const nameStart = nameParts.shift();
+        //             const fancyName = nameParts.shift().replace(')', '');
+        //             const isDBP = item.highlighted.toLowerCase().includes('dbp');
+        //
+        //             return `
+        //                 <div style="margin: 5px; padding: 5px; border-radius: 5px; background-color: ${ item.isRefined ? 'red' : (isDBP ? 'blue' : '#335588')}; color: white;">
+        //                     <label class="ais-RefinementList-label" title="${fancyName}">
+        //                         <input type="checkbox" class="ais-RefinementList-checkbox"
+        //                                value="${item.value}" ${ item.isRefined ? 'checked' : '' } id="blueprint-${item.value}"
+        //                                style="display:none;">
+        //                         <span class="ais-RefinementList-labelText">${item.highlighted}</span>
+        //                     </label>
+        //                 </div>`;
+        //         }
+        //     },
+        //     operator: 'and',
+        // }),
         hierarchicalMenu({
             container: '#blueprint-menu',
             attributes: [
@@ -206,10 +208,11 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                     `;
                 }
             },
+            showParentLevel: false,
         }),
         // currentRefinements({
         //     container: '#current-blueprints',
-        //     includedAttributes: ['blueprint'],
+        //     includedAttributes: ['blueprint', 'maintained_by'],
         //     cssClasses: { list: ['flex']},
         //     transformItems: function (items) {
         //         return items.map(item => {
