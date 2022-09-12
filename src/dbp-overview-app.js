@@ -3,7 +3,7 @@ import {
     searchBox,
     configure,
     hits,
-    refinementList, currentRefinements,
+    refinementList, /*currentRefinements,*/
     hierarchicalMenu,
     stats,
     pagination,
@@ -100,7 +100,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
             ${item._highlightResult.name.value}
             ${item.labs.includes('yes') ? `<img class="labs-img" src="${privatePath}/lab_flask.svg" alt="labs">` : ''}
           </div>
-          <div class="">${item._highlightResult.description.value}</div>
+          <div class="" style="width:100%; height:3rem;text-overflow: ellipsis">${item._highlightResult.description.value}</div>
           <div class="hit-content-type">
             <div>This component is used in this blueprints:</div>
             <select style="width:100%;margin:5px;"
@@ -309,7 +309,9 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                                 <span class="ais-RefinementList-labelText">${item.highlighted}</span>
                                 <span class="ais-RefinementList-count">(${item.count})</span>
                             </label>
+                            <!--
                             <div style="margin:2px;padding-left: 10px;padding-right:10px;background-color: ${byUs ? 'blue' : '#335588'}">&nbsp;</div>
+                            -->
                         </div>`;
                 }
             },
