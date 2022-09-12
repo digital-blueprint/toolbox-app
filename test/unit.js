@@ -6,7 +6,8 @@ suite('dbp-overview-app integration', () => {
     let searchbox;
     let hits;
     let targetAudience;
-    let blueprintList;
+    // let blueprintList;
+    let blueprintMenu;
     let documentTypeList;
     let contentTypeList;
     let languagesList;
@@ -28,9 +29,12 @@ suite('dbp-overview-app integration', () => {
         targetAudience = document.createElement('div');
         targetAudience.id = 'targetaudience-list';
         document.body.append(targetAudience);
-        blueprintList = document.createElement('div');
-        blueprintList.id = 'blueprint-list';
-        document.body.append(blueprintList);
+        // blueprintList = document.createElement('div');
+        // blueprintList.id = 'blueprint-list';
+        // document.body.append(blueprintList);
+        blueprintMenu = document.createElement('div');
+        blueprintMenu.id = 'blueprint-menu';
+        document.body.append(blueprintMenu);
         documentTypeList = document.createElement('div');
         documentTypeList.id = 'document-type-list';
         document.body.append(documentTypeList);
@@ -67,7 +71,8 @@ suite('dbp-overview-app integration', () => {
         searchbox.remove();
         hits.remove();
         targetAudience.remove();
-        blueprintList.remove();
+        // blueprintList.remove();
+        blueprintMenu.remove();
         documentTypeList.remove();
         contentTypeList.remove();
         languagesList.remove();
