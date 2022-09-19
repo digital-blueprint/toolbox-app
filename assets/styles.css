@@ -167,6 +167,7 @@ a {
     margin-bottom: 5px;
     font-size: 1.2rem;
     font-weight: 700;
+    cursor: pointer;
 }
 .search-panel__results {
     flex: 3;
@@ -274,6 +275,11 @@ a {
     margin: 0.2rem;
     display: inline-block;
     cursor: pointer;
+}
+
+/* chevron open */
+.open {
+    transform: rotate(90deg);
 }
 
 /* document type */
