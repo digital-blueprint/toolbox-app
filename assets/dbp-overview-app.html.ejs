@@ -73,32 +73,6 @@
         document.getElementById('filter-changed').onchange = filter_changed;
         document.getElementById('timespan').onchange = filter_changed;
 
-        // show/hide filter icon when current refinements are active
-        const mutationObserver = new MutationObserver(function(mutations) {
-            mutations.forEach(function(mutation) {
-                // console.log(mutation);
-                if (mutation.target.id !== 'current-refinements') {
-                    const c = mutation.target.hasChildNodes();
-                    const div = document.getElementById('filter-icon');
-                    div.style.display = c ? 'inline' : 'none';
-                }
-            });
-        });
-        mutationObserver.observe(document.getElementById('current-refinements'), {
-            attributes: true,
-            characterData: true,
-            childList: true,
-            subtree: true,
-            attributeOldValue: true,
-            characterDataOldValue: true
-        });
-
-        function showFilterIcon() {
-            const div = document.getElementById('filter-icon');
-            const list = document.getElementById('current-refinements');
-            div.style.display = list.hasChildNodes() ? 'inline' : 'none';
-        }
-
         // show/hide facet list by clicking on caption
         const captions = Array.from(document.getElementsByClassName("filter-heading"));
         captions.forEach(function (caption) {
@@ -135,10 +109,10 @@
 
     <!-- algolia default css -->
     <link rel="stylesheet" href="<%= getUrl('algolia-min.css') %>">
-
+    <!-- Micromodal css -->
+    <link rel="stylesheet" href="<%= getPrivateUrl('micromodal.css') %>">
     <!-- custom css -->
     <link rel="stylesheet" href="<%= getPrivateUrl('styles.css') %>">
-    <link rel="stylesheet" href="<%= getPrivateUrl('micromodal.css') %>">
 </head>
 
 <body class="antialiased">
@@ -257,19 +231,21 @@
             </div>
             <div class="search-panel__results">
                 <div id="searchbox"></div>
-                <div class="filter-block" style="display:flex; flex-direction: row;">
-                    <div id="filter-icon" style="width:22px;height:22px; display:none;">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path></svg>
+                <div class="filter-block">
+                    <div class="filter-heading"
+                         data-target="current-refinements" data-chevron="filter-chevron" data-status="open">
+                        Filter
+                        <svg id="filter-chevron" style="width: 1rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                     </div>
-                    <div id="current-refinements" onchange="showFilterIcon"></div>
+                    <div style="display:flex; flex-direction: row;">
+                        <div id="current-refinements"></div>
+                    </div>
                 </div>
                 <div class="stats-container">
                     <div id="stats"></div>
                     <div class="filter-mobile">
                         <div class="description">Filter Results</div>
-                        <div id="mobile-filter-btn"
-                            onclick="view_filters()"
-                        >
+                        <div id="mobile-filter-btn" onclick="view_filters()">
                             <img src="<%= getPrivateUrl('filter.svg') %>" alt="Filter">
                         </div>
                     </div>
