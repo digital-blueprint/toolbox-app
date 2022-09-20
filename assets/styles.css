@@ -90,10 +90,10 @@ a {
 }
 
 .header-title {
-    font-size: 2rem;
+    font-size: 2.5rem;
+    letter-spacing: 0.5rem;
     font-weight: 600;
     margin-bottom: 0;
-    letter-spacing: 0.1rem;
 }
 
 .header-top {
@@ -646,6 +646,7 @@ li.ais-Hits-item > div:first-child {
         padding-bottom: 2rem;
         min-height: 100px;
         top: -72px;
+        background-image: none;
     }
 
     .header-subtitle {
@@ -669,7 +670,7 @@ li.ais-Hits-item > div:first-child {
 
     .header-top .logo img {
         width: 2.5rem;
-        content: url('dbp_logo_small_on_white.svg');
+        /* content: url('dbp_logo_small_on_white.svg'); */
     }
 
     .header-top .contact {
@@ -793,9 +794,13 @@ li.ais-Hits-item > div:first-child {
 
     footer a:first-child {
         border-bottom: none;
-      }
+    }
 
     footer p span {
         display: none;
-      }
+    }
+
+    #mobile-filter-btn {
+        cursor: pointer;
+    }
 }
