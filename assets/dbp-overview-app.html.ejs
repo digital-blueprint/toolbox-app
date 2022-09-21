@@ -102,6 +102,25 @@
             }
         });
 
+        // slider
+        function setupSlider() {
+            const navs = Array.from(document.getElementsByClassName("slider-nav"));
+            //console.dir(navs);
+            navs.forEach(function (nav) {
+                //console.log('setup onclick for nav: ' + nav.id);
+                const id = nav.id.replace('slider-nav-', '');
+                nav.onclick = () => {
+                    const allSlides = Array.from(document.getElementsByClassName('slide-item'));
+                    allSlides.forEach(elm => elm.classList.remove('selected'));
+                    document.getElementById('slide-' + id).classList.add('selected');
+                    const allNavs = Array.from(document.getElementsByClassName('slider-nav'));
+                    allNavs.forEach(elm => elm.classList.remove('selected'));
+                    document.getElementById('slider-nav-' + id).classList.add('selected');
+                }
+            });
+        }
+        window.setupSlider = setupSlider;
+
     </script>
 
     <!-- Prevent Chrome/Edge from suggesting to translate the page -->
@@ -111,6 +130,8 @@
     <link rel="stylesheet" href="<%= getUrl('algolia-min.css') %>">
     <!-- Micromodal css -->
     <link rel="stylesheet" href="<%= getPrivateUrl('micromodal.css') %>">
+    <!-- carousel css -->
+    <link rel="stylesheet" href="<%= getPrivateUrl('carousel.css') %>">
     <!-- custom css -->
     <link rel="stylesheet" href="<%= getPrivateUrl('styles.css') %>">
 </head>

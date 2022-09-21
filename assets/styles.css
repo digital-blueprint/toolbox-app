@@ -676,6 +676,7 @@ li.ais-Hits-item > div:first-child {
     display: flex;
     flex-direction: column;
 }
+
 @media (max-width: 768px) {
 
     .container {

@@ -97,8 +97,12 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                     // console.dir([refinedBlueprints, nonRefinedBlueprints]);
                     // console.dir(item);
 
+                    // carousel
+                    let index = 1;
+                    let nav_index = 1;
+
                     return `
-        <div style="position: relative; height: 100%; width: 100%" onclick="console.log('${item.id}');MicroModal.show('detail-${item.id}');">
+        <div style="position: relative; height: 100%; width: 100%" onclick="console.log('${item.id}');MicroModal.show('detail-${item.id}'); window.setupSlider()">
             <div class="hit-name">
             <img class="hit-name-img" src=${item.link_icon || `${privatePath}/icons8-missing-32.png`} alt="link">
             ${item._highlightResult.name.value}
@@ -173,13 +177,21 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                         </div>
                         <hr class="modal-seperator">
                         <div class="modal-section-title">USED IN</div>
-                        <div style="display:flex; flex-direction: row; justify-content: space-evenly;">
+                        <div class="carousel">
+                            <div class="slides">
                             ${item._highlightResult.blueprint.map(
-                                a => `<div class="modal-column">
+                                a => `<div class="slide-item modal-column ${index===1 ? 'selected' : ''}" id="slide-${item.id}-${index++}">
                                     <div class="modal-blueprint modal-fancy">${a.value.replace(')', '').split('(')[1] || 'N/A'}</div>
                                     <div class="modal-blueprint">${a.value.split('(')[0] || 'N/A'}</div>
                                 </div>
                             `).join('')}
+                            </div>
+                            ${item._highlightResult.blueprint.length > 3 ? `
+                            <div class="carousel__nav">
+                            ${item._highlightResult.blueprint.map(
+                                () => `<a class="slider-nav ${nav_index===1 ? 'selected' : ''}" id="slider-nav-${item.id}-${nav_index}" href="#slide-${item.id}-${nav_index}">${nav_index++}</a>`
+                            ).join('')}
+                            </div>` : ''}
                         </div>
                         <hr class="modal-seperator">
                         <div class="modal-section-title">ADDITIONAL INFO</div>
