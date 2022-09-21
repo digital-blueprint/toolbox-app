@@ -11,6 +11,7 @@ import {
 } from 'instantsearch.js/es/widgets';
 import TypesenseInstantSearchAdapter from 'typesense-instantsearch-adapter';
 
+// eslint-disable-next-line no-unused-vars
 import MicroModal from './micromodal.es';
 
 import { licenses } from '../assets/licenses/spdx.json';
@@ -22,7 +23,7 @@ function formatLicense(license) {
         console.log('license "' + license + '" not found.');
         return license;
     }
-    return `<a href="${spdxInfo.reference}">${spdxInfo.name}</a>`;
+    return `<a href="${spdxInfo.reference}" style="color:black;text-decoration:none;">${spdxInfo.name}</a>`;
 }
 
 export function init(typesenseConfig, dateFilter, privatePath) {
@@ -118,9 +119,9 @@ export function init(typesenseConfig, dateFilter, privatePath) {
             </div>
             <div class="links">
               ${ item.link_repo || item.link_doc || item.link_demo || item.link_changelog ? `<span class="hit-links">Links:</span>` : ''}
-              <span class="hit-repo">${item.link_repo ? `<a href=${item.link_repo} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/Git-Icon-Black.png" alt="repository" title="repository"></a>` : ''}</span>
-              <span class="hit-doc">${item.link_doc ? `<a href=${item.link_doc} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/icons8-book-60.png" alt="documentation" title="documentation"></a>` : ''}</span>
-              <span class="hit-demo">${item.link_demo ? `<a href=${item.link_demo} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/open-select-hand-gesture.svg" alt="demo" title="demo"></a>` : ''}</span>
+              <span class="hit-repo">${item.link_repo ? `<a href=${item.link_repo} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/code.svg" alt="source code" title="source code"></a>` : ''}</span>
+              <span class="hit-doc">${item.link_doc ? `<a href=${item.link_doc} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/dbp-icons-documentation" alt="documentation" title="documentation"></a>` : ''}</span>
+              <span class="hit-demo">${item.link_demo ? `<a href=${item.link_demo} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/dbp-icons-demo.svg" alt="demo" title="demo"></a>` : ''}</span>
               <span class="hit-changelog">${item.link_changelog ? `<a href=${item.link_changelog} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/changelog.png" alt="changelog" title="changelog"></a>` : ''}</span>
           </div>
             <!--
@@ -129,7 +130,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
             ${ isNew ? `<div class="ribbon ribbon-bottom-right"><span>new</span></div>` : ''}
         </div>
         <div class="modal micromodal-slide" id="detail-${item.id}" aria-hidden="true">
-            <div class="modal-overlay" tabindex="1" data-micromodal-close>
+            <div class="modal-overlay" tabindex="-1" data-micromodal-close>
                 <div class="modal-container"
                      style="padding: 10px; margin: 10px;"
                      id="edit-sender-modal-box-${item.id}"
@@ -147,21 +148,42 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                         </button>
                     </header>
                     <main class="modal-content">
+                        <div style="margin:20px;">
                         <div class="hit-name">
                             <img class="hit-name-img" src=${item.link_icon || `${privatePath}/icons8-missing-32.png`} alt="link">
                             ${item._highlightResult.name.value}
                             ${item.labs.includes('yes') ? `<img class="labs-img" src="${privatePath}/lab_flask.svg" alt="labs">` : ''}
                         </div>
-                        <div class="" style="width:100%; height:4.5rem;text-overflow: ellipsis">
+                        <div class="modal-description">
                             ${item._highlightResult.description.value}
                         </div>
-                        <div class="hit-content-type">
-                            <div>This component is used in this blueprints:</div>
-                            <select style="width:100%;margin:5px;"
-                                size="${Math.min(3, Math.max(3, item._highlightResult.blueprint.length))}">
-                                ${item._highlightResult.blueprint.map(a => `<option value="${a.value}">${a.value}</option>`)}
-                            </select>
+                        <div style="display:flex; flex-direction: row; justify-content: space-evenly;">
+                            <div class="modal-column">
+                                <div class="modal-section-title">MAINTAINED</div>
+                                <div class="modal-center">${item.maintained_by}</div>
+                            </div>
+                            <div class="modal-column">
+                                <div class="modal-section-title">VERSION</div>
+                                <div class="modal-center release">${item.release_version || 'N/A'}</div>
+                            </div>
+                            <div class="modal-column">
+                                <div class="modal-section-title">RELEASE DATE</div>
+                                <div class="modal-center">${item.release_date > 0 ? formattedTime : 'N/A'}</div>
+                            </div>
                         </div>
+                        <hr class="modal-seperator">
+                        <div class="modal-section-title">USED IN</div>
+                        <div style="display:flex; flex-direction: row; justify-content: space-evenly;">
+                            ${item._highlightResult.blueprint.map(
+                                a => `<div class="modal-column">
+                                    <div class="modal-blueprint modal-fancy">${a.value.replace(')', '').split('(')[1] || 'N/A'}</div>
+                                    <div class="modal-blueprint">${a.value.split('(')[0] || 'N/A'}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <hr class="modal-seperator">
+                        <div class="modal-section-title">ADDITIONAL INFO</div>
+                        <div class="hit-license">License: ${item.license.map(l => '<span>' + formatLicense(l) + '</span>').join('')}</div>
                         <div class="hit-types">
                             <div class="hit-types-subtypes">
                                 <div class="hit-document-type">
@@ -178,20 +200,18 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                             <div>Used programming languages:</div>
                             ${item._highlightResult.used_programming_languages.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'prog-lang-'+a.value}').click();">${a.value}</div>`).join('')}
                         </div>
-                        <div class="hit-license">License: ${item.license.map(l => '<span>' + formatLicense(l) + '</span>').join('')}</div>
-                        ${item.release_date > 0 ? `<div class="hit-release">Release date: ${formattedTime}</div>` : ''}
-                        ${item.release_version ? `<div class="hit-release">Version <span class="release">${item.release_version}</span></div>` : ''}
-                    </main>
-                    <footer class="modal-footer">
-                        <div class="modal-footer-btn">
-                            <button class="button"
-                                    data-micromodal-close
-                                    aria-label="Close this dialog window"
-                                    onclick="console.log('close'); MicroModal.close('detail-${item.id}');">
-                                close
-                            </button>
+                        <hr class="modal-seperator">
+                        <div class="modal-section-title">LINKS</div>
+                        <div style="display:flex; flex-direction: row;">
+                            ${item.link_repo ? `<div class="modal-link"><a href="${item.link_repo}" rel="noopener noreferrer" target="_blank"><div class="modal-column"><img src="${privatePath}/code.svg" alt="repository" class="modal-center"><div>source code</div></div></a></div>` : ''}
+                            ${item.link_doc ? `<div class="modal-link"><a href="${item.link_doc}" rel="noopener noreferrer" target="_blank"><div class="modal-column"><img src="${privatePath}/dbp-icons-documentation.svg" alt="documentation" class="modal-center"><div>documentation</div></div></a></div>` : ''}
+                            ${item.link_demo ? `<div class="modal-link"><a href="${item.link_demo}" rel="noopener noreferrer" target="_blank"><div class="modal-column"><img src="${privatePath}/dbp-icons-demo.svg" alt="demo" class="modal-center"><div>live demo</div></div></a></div>` : ''}
+                            ${item.link_changelog ? `<div class="modal-link"><a href="${item.link_changelog}" rel="noopener noreferrer" target="_blank"><div class="modal-column"><img src="${privatePath}/changelog.png" alt="changelog" class="modal-center"><div>changelog</div></div></a></div>` : ''}
+                            ${item.contact_email ? `<div class="modal-link"><a href="mailto:${item.contact_email}" rel="noopener noreferrer" target="_blank"><div class="modal-column"><img src="${privatePath}/mail2.svg" alt="email" class="modal-center"><div>email</div></div></a></div>` : ''}
+                        <div>
+                        ${ isNew ? `<div class="ribbon ribbon-bottom-right"><span>new</span></div>` : ''}
                         </div>
-                    </footer>
+                    </main>
                 </div>
             </div>
         </div>
