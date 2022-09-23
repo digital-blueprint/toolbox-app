@@ -101,34 +101,39 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                     let index = 1;
                     let nav_index = 1;
 
+                    // slider
+                    const MAXITEMSVISIBLE = 3;
+                    let slideIndex=0;
+
                     return `
-        <div style="position: relative; height: 100%; width: 100%" onclick="console.log('${item.id}');MicroModal.show('detail-${item.id}'); window.setupSlider()">
+        <div style="position: relative; height: 100%; width: 100%" onclick="console.log('${item.id}');MicroModal.show('detail-${item.id}'); window.setupSlider(); window.setupSlider2('${item.id}')">
             <div class="hit-name">
-            <img class="hit-name-img" src=${item.link_icon || `${privatePath}/icons8-missing-32.png`} alt="link">
-            ${item._highlightResult.name.value}
-            ${item.labs.includes('yes') ? `<img class="labs-img" src="${privatePath}/lab_flask.svg" alt="labs">` : ''}
+                <img class="hit-name-img" src=${item.link_icon || `${privatePath}/icons8-missing-32.png`} alt="link">
+                ${item._highlightResult.name.value}
+                ${item.labs.includes('yes') ? `<img class="labs-img" src="${privatePath}/lab_flask.svg" alt="labs">` : ''}
             </div>
-            <div class="" style="width:100%; height:4.5rem;text-overflow: ellipsis">${item._highlightResult.description.value}</div>
+            <div class="hit-description">${item._highlightResult.description.value}</div>
             <div class="hit-types">
                 <div class="hit-types-subtypes">
                     <div class="hit-document-type">
-                        <div>Type of project:</div>
+                        <div>Categor${item.document_type.length>1?'ies':'y'}:</div>
                         ${item._highlightResult.document_type.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'document-type-'+a.value}').click();">${a.value}</div>`).join('')}
                     </div>
                     <div class="hit-content-type">
-                        <div>Subtype of project:</div>
+                        <div>Type${item.content_type.length>1?'s':''}:</div>
                         ${item._highlightResult.content_type.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'content-type-'+a.value}').click();">${a.value}</div>`).join('')}
                     </div>
                 </div>
             </div>
             <div class="links">
-              ${ item.link_repo || item.link_doc || item.link_demo || item.link_changelog ? `<span class="hit-links">Links:</span>` : ''}
-              <span class="hit-repo">${item.link_repo ? `<a href=${item.link_repo} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/code.svg" alt="source code" title="source code"></a>` : ''}</span>
-              <span class="hit-doc">${item.link_doc ? `<a href=${item.link_doc} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/dbp-icons-documentation" alt="documentation" title="documentation"></a>` : ''}</span>
-              <span class="hit-demo">${item.link_demo ? `<a href=${item.link_demo} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/dbp-icons-demo.svg" alt="demo" title="demo"></a>` : ''}</span>
-              <span class="hit-changelog">${item.link_changelog ? `<a href=${item.link_changelog} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/changelog.png" alt="changelog" title="changelog"></a>` : ''}</span>
+              <span class="hit-links">Links:</span>
+              ${item.link_repo ? `<span class="hit-repo"><a href=${item.link_repo} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/code.svg" alt="source code" title="source code"></a></span>` : ''}
+              ${item.link_doc ? `<span class="hit-doc"><a href=${item.link_doc} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/dbp-icons-documentation" alt="documentation" title="documentation"></a></span>` : ''}
+              ${item.link_demo ? `<span class="hit-demo"><a href=${item.link_demo} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/dbp-icons-demo.svg" alt="demo" title="demo"></a></span>` : ''}
+              ${item.link_changelog ? `<span class="hit-changelog"><a href=${item.link_changelog} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/changelog.png" alt="changelog" title="changelog"></a></span>` : ''}
+              ${item.contact_email ? `<span class="hit-email"><a href="mailto:${item.contact_email}" rel="noopener noreferrer" target="_blank"><img src="${privatePath}/mail2.svg" alt="email" title="email"></a></span>` : ''}
           </div>
-            <!--
+            <!-- --
             <div class="hit-rating">[${item.sort}]</div>
             -->
             ${ isNew ? `<div class="ribbon ribbon-bottom-right"><span>new</span></div>` : ''}
@@ -191,19 +196,44 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                             ${item._highlightResult.blueprint.map(
                                 () => `<a class="slider-nav ${nav_index===1 ? 'selected' : ''}" id="slider-nav-${item.id}-${nav_index}" href="#slide-${item.id}-${nav_index}">${nav_index++}</a>`
                             ).join('')}
-                            </div>` : ''}
+                            </div>` : ' '}
                         </div>
                         <hr class="modal-seperator">
+<div class="nav-wrapper">
+  <div class="left-paddle paddle paddle-faded" id="left-paddle-${item.id}"">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+    </svg>
+  </div>
+  <nav class="modal-nav">
+      ${item._highlightResult.blueprint.map(
+        a => `<div class="nav-item-${item.id} ${slideIndex++ < MAXITEMSVISIBLE ? '' : 'hidden'}">
+            <div class="modal-blueprint modal-fancy">${a.value.replace(')', '').split('(')[1] || 'N/A'}</div>
+            <div class="modal-blueprint">${a.value.split('(')[0] || 'N/A'}</div>
+        </div>
+        `).join('')}
+  </nav>
+  <div class="right-paddle paddle" id="right-paddle-${item.id}">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+    </svg>
+  </div>
+</div>
+</div>
+                        <hr class="modal-seperator">
                         <div class="modal-section-title">ADDITIONAL INFO</div>
-                        <div class="hit-license">License: ${item.license.map(l => '<span>' + formatLicense(l) + '</span>').join('')}</div>
+                        <div class="hit-license">
+                            <div>License:</div>
+                            ${item.license.map(l => '<span>' + formatLicense(l) + '</span>').join('')}
+                        </div>
                         <div class="hit-types">
                             <div class="hit-types-subtypes">
                                 <div class="hit-document-type">
-                                    <div>Type of project:</div>
+                                    <div>Categor${item.document_type.length>1?'ies':'y'}:</div>
                                     ${item._highlightResult.document_type.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'document-type-'+a.value}').click();">${a.value}</div>`).join('')}
                                 </div>
                                 <div class="hit-content-type">
-                                    <div>Subtype of project:</div>
+                                    <div>Type${item.content_type.length>1?'s':''}:</div>
                                     ${item._highlightResult.content_type.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'content-type-'+a.value}').click();">${a.value}</div>`).join('')}
                                 </div>
                             </div>

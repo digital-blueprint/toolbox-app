@@ -120,7 +120,75 @@
             });
         }
         window.setupSlider = setupSlider;
+        // setup slider 2
+        function setupSlider2(id) {
+            const items = Array.from(document.getElementsByClassName("nav-item-" + id));
+            const leftPaddle = document.getElementById("left-paddle-" + id);
+            const rightPaddle = document.getElementById("right-paddle-" + id);
 
+            function adjustPaddles() {
+                if (items[0].classList.contains("hidden")) {
+                    leftPaddle.classList.remove("paddle-faded");
+                } else {
+                    leftPaddle.classList.add("paddle-faded");
+                }
+                if (items[items.length - 1].classList.contains("hidden")) {
+                    rightPaddle.classList.remove("paddle-faded");
+                } else {
+                    rightPaddle.classList.add("paddle-faded");
+                }
+            }
+
+            leftPaddle.onclick = () => {
+                console.log("click on left paddle");
+                if (leftPaddle.classList.contains("paddle-faded")) {
+                    return;
+                }
+                let action = "hide";
+                for (let i = items.length - 1; i >= 0; --i) {
+                    let item = items[i];
+                    let hidden = item.classList.contains("hidden");
+                    if (action === "hide" && !hidden) {
+                        item.classList.add("hidden");
+                        action = "show";
+                        continue;
+                    }
+
+                    if (action === "show" && hidden) {
+                        item.classList.remove("hidden");
+                        break;
+                    }
+                }
+                adjustPaddles();
+            };
+
+            rightPaddle.onclick = () => {
+                console.log("click on right paddle");
+                if (rightPaddle.classList.contains("paddle-faded")) {
+                    return;
+                }
+                let action = "hide";
+                for (let i = 0; i < items.length; ++i) {
+                    let item = items[i];
+                    let hidden = item.classList.contains("hidden");
+                    //console.log(` i: ${i}, hidden: ${hidden}, action: ${action}`);
+                    if (action === "hide" && !hidden) {
+                        item.classList.add("hidden");
+                        //console.log("hide " + i);
+                        action = "show";
+                        continue;
+                    }
+
+                    if (action === "show" && hidden) {
+                        item.classList.remove("hidden");
+                        //console.log("show " + i);
+                        break;
+                    }
+                }
+                adjustPaddles();
+            };
+        }
+        window.setupSlider2 = setupSlider2;
     </script>
 
     <!-- Prevent Chrome/Edge from suggesting to translate the page -->
@@ -132,6 +200,8 @@
     <link rel="stylesheet" href="<%= getPrivateUrl('micromodal.css') %>">
     <!-- carousel css -->
     <link rel="stylesheet" href="<%= getPrivateUrl('carousel.css') %>">
+    <!-- slide css -->
+    <link rel="stylesheet" href="<%= getPrivateUrl('slide.css') %>">
     <!-- custom css -->
     <link rel="stylesheet" href="<%= getPrivateUrl('styles.css') %>">
 </head>

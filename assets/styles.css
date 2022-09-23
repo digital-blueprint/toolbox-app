@@ -213,6 +213,12 @@ a {
     padding-left: 0.6rem;
 }
 
+.hit-description {
+    width:100%;
+    height:4.5rem;
+    text-overflow: ellipsis;
+}
+
 .filter-heading .labs-img {
     height: 18px;
     width: 18px;
@@ -231,8 +237,11 @@ a {
 
 .links {
     padding-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
-.hit-repo img, .hit-doc img, .hit-demo img, .hit-changelog img {
+.hit-repo img, .hit-doc img, .hit-demo img, .hit-changelog, .hit-email img {
     height: 24px;
     width: 24px;
     padding-left: 1rem;
@@ -665,8 +674,8 @@ li.ais-Hits-item > div:first-child {
     text-decoration: none;
 }
 .modal-seperator {
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     color: #dddddd;
 }
 .modal-center {
