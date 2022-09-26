@@ -148,6 +148,13 @@ a {
     background: white;
 }
 
+.hierarchical-blueprints-item {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    text-decoration: none;
+}
+
 .search-panel {
     display: flex;
 }
@@ -155,9 +162,11 @@ a {
 .search-panel__filters {
     flex: 1;
 }
+
 .filter-block {
     margin-bottom: 1rem;
 }
+
 .filter-heading {
     width: 80%;
     background-color: white; /** var(--dbp-override-background); */
@@ -169,6 +178,7 @@ a {
     font-weight: 700;
     cursor: pointer;
 }
+
 .search-panel__results {
     flex: 3;
 }
@@ -645,14 +655,20 @@ li.ais-Hits-item > div:first-child {
 }
 .modal-description {
     width: 100%;
-    height: 4.5rem;
     text-overflow: ellipsis;
     padding-top: 0.5rem;
+    padding-bottom: 1rem;
 }
 .modal-blueprint {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+}
+.modal-category {
+    height: 2.1rem;
+    text-align: center;
+    line-height: 1rem;
 }
 .modal-fancy {
     font-weight: 700;
@@ -684,6 +700,16 @@ li.ais-Hits-item > div:first-child {
 .modal-column {
     display: flex;
     flex-direction: column;
+}
+@keyframes turnred {
+    from {background-color: white; color:black;}
+    to {background-color: red; color:white;}
+}
+.modal-clicked {
+    background-color: red;
+    color: white;
+    animation-duration: 1s;
+    animation-name: turnred;
 }
 
 @media (max-width: 768px) {

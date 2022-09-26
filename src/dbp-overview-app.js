@@ -97,16 +97,13 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                     // console.dir([refinedBlueprints, nonRefinedBlueprints]);
                     // console.dir(item);
 
-                    // carousel
-                    let index = 1;
-                    let nav_index = 1;
-
                     // slider
                     const MAXITEMSVISIBLE = 3;
                     let slideIndex=0;
 
                     return `
-        <div style="position: relative; height: 100%; width: 100%" onclick="console.log('${item.id}');MicroModal.show('detail-${item.id}'); window.setupSlider(); window.setupSlider2('${item.id}')">
+        <div style="position: relative; height: 100%; width: 100%"
+             onclick="MicroModal.show('detail-${item.id}', {disableFocus: true}); window.setupSlider('${item.id}')">
             <div class="hit-name">
                 <img class="hit-name-img" src=${item.link_icon || `${privatePath}/icons8-missing-32.png`} alt="link">
                 ${item._highlightResult.name.value}
@@ -153,7 +150,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                                 class="modal-close"
                                 aria-label="Close modal"
                                 onclick="console.log('x'); MicroModal.close('detail-${item.id}');">
-                           <svg style="width: 1rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                           <svg style="height: 1.5rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                         </button>
                     </header>
                     <main class="modal-content">
@@ -182,44 +179,44 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                         </div>
                         <hr class="modal-seperator">
                         <div class="modal-section-title">USED IN</div>
-                        <div class="carousel">
-                            <div class="slides">
-                            ${item._highlightResult.blueprint.map(
-                                a => `<div class="slide-item modal-column ${index===1 ? 'selected' : ''}" id="slide-${item.id}-${index++}">
-                                    <div class="modal-blueprint modal-fancy">${a.value.replace(')', '').split('(')[1] || 'N/A'}</div>
-                                    <div class="modal-blueprint">${a.value.split('(')[0] || 'N/A'}</div>
-                                </div>
-                            `).join('')}
+                        <div class="nav-wrapper">
+                            <div class="left-paddle paddle paddle-faded" id="left-paddle-${item.id}"">
+                              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                              </svg>
                             </div>
-                            ${item._highlightResult.blueprint.length > 3 ? `
-                            <div class="carousel__nav">
-                            ${item._highlightResult.blueprint.map(
-                                () => `<a class="slider-nav ${nav_index===1 ? 'selected' : ''}" id="slider-nav-${item.id}-${nav_index}" href="#slide-${item.id}-${nav_index}">${nav_index++}</a>`
-                            ).join('')}
-                            </div>` : ' '}
+                            <nav class="modal-nav">
+                                ${item._highlightResult.blueprint.map(
+                                    a => `<div class="nav-item nav-item-${item.id} ${slideIndex++ < MAXITEMSVISIBLE ? '' : 'hidden'}">
+                                        <div class="modal-blueprint modal-fancy"
+                                             onclick="
+                                                let id1 = 'hierarchical-blueprint-item-${a.value.toLowerCase().replaceAll(' ', '-').replaceAll('(', '--').replaceAll(')', '')}';
+                                                if (null === document.getElementById(id1)) {
+                                                document.getElementById('hierarchical-blueprint-item-${a.value.split('(')[0].toLowerCase().trim().replaceAll(' ', '-')}').click();
+                                                setTimeout(
+                                                    () => document.getElementById(id1).click(),
+                                                    100);
+                                                } else {
+                                                    document.getElementById(id1).click();
+                                                }
+                                                this.classList.add('modal-clicked');
+                                                setTimeout(() => this.classList.remove('modal-clicked'), 300);"
+                                        >${a.value.replace(')', '').split('(')[1] || 'N/A'}</div>
+                                        <div class="modal-blueprint modal-category"
+                                             onclick="
+                                                document.getElementById('hierarchical-blueprint-item-${a.value.split('(')[0].toLowerCase().trim().replaceAll(' ', '-')}').click();
+                                                this.classList.add('modal-clicked');
+                                                setTimeout(() => this.classList.remove('modal-clicked'), 300);"
+                                        >${a.value.split('(')[0] || 'N/A'}</div>
+                                    </div>`
+                                ).join('')}
+                            </nav>
+                          <div class="right-paddle paddle" id="right-paddle-${item.id}">
+                              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                              </svg>
+                          </div>
                         </div>
-                        <hr class="modal-seperator">
-<div class="nav-wrapper">
-  <div class="left-paddle paddle paddle-faded" id="left-paddle-${item.id}"">
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-    </svg>
-  </div>
-  <nav class="modal-nav">
-      ${item._highlightResult.blueprint.map(
-        a => `<div class="nav-item-${item.id} ${slideIndex++ < MAXITEMSVISIBLE ? '' : 'hidden'}">
-            <div class="modal-blueprint modal-fancy">${a.value.replace(')', '').split('(')[1] || 'N/A'}</div>
-            <div class="modal-blueprint">${a.value.split('(')[0] || 'N/A'}</div>
-        </div>
-        `).join('')}
-  </nav>
-  <div class="right-paddle paddle" id="right-paddle-${item.id}">
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-    </svg>
-  </div>
-</div>
-</div>
                         <hr class="modal-seperator">
                         <div class="modal-section-title">ADDITIONAL INFO</div>
                         <div class="hit-license">
@@ -320,7 +317,10 @@ export function init(typesenseConfig, dateFilter, privatePath) {
             templates: {
                 item(item) {
                     return `
-                      <a class="" href="${item.url}" style="color: ${item.isRefined ? 'red' : 'black'}; font-size: 1rem; font-weight: 400; line-height: 1.5;text-decoration: none;">
+                      <a class="hierarchical-blueprints-item"
+                         href="${item.url}"
+                         id="hierarchical-blueprint-item-${item.value.toLowerCase().replaceAll(' ', '-').replaceAll('>', '-')}" 
+                         style="color: ${item.isRefined ? 'red' : 'black'};">
                         <span class="ais-RefinementList-labelText">${item.label}</span>
                         <span class="ais-RefinementList-count">(${item.count})</span>
                       </a>

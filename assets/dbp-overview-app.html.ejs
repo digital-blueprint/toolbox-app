@@ -103,36 +103,19 @@
         });
 
         // slider
-        function setupSlider() {
-            const navs = Array.from(document.getElementsByClassName("slider-nav"));
-            //console.dir(navs);
-            navs.forEach(function (nav) {
-                //console.log('setup onclick for nav: ' + nav.id);
-                const id = nav.id.replace('slider-nav-', '');
-                nav.onclick = () => {
-                    const allSlides = Array.from(document.getElementsByClassName('slide-item'));
-                    allSlides.forEach(elm => elm.classList.remove('selected'));
-                    document.getElementById('slide-' + id).classList.add('selected');
-                    const allNavs = Array.from(document.getElementsByClassName('slider-nav'));
-                    allNavs.forEach(elm => elm.classList.remove('selected'));
-                    document.getElementById('slider-nav-' + id).classList.add('selected');
-                }
-            });
-        }
-        window.setupSlider = setupSlider;
-        // setup slider 2
-        function setupSlider2(id) {
+        function setupSlider(id) {
             const items = Array.from(document.getElementsByClassName("nav-item-" + id));
             const leftPaddle = document.getElementById("left-paddle-" + id);
             const rightPaddle = document.getElementById("right-paddle-" + id);
 
             function adjustPaddles() {
-                if (items[0].classList.contains("hidden")) {
+                //console.log('adjustPaddles: items.length=' + items.length);
+                if (items[0].classList.contains("hidden") && items.length > 1) {
                     leftPaddle.classList.remove("paddle-faded");
                 } else {
                     leftPaddle.classList.add("paddle-faded");
                 }
-                if (items[items.length - 1].classList.contains("hidden")) {
+                if (items[items.length - 1].classList.contains("hidden") && items.length > 1) {
                     rightPaddle.classList.remove("paddle-faded");
                 } else {
                     rightPaddle.classList.add("paddle-faded");
@@ -140,7 +123,7 @@
             }
 
             leftPaddle.onclick = () => {
-                console.log("click on left paddle");
+                //console.log("click on left paddle");
                 if (leftPaddle.classList.contains("paddle-faded")) {
                     return;
                 }
@@ -163,7 +146,7 @@
             };
 
             rightPaddle.onclick = () => {
-                console.log("click on right paddle");
+                //console.log("click on right paddle");
                 if (rightPaddle.classList.contains("paddle-faded")) {
                     return;
                 }
@@ -187,8 +170,9 @@
                 }
                 adjustPaddles();
             };
+            adjustPaddles();
         }
-        window.setupSlider2 = setupSlider2;
+        window.setupSlider = setupSlider;
     </script>
 
     <!-- Prevent Chrome/Edge from suggesting to translate the page -->
@@ -198,8 +182,6 @@
     <link rel="stylesheet" href="<%= getUrl('algolia-min.css') %>">
     <!-- Micromodal css -->
     <link rel="stylesheet" href="<%= getPrivateUrl('micromodal.css') %>">
-    <!-- carousel css -->
-    <link rel="stylesheet" href="<%= getPrivateUrl('carousel.css') %>">
     <!-- slide css -->
     <link rel="stylesheet" href="<%= getPrivateUrl('slide.css') %>">
     <!-- custom css -->
