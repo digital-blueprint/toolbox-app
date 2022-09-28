@@ -425,6 +425,28 @@ footer a {
     padding-left: 20%;
 }
 
+.ais-ClearRefinements {
+    padding-left: 1rem;
+}
+.ais-ClearRefinements-button {
+    background-color: transparent;
+    color: black;
+    font-size: 0.8rem;
+    border-radius: 0;
+}
+.ais-ClearRefinements-button svg {
+    height: 1rem;
+    display: inline;
+}
+.ais-ClearRefinements-button:hover {
+    background-color: black;
+    color: white;
+}
+.ais-ClearRefinements-button--disabled {
+    padding: 0;
+    background-color: transparent;
+}
+
 .ais-Pagination-list {
     /* -webkit-box-pack: center; 
     -ms-flex-pack: center;
