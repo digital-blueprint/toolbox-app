@@ -4,6 +4,8 @@ import {init} from '../src/dbp-overview-app.js';
 
 suite('dbp-overview-app integration', () => {
     let searchbox;
+    let currentRefinements;
+    let clearRefinements;
     let hits;
     let targetAudience;
     // let blueprintList;
@@ -23,6 +25,12 @@ suite('dbp-overview-app integration', () => {
         searchbox = document.createElement('div');
         searchbox.id = 'searchbox';
         document.body.append(searchbox);
+        currentRefinements = document.createElement('div');
+        currentRefinements.id = 'current-refinements';
+        document.body.append(currentRefinements);
+        clearRefinements = document.createElement('div');
+        clearRefinements.id = 'clear-refinements';
+        document.body.append(clearRefinements);
         hits = document.createElement('div');
         hits.id = 'hits';
         document.body.append(hits);
