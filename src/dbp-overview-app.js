@@ -81,12 +81,16 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                     return `
         <div style="position: relative; height: 100%; width: 100%"
              onclick="MicroModal.show('detail-${item.id}', {disableFocus: true}); window.setupSlider('${item.id}')">
-            <div class="hit-name">
+            <div style="display: flex; flex-direction: row;"> 
                 <img class="hit-name-img" src=${item.link_icon || `${privatePath}/icons8-missing-32.png`} alt="link">
-                ${item._highlightResult.name.value}
-                ${item.labs.includes('yes') ? `<img class="labs-img" src="${privatePath}/lab_flask.svg" alt="labs">` : ''}
+                <div style="display: flex; flex-direction: column;">
+                    <div class="hit-name">
+                        ${item._highlightResult.name.value}
+                        ${item.labs.includes('yes') ? `<img class="labs-img" src="${privatePath}/lab_flask.svg" alt="labs">` : ''}
+                    </div>
+                    <div class="hit-description">${item._highlightResult.description.value}</div>
+                </div>
             </div>
-            <div class="hit-description">${item._highlightResult.description.value}</div>
             <div class="hit-types">
                 <div class="hit-types-subtypes">
                 <!--
@@ -134,100 +138,102 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                     </header>
                     <main class="modal-content">
                         <div style="margin:20px;">
-                        <div class="hit-name">
-                            <img class="hit-name-img" src=${item.link_icon || `${privatePath}/icons8-missing-32.png`} alt="link">
-                            ${item._highlightResult.name.value}
-                            ${item.labs.includes('yes') ? `<img class="labs-img" src="${privatePath}/lab_flask.svg" alt="labs">` : ''}
-                        </div>
-                        <div class="modal-description">
-                            ${item._highlightResult.description.value}
-                        </div>
-                        <div style="display:flex; flex-direction: row; justify-content: space-evenly;">
-                            <div class="modal-column">
-                                <div class="modal-section-title">MAINTAINED</div>
-                                <div class="modal-center">${item.maintained_by}</div>
-                            </div>
-                            <div class="modal-column">
-                                <div class="modal-section-title">VERSION</div>
-                                <div class="modal-center release">${item.release_version || 'N/A'}</div>
-                            </div>
-                            <div class="modal-column">
-                                <div class="modal-section-title">RELEASE DATE</div>
-                                <div class="modal-center">${item.release_date > 0 ? formattedTime : 'N/A'}</div>
-                            </div>
-                        </div>
-                        <hr class="modal-seperator">
-                        <div class="modal-section-title">USED IN</div>
-                        <div class="nav-wrapper">
-                            <div class="left-paddle paddle paddle-faded" id="left-paddle-${item.id}"">
-                              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                              </svg>
-                            </div>
-                            <nav class="modal-nav">
-                                ${item._highlightResult.blueprint.map(
-                                    a => `<div class="nav-item nav-item-${item.id} ${slideIndex++ < MAXITEMSVISIBLE ? '' : 'hidden'}">
-                                        <div class="modal-blueprint modal-fancy"
-                                             onclick="
-                                                let id1 = 'hierarchical-blueprint-item-${a.value.toLowerCase().replaceAll(' ', '-').replaceAll('(', '--').replaceAll(')', '')}';
-                                                if (null === document.getElementById(id1)) {
-                                                document.getElementById('hierarchical-blueprint-item-${a.value.split('(')[0].toLowerCase().trim().replaceAll(' ', '-')}').click();
-                                                setTimeout(
-                                                    () => document.getElementById(id1).click(),
-                                                    100);
-                                                } else {
-                                                    document.getElementById(id1).click();
-                                                }
-                                                this.classList.add('modal-clicked');
-                                                setTimeout(() => this.classList.remove('modal-clicked'), 300);"
-                                        >${a.value.replace(')', '').split('(')[1] || 'N/A'}</div>
-                                        <div class="modal-blueprint modal-category"
-                                             onclick="
-                                                document.getElementById('hierarchical-blueprint-item-${a.value.split('(')[0].toLowerCase().trim().replaceAll(' ', '-')}').click();
-                                                this.classList.add('modal-clicked');
-                                                setTimeout(() => this.classList.remove('modal-clicked'), 300);"
-                                        >${a.value.split('(')[0] || 'N/A'}</div>
-                                    </div>`
-                                ).join('')}
-                            </nav>
-                          <div class="right-paddle paddle" id="right-paddle-${item.id}">
-                              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                              </svg>
-                          </div>
-                        </div>
-                        <hr class="modal-seperator">
-                        <div class="modal-section-title">ADDITIONAL INFO</div>
-                        <div class="hit-license">
-                            <div>License:</div>
-                            ${item.license.map(l => '<span>' + formatLicense(l) + '</span>').join('')}
-                        </div>
-                        <div class="hit-types">
-                            <div class="hit-types-subtypes">
-                                <div class="hit-document-type">
-                                    <div>Categor${item.document_type.length>1?'ies':'y'}:</div>
-                                    ${item._highlightResult.document_type.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'document-type-'+a.value}').click();">${a.value}</div>`).join('')}
-                                </div>
-                                <div class="hit-content-type">
-                                    <div>Type${item.content_type.length>1?'s':''}:</div>
-                                    ${item._highlightResult.content_type.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'content-type-'+a.value}').click();">${a.value}</div>`).join('')}
+                            <div style="display: flex; flex-direction: row;"> 
+                                <img class="hit-name-img" src=${item.link_icon || `${privatePath}/icons8-missing-32.png`} alt="link">
+                                <div style="display: flex; flex-direction: column;">
+                                    <div class="hit-name">
+                                        ${item._highlightResult.name.value}
+                                        ${item.labs.includes('yes') ? `<img class="labs-img" src="${privatePath}/lab_flask.svg" alt="labs">` : ''}
+                                    </div>
+                                    <div class="hit-description">${item._highlightResult.description.value}</div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="hit-used-programming-languages">
-                            <div>Used programming languages:</div>
-                            ${item._highlightResult.used_programming_languages.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'prog-lang-'+a.value}').click();">${a.value}</div>`).join('')}
-                        </div>
-                        <hr class="modal-seperator">
-                        <div class="modal-section-title">LINKS</div>
-                        <div style="display:flex; flex-direction: row;">
-                            ${item.link_repo ? `<div class="modal-link"><a href="${item.link_repo}" rel="noopener noreferrer" target="_blank"><div class="modal-column"><img src="${privatePath}/code.svg" alt="repository" class="modal-center"><div>source code</div></div></a></div>` : ''}
-                            ${item.link_doc ? `<div class="modal-link"><a href="${item.link_doc}" rel="noopener noreferrer" target="_blank"><div class="modal-column"><img src="${privatePath}/dbp-icons-documentation.svg" alt="documentation" class="modal-center"><div>documentation</div></div></a></div>` : ''}
-                            ${item.link_demo ? `<div class="modal-link"><a href="${item.link_demo}" rel="noopener noreferrer" target="_blank"><div class="modal-column"><img src="${privatePath}/dbp-icons-demo.svg" alt="demo" class="modal-center"><div>live demo</div></div></a></div>` : ''}
-                            ${item.link_changelog ? `<div class="modal-link"><a href="${item.link_changelog}" rel="noopener noreferrer" target="_blank"><div class="modal-column"><img src="${privatePath}/changelog.png" alt="changelog" class="modal-center"><div>changelog</div></div></a></div>` : ''}
-                            ${item.contact_email ? `<div class="modal-link"><a href="mailto:${item.contact_email}" rel="noopener noreferrer" target="_blank"><div class="modal-column"><img src="${privatePath}/mail2.svg" alt="email" class="modal-center"><div>email</div></div></a></div>` : ''}
-                        <div>
-                        ${ isNew ? `<div class="ribbon ribbon-bottom-right"><span>new</span></div>` : ''}
+                            <div style="display:flex; flex-direction: row; justify-content: space-evenly;">
+                                <div class="modal-column">
+                                    <div class="modal-section-title">MAINTAINED BY</div>
+                                    <div class="modal-center">${item.maintained_by}</div>
+                                </div>
+                                <div class="modal-column">
+                                    <div class="modal-section-title">VERSION</div>
+                                    <div class="modal-center release">${item.release_version || 'N/A'}</div>
+                                </div>
+                                <div class="modal-column">
+                                    <div class="modal-section-title">RELEASE DATE</div>
+                                    <div class="modal-center">${item.release_date > 0 ? formattedTime : 'N/A'}</div>
+                                </div>
+                            </div>
+                            <hr class="modal-seperator">
+                            <div class="modal-section-title">USED IN</div>
+                            <div class="nav-wrapper">
+                                <div class="left-paddle paddle paddle-faded" id="left-paddle-${item.id}"">
+                                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                  </svg>
+                                </div>
+                                <nav class="modal-nav">
+                                    ${item._highlightResult.blueprint.map(
+                                        a => `<div class="nav-item nav-item-${item.id} ${slideIndex++ < MAXITEMSVISIBLE ? '' : 'hidden'}">
+                                            <div class="modal-blueprint modal-fancy"
+                                                 onclick="
+                                                    let id1 = 'hierarchical-blueprint-item-${a.value.toLowerCase().replaceAll(' ', '-').replaceAll('(', '--').replaceAll(')', '')}';
+                                                    if (null === document.getElementById(id1)) {
+                                                    document.getElementById('hierarchical-blueprint-item-${a.value.split('(')[0].toLowerCase().trim().replaceAll(' ', '-')}').click();
+                                                    setTimeout(
+                                                        () => document.getElementById(id1).click(),
+                                                        100);
+                                                    } else {
+                                                        document.getElementById(id1).click();
+                                                    }
+                                                    this.classList.add('modal-clicked');
+                                                    setTimeout(() => this.classList.remove('modal-clicked'), 300);"
+                                            >${a.value.replace(')', '').split('(')[1] || 'N/A'}</div>
+                                            <div class="modal-blueprint modal-category"
+                                                 onclick="
+                                                    document.getElementById('hierarchical-blueprint-item-${a.value.split('(')[0].toLowerCase().trim().replaceAll(' ', '-')}').click();
+                                                    this.classList.add('modal-clicked');
+                                                    setTimeout(() => this.classList.remove('modal-clicked'), 300);"
+                                            >${a.value.split('(')[0] || 'N/A'}</div>
+                                        </div>`
+                                    ).join('')}
+                                </nav>
+                              <div class="right-paddle paddle" id="right-paddle-${item.id}">
+                                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                  </svg>
+                              </div>
+                            </div>
+                            <hr class="modal-seperator">
+                            <div class="modal-section-title">ADDITIONAL INFO</div>
+                            <div class="hit-license">
+                                <div>License:</div>
+                                ${item.license.map(l => '<span>' + formatLicense(l) + '</span>').join('')}
+                            </div>
+                            <div class="hit-types">
+                                <div class="hit-types-subtypes">
+                                    <div class="hit-document-type">
+                                        <div>Categor${item.document_type.length>1?'ies':'y'}:</div>
+                                        ${item._highlightResult.document_type.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'document-type-'+a.value}').click();">${a.value}</div>`).join('')}
+                                    </div>
+                                    <div class="hit-content-type">
+                                        <div>Type${item.content_type.length>1?'s':''}:</div>
+                                        ${item._highlightResult.content_type.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'content-type-'+a.value}').click();">${a.value}</div>`).join('')}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hit-used-programming-languages">
+                                <div>Used programming languages:</div>
+                                ${item._highlightResult.used_programming_languages.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'prog-lang-'+a.value}').click();">${a.value}</div>`).join('')}
+                            </div>
+                            <hr class="modal-seperator">
+                            <div class="modal-section-title">LINKS</div>
+                            <div style="display:flex; flex-direction: row;">
+                                ${item.link_repo ? `<div class="modal-link"><a href="${item.link_repo}" rel="noopener noreferrer" target="_blank"><div class="modal-column"><img src="${privatePath}/code.svg" alt="repository" class="modal-center"><div>source code</div></div></a></div>` : ''}
+                                ${item.link_doc ? `<div class="modal-link"><a href="${item.link_doc}" rel="noopener noreferrer" target="_blank"><div class="modal-column"><img src="${privatePath}/dbp-icons-documentation.svg" alt="documentation" class="modal-center"><div>documentation</div></div></a></div>` : ''}
+                                ${item.link_demo ? `<div class="modal-link"><a href="${item.link_demo}" rel="noopener noreferrer" target="_blank"><div class="modal-column"><img src="${privatePath}/dbp-icons-demo.svg" alt="demo" class="modal-center"><div>live demo</div></div></a></div>` : ''}
+                                ${item.link_changelog ? `<div class="modal-link"><a href="${item.link_changelog}" rel="noopener noreferrer" target="_blank"><div class="modal-column"><img src="${privatePath}/changelog.png" alt="changelog" class="modal-center"><div>changelog</div></div></a></div>` : ''}
+                                <div class="modal-link"><a href="mailto:${item.contact_email}" rel="noopener noreferrer" target="_blank"><div class="modal-column"><img src="${privatePath}/mail2.svg" alt="email" class="modal-center"><div>email</div></div></a></div>
+                            <div>
+                            ${ isNew ? `<div class="ribbon ribbon-bottom-right"><span>new</span></div>` : ''}
                         </div>
                     </main>
                 </div>
