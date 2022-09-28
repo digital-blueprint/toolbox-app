@@ -178,6 +178,9 @@ a {
     font-weight: 700;
     cursor: pointer;
 }
+.filter-heading svg {
+    width: 1rem;
+}
 
 .search-panel__results {
     flex: 3;
@@ -485,6 +488,16 @@ footer a {
     flex-flow: wrap;
 }
 
+.flex-row {
+    display:flex;
+    flex-direction: row;
+}
+
+.flex-column {
+    display:flex;
+    flex-direction: column;
+}
+
 .ais-Stats, .ais-SearchBox, .ais-RefinementList, .ais-Hits-item, .ais-Hits  {
     color: #222120;
 }
@@ -500,16 +513,6 @@ footer a {
     /* line-break: anywhere; */
 }
 
-/*
-.ais-CurrentRefinements-item {
-    margin: 5px;
-    padding: 5px;
-    border-radius: 5px;
-    background-color: #9f2424;
-    color: white;
-    font-size: 1rem;
-}
-*/
 .ais-CurrentRefinements-item {
     margin: 5px;
     padding: 5px;
@@ -740,6 +743,11 @@ li.ais-Hits-item > div:first-child {
     color: white;
     animation-duration: 1s;
     animation-name: turnred;
+}
+
+.undecorated-link {
+    color:black;
+    text-decoration:none;
 }
 
 @media (max-width: 768px) {

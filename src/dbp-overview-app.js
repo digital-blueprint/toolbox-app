@@ -24,7 +24,7 @@ function formatLicense(license) {
         console.log('license "' + license + '" not found.');
         return license;
     }
-    return `<a href="${spdxInfo.reference}" style="color:black;text-decoration:none;">${spdxInfo.name}</a>`;
+    return `<a class="undecorated-link" href="${spdxInfo.reference}">${spdxInfo.name}</a>`;
 }
 
 export function init(typesenseConfig, dateFilter, privatePath) {
@@ -82,9 +82,9 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                     return `
         <div style="position: relative; height: 100%; width: 100%"
              onclick="MicroModal.show('detail-${item.id}', {disableFocus: true}); window.setupSlider('${item.id}')">
-            <div style="display: flex; flex-direction: row;"> 
+            <div class="flex-row"> 
                 <img class="hit-name-img" src=${item.link_icon || `${privatePath}/icons8-missing-32.png`} alt="icon">
-                <div style="display: flex; flex-direction: column;">
+                <div class="flex-column">
                     <div class="hit-name">
                         ${item._highlightResult.name.value}
                         ${item.labs.includes('yes') ? `<img class="labs-img" src="${privatePath}/lab_flask.svg" alt="labs">` : ''}
@@ -146,9 +146,9 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                     </header>
                     <main class="modal-content">
                         <div style="margin:20px;">
-                            <div style="display: flex; flex-direction: row;"> 
+                            <div class="flex-row"> 
                                 <img class="hit-name-img" src=${item.link_icon || `${privatePath}/icons8-missing-32.png`} alt="icon">
-                                <div style="display: flex; flex-direction: column;">
+                                <div class="flex-column">
                                     <div class="hit-name">
                                         ${item._highlightResult.name.value}
                                         ${item.labs.includes('yes') ? `<img class="labs-img" src="${privatePath}/lab_flask.svg" alt="labs">` : ''}
@@ -234,7 +234,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                             </div>
                             <hr class="modal-seperator">
                             <div class="modal-section-title">LINKS</div>
-                            <div style="display:flex; flex-direction: row;">
+                            <div class="flex-row">
                                 ${item.link_repo ? `<div class="modal-link"><a href="${item.link_repo}" rel="noopener noreferrer" target="_blank"><div class="modal-column"><img src="${privatePath}/code.svg" alt="repository" class="modal-center"><div>source code</div></div></a></div>` : ''}
                                 ${item.link_doc ? `<div class="modal-link"><a href="${item.link_doc}" rel="noopener noreferrer" target="_blank"><div class="modal-column"><img src="${privatePath}/dbp-icons-documentation.svg" alt="documentation" class="modal-center"><div>documentation</div></div></a></div>` : ''}
                                 ${item.link_demo ? `<div class="modal-link"><a href="${item.link_demo}" rel="noopener noreferrer" target="_blank"><div class="modal-column"><img src="${privatePath}/dbp-icons-demo.svg" alt="demo" class="modal-center"><div>live demo</div></div></a></div>` : ''}
@@ -425,17 +425,13 @@ export function init(typesenseConfig, dateFilter, privatePath) {
             attribute: 'maintained_by',
             templates: {
                 item(item) {
-                    const byUs = item.highlighted.toLowerCase().includes('tu graz');
                     return `
-                        <div style="display:flex; justify-content: space-between; width:100%;">
+                        <div>
                             <label class="ais-RefinementList-label">
                                 <input type="checkbox" class="ais-RefinementList-checkbox" value="${item.value}" ${item.isRefined ? 'checked' : ''}>
                                 <span class="ais-RefinementList-labelText">${item.highlighted}</span>
                                 <span class="ais-RefinementList-count">(${item.count})</span>
                             </label>
-                            <!--
-                            <div style="margin:2px;padding-left: 10px;padding-right:10px;background-color: ${byUs ? 'blue' : '#335588'}">&nbsp;</div>
-                            -->
                         </div>`;
                 }
             },
