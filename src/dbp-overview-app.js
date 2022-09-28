@@ -252,7 +252,8 @@ export function init(typesenseConfig, dateFilter, privatePath) {
             },
         }),
         configure({
-            facets: ['document_type', 'content_type', 'used_programming_languages', 'license'],
+            // facets: ['document_type', 'content_type', 'used_programming_languages', 'license'],
+            facets: [],
             maxValuesPerFacet: 20,
         }),
         refinementList({
@@ -324,17 +325,6 @@ export function init(typesenseConfig, dateFilter, privatePath) {
         }),
         currentRefinements({
             container: '#current-refinements',
-            includedAttributes: [
-                'target_audience',
-                'document_type',
-                'content_type',
-                'maintained_by',
-                'license',
-                'used_programming_languages',
-                'blueprint',
-                'hierarchicalBlueprints.lvl0',
-                'hierarchicalBlueprints.lvl1'
-            ],
             cssClasses: { list: ['flex']},
             transformItems: function (items) {
                 return items.map(item => {
@@ -350,10 +340,12 @@ export function init(typesenseConfig, dateFilter, privatePath) {
         }),
         clearRefinements({
             container: '#clear-refinements',
+            // transformItems(items) {
+            //     console.log("clearRefinements/transformItems:", items);
+            //     return items;
+            // },
             templates: {
                 resetLabel(obj) {
-                    console.dir(obj);
-                    //const hasRefinements = true;
                     return obj.hasRefinements ? '<span><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg> Clear filters</span> ' : '';
                 },
             }
