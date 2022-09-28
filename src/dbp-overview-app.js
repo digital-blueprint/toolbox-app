@@ -83,7 +83,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
         <div style="position: relative; height: 100%; width: 100%"
              onclick="MicroModal.show('detail-${item.id}', {disableFocus: true}); window.setupSlider('${item.id}')">
             <div style="display: flex; flex-direction: row;"> 
-                <img class="hit-name-img" src=${item.link_icon || `${privatePath}/icons8-missing-32.png`} alt="link">
+                <img class="hit-name-img" src=${item.link_icon || `${privatePath}/icons8-missing-32.png`} alt="icon">
                 <div style="display: flex; flex-direction: column;">
                     <div class="hit-name">
                         ${item._highlightResult.name.value}
@@ -147,7 +147,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                     <main class="modal-content">
                         <div style="margin:20px;">
                             <div style="display: flex; flex-direction: row;"> 
-                                <img class="hit-name-img" src=${item.link_icon || `${privatePath}/icons8-missing-32.png`} alt="link">
+                                <img class="hit-name-img" src=${item.link_icon || `${privatePath}/icons8-missing-32.png`} alt="icon">
                                 <div style="display: flex; flex-direction: column;">
                                     <div class="hit-name">
                                         ${item._highlightResult.name.value}
