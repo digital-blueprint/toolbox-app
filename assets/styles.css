@@ -303,85 +303,85 @@ a {
 
 /* document type */
 .software {
-    background-color: white;
-    color: #222120;
+    /*background-color: white;*/
+    /*color: #222120;*/
     cursor: pointer;
 }
 
 .resources {
-    background-color: black;
-    color: white;
+    /*background-color: black;*/
+    /*color: white;*/
     cursor: pointer;
 }
 
 .service {
-    background-color: #3b56a0;
-    color: white;
+    /*background-color: #3b56a0;*/
+    /*color: white;*/
     cursor: pointer;
 }
 
 /* content type */
 .api {
-    background-color: #9e1e4d;
-    color: white;
+    /*background-color: #9e1e4d;*/
+    /*color: white;*/
     font-weight: 400;
     cursor: pointer;
 }
 .application {
-    background-color: #50417a;
-    color: white;
+    /*background-color: #50417a;*/
+    /*color: white;*/
     cursor: pointer;
 }
 .supporting-software {
-    background-color: #878faf;
-    color: black;
+    /*background-color: #878faf;*/
+    /*color: black;*/
     cursor: pointer;
 }
 .admin-tool {
-    background-color: #6e648a;
-    color: white;
+    /*background-color: #6e648a;*/
+    /*color: white;*/
     cursor: pointer;
 }
 
 /* used programming languages */
 .php {
-    background-color: #5b6b9f;
-    color: white;
+    /*background-color: #5b6b9f;*/
+    /*color: white;*/
     cursor: pointer;
 }
 .javascript {
-    background-color: #9c6b83;
-    color: white;
+    /*background-color: #9c6b83;*/
+    /*color: white;*/
     cursor: pointer;
 }
 .docker {
-    background-color: #c8dbfb;
-    color: black;
+    /*background-color: #c8dbfb;*/
+    /*color: black;*/
     cursor: pointer;
 }
 .css {
-    background-color: #dbc8cc;
-    color: black;
+    /*background-color: #dbc8cc;*/
+    /*color: black;*/
     cursor: pointer;
 }
 .java {
-    background-color: #716387;
-    color: white;
+    /*background-color: #716387;*/
+    /*color: white;*/
     cursor: pointer;
 }
 .html {
-    background-color: #f1e4e6;
-    color: black;
+    /*background-color: #f1e4e6;*/
+    /*color: black;*/
     cursor: pointer;
 }
 .bash {
-    background-color: #f1e4e6;
-    color: black;
+    /*background-color: #f1e4e6;*/
+    /*color: black;*/
     cursor: pointer;
 }
 .kotlin {
-    background-color: #f1e4e6;
-    color: black;
+    /*background-color: #f1e4e6;*/
+    /*color: black;*/
     cursor: pointer;
 }
 /* infrastructure */

@@ -73,29 +73,6 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                     const formattedTime = d.getFullYear() + '-' + ('0' + (d.getMonth()+1)).substr(-2) + '-'  + ('0' + d.getDate()).substr(-2);
                     const daysStillNew = 31;
                     const isNew = ((new Date()).valueOf() - daysStillNew*86400000) < d.valueOf();
-                    // const blueprints = search.renderState['software-overview'].refinementList.blueprint.items;
-
-                    // let refinedBlueprints = [];
-                    // let nonRefinedBlueprints = [];
-                    // item._highlightResult.blueprint.forEach(i => {
-                    //     let found = false;
-                    //     blueprints.forEach(j => {
-                    //         if (i.value === j.value && j.isRefined && !found) {
-                    //             found = true;
-                    //             refinedBlueprints.push(i);
-                    //             // console.log([i.value, j.value, j.isRefined]);
-                    //         }
-                    //     });
-                    //     if (!found) {
-                    //         nonRefinedBlueprints.push(i);
-                    //         //console.log([i.value]);
-                    //     }
-                    // });
-
-                    // console.log('blueprints for ' + item.name);
-                    // console.dir(item.blueprint);
-                    // console.dir([refinedBlueprints, nonRefinedBlueprints]);
-                    // console.dir(item);
 
                     // slider
                     const MAXITEMSVISIBLE = 3;
@@ -112,10 +89,12 @@ export function init(typesenseConfig, dateFilter, privatePath) {
             <div class="hit-description">${item._highlightResult.description.value}</div>
             <div class="hit-types">
                 <div class="hit-types-subtypes">
+                <!--
                     <div class="hit-document-type">
                         <div>Categor${item.document_type.length>1?'ies':'y'}:</div>
                         ${item._highlightResult.document_type.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'document-type-'+a.value}').click();">${a.value}</div>`).join('')}
                     </div>
+                -->
                     <div class="hit-content-type">
                         <div>Type${item.content_type.length>1?'s':''}:</div>
                         ${item._highlightResult.content_type.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'content-type-'+a.value}').click();">${a.value}</div>`).join('')}
@@ -128,7 +107,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
               ${item.link_doc ? `<span class="hit-doc"><a href=${item.link_doc} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/dbp-icons-documentation" alt="documentation" title="documentation"></a></span>` : ''}
               ${item.link_demo ? `<span class="hit-demo"><a href=${item.link_demo} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/dbp-icons-demo.svg" alt="demo" title="demo"></a></span>` : ''}
               ${item.link_changelog ? `<span class="hit-changelog"><a href=${item.link_changelog} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/changelog.png" alt="changelog" title="changelog"></a></span>` : ''}
-              ${item.contact_email ? `<span class="hit-email"><a href="mailto:${item.contact_email}" rel="noopener noreferrer" target="_blank"><img src="${privatePath}/mail2.svg" alt="email" title="email"></a></span>` : ''}
+              <span class="hit-email"><a href="mailto:${item.contact_email}" rel="noopener noreferrer" target="_blank"><img src="${privatePath}/mail2.svg" alt="email" title="email"></a></span>
           </div>
             <!-- --
             <div class="hit-rating">[${item.sort}]</div>
