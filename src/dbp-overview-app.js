@@ -97,12 +97,19 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                 <!--
                     <div class="hit-document-type">
                         <div>Categor${item.document_type.length>1?'ies':'y'}:</div>
-                        ${item._highlightResult.document_type.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'document-type-'+a.value}').click();">${a.value}</div>`).join('')}
+                        ${item._highlightResult.document_type.map(
+                            a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}"
+                                       onclick="event.stopPropagation(); document.getElementById('${'document-type-'+a.value}').click();"
+                                  >${a.value}</div>`
+                        ).join('')}
                     </div>
                 -->
                     <div class="hit-content-type">
                         <div>Type${item.content_type.length>1?'s':''}:</div>
-                        ${item._highlightResult.content_type.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'content-type-'+a.value}').click();">${a.value}</div>`).join('')}
+                        ${item._highlightResult.content_type.map(
+                            a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}"
+                                       onclick="event.stopPropagation(); document.getElementById('${'content-type-'+a.value}').click();"
+                       >${a.value}</div>`).join('')}
                     </div>
                 </div>
             </div>
@@ -343,10 +350,6 @@ export function init(typesenseConfig, dateFilter, privatePath) {
         }),
         clearRefinements({
             container: '#clear-refinements',
-            // cssClasses: {
-            //     button: ['ref-btn'],
-            //     disabledButton: ['ref-btn-dis'],
-            // },
             templates: {
                 resetLabel(obj) {
                     console.dir(obj);
