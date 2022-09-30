@@ -1,6 +1,4 @@
 .paddle {
-    /*position: absolute;
-    top: 0px; */
     padding: 0 5px;
     box-sizing: content-box;
     height: 100%;
@@ -25,24 +23,23 @@
 }
 
 .paddle-faded {
-    color: white;
+    opacity: 0;
 }
 
 .nav-wrapper {
     position: relative;
     display: flex;
     flex-direction: row;
-    /* overflow-x: auto; */
     width: 100%;
-    margin: 0;
+    margin: 10px 0 0 0;
 }
 
 .paddles {
     display: block;
 }
 
-.paddle svg {
-    height: 24px;
+.paddle img {
+    height: 32px;
 }
 
 .modal-nav {
@@ -55,7 +52,6 @@
 .nav-item {
     display: flex;
     flex-direction: column;
-    /* flex-grow: 1; */
     justify-content: center;
     align-items: center;
     padding-left: 5px;

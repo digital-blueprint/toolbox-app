@@ -180,6 +180,8 @@
 
     <!-- algolia default css -->
     <link rel="stylesheet" href="<%= getUrl('algolia-min.css') %>">
+    <!-- ribbon.css -->
+    <link rel="stylesheet" href="<%= getPrivateUrl('ribbon.css') %>">
     <!-- Micromodal css -->
     <link rel="stylesheet" href="<%= getPrivateUrl('micromodal.css') %>">
     <!-- slide css -->
@@ -219,7 +221,7 @@
                     <div class="filter-heading"
                          data-target="blueprint-menu" data-chevron="blueprint-menu-chevron" data-status="open"
                     >Topics
-                        <svg id="blueprint-menu-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        <img id="blueprint-menu-chevron" src="<%= getPrivateUrl('chevron-right.svg') %>" alt="chevron">
                     </div>
                     <div id="blueprint-menu"></div>
                 </div>
@@ -227,7 +229,7 @@
                     <div class="filter-heading"
                          data-target="targetaudience-list" data-chevron="targetaudience-chevron" data-status="open"
                     >Target Audience
-                        <svg id="targetaudience-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        <img id="targetaudience-chevron" src="<%= getPrivateUrl('chevron-right.svg') %>" alt="chevron">
                     </div>
                     <div id="targetaudience-list"></div>
                 </div>
@@ -235,7 +237,7 @@
                     <div class="filter-heading"
                          data-target="document-type-list" data-chevron="document-type-chevron" data-status="closed"
                     >Categories
-                        <svg id="document-type-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        <img id="document-type-chevron" src="<%= getPrivateUrl('chevron-right.svg') %>" alt="chevron">
                     </div>
                     <div id="document-type-list"></div>
                 </div>
@@ -243,7 +245,7 @@
                     <div class="filter-heading"
                          data-target="content-type-list" data-chevron="content-type-chevron" data-status="closed"
                     >Types
-                        <svg id="content-type-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        <img id="content-type-chevron" src="<%= getPrivateUrl('chevron-right.svg') %>" alt="chevron">
                     </div>
                     <div id="content-type-list"></div>
                 </div>
@@ -251,7 +253,7 @@
                     <div class="filter-heading"
                          data-target="languages-list" data-chevron="languages-chevron" data-status="closed"
                     >Programming Languages
-                        <svg id="languages-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        <img id="languages-chevron" src="<%= getPrivateUrl('chevron-right.svg') %>" alt="chevron">
                     </div>
                     <div id="languages-list"></div>
                 </div>
@@ -259,7 +261,7 @@
                     <div class="filter-heading"
                          data-target="license-list" data-chevron="license-chevron" data-status="closed"
                     >License
-                        <svg id="license-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        <img id="license-chevron" src="<%= getPrivateUrl('chevron-right.svg') %>" alt="chevron">
                     </div>
                     <div id="license-list"></div>
                 </div>
@@ -267,7 +269,7 @@
                     <div class="filter-heading"
                          data-target="maintained-by-list" data-chevron="maintained-by-chevron" data-status="closed"
                     >Maintained by
-                        <svg id="maintained-by-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        <img id="maintained-by-chevron" src="<%= getPrivateUrl('chevron-right.svg') %>" alt="chevron">
                     </div>
                     <div id="maintained-by-list"></div>
                 </div>
@@ -275,7 +277,7 @@
                     <div class="filter-heading"
                          data-target="labs-list" data-chevron="labs-chevron" data-status="closed"
                     >Labs/Experiments <img class="labs-img" src="<%= getPrivateUrl('lab_flask.svg')%>" alt="labs">
-                        <svg id="labs-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        <img id="labs-chevron" src="<%= getPrivateUrl('chevron-right.svg') %>" alt="chevron">
                     </div>
                     <div id="labs-list"></div>
                 </div>
@@ -283,7 +285,7 @@
                     <div class="filter-heading"
                          data-target="changed" data-chevron="changed-chevron" data-status="closed"
                     >Release date
-                        <svg id="changed-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        <img id="changed-chevron" src="<%= getPrivateUrl('chevron-right.svg') %>" alt="chevron">
                     </div>
                     <div id="changed">
                         <input type="checkbox" id="filter-changed" name="changed_filter" value="1">
@@ -308,7 +310,7 @@
                     <div class="filter-heading"
                          data-target="current-refinements-list-and-button" data-chevron="filter-chevron" data-status="open">
                         Filter
-                        <svg id="filter-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        <img id="filter-chevron" src="<%= getPrivateUrl('chevron-right.svg') %>" alt="chevron">
                     </div>
                     <div id="current-refinements-list-and-button">
                         <div class="flex-row">
