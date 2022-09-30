@@ -116,7 +116,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
             <div class="links">
               <span class="hit-links">Links:</span>
               ${item.link_repo ? `<span class="hit-repo"><a href=${item.link_repo} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/code.svg" alt="source code" title="source code"></a></span>` : ''}
-              ${item.link_doc ? `<span class="hit-doc"><a href=${item.link_doc} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/dbp-icons-documentation" alt="documentation" title="documentation"></a></span>` : ''}
+              ${item.link_doc ? `<span class="hit-doc"><a href=${item.link_doc} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/dbp-icons-documentation.svg" alt="documentation" title="documentation"></a></span>` : ''}
               ${item.link_demo ? `<span class="hit-demo"><a href=${item.link_demo} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/dbp-icons-demo.svg" alt="demo" title="demo"></a></span>` : ''}
               ${item.link_changelog ? `<span class="hit-changelog"><a href=${item.link_changelog} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/changelog.png" alt="changelog" title="changelog"></a></span>` : ''}
               <span class="hit-email"><a href="mailto:${item.contact_email}" rel="noopener noreferrer" target="_blank"><img src="${privatePath}/mail2.svg" alt="email" title="email"></a></span>

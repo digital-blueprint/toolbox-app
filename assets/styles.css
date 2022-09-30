@@ -290,7 +290,7 @@ a {
     flex-direction: row;
     align-items: center;
 }
-.hit-repo img, .hit-doc img, .hit-demo img, .hit-changelog, .hit-email img {
+.hit-repo img, .hit-doc img, .hit-demo img, .hit-changelog img, .hit-email img {
     height: 24px;
     width: 24px;
     padding-left: 1rem;
