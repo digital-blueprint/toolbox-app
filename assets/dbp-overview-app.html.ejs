@@ -110,12 +110,12 @@
 
             function adjustPaddles() {
                 //console.log('adjustPaddles: items.length=' + items.length);
-                if (items[0].classList.contains("hidden") && items.length > 1) {
+                if (items.length > 1 && items[0].classList.contains("hidden")) {
                     leftPaddle.classList.remove("paddle-faded");
                 } else {
                     leftPaddle.classList.add("paddle-faded");
                 }
-                if (items[items.length - 1].classList.contains("hidden") && items.length > 1) {
+                if (items.length > 1 && items[items.length - 1].classList.contains("hidden")) {
                     rightPaddle.classList.remove("paddle-faded");
                 } else {
                     rightPaddle.classList.add("paddle-faded");
