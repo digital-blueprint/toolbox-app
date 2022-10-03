@@ -487,6 +487,11 @@ footer a {
     display:flex;
     flex-direction: row;
     justify-content: space-evenly;
+    padding-top: 1.5em;
+}
+
+.flex-row-evenly .modal-column.horizontal-separator:not(:first-child) {
+    border-left: 2px solid #ddd;
 }
 
 .flex-column {
@@ -545,8 +550,8 @@ footer a {
     padding: 10px;
     margin: 10px;
     min-width: 850px;
-    min-height: 800px;
-    height: 850px;
+    min-height: 550px;
+    height: min-content; /*850px;*/
     width: 800px;
 }
 .modal-header {

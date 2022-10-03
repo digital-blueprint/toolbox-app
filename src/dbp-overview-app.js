@@ -141,8 +141,6 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                                 onclick="MicroModal.close('detail-${item.id}');">
                             <img src="${privatePath}/close.svg" alt="close">                            
                         </button>
-                    </header>
-                    <main class="modal-content">
                         <div class="flex-row"> 
                             <img class="hit-name-img" src=${item.link_icon || `${privatePath}/icons8-missing-32.png`} alt="icon">
                             <div class="flex-column">
@@ -153,15 +151,19 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                                 <div class="hit-description">${item._highlightResult.description.value}</div>
                             </div>
                         </div>
+                    </header>
+                    <main class="modal-content">
                         <div class="flex-row-evenly">
                             <div class="modal-column">
                                 <div class="modal-section-title">MAINTAINED BY</div>
                                 <div class="modal-center">${item.maintained_by}</div>
                             </div>
+                            <div class="modal-column horizontal-separator"></div>
                             <div class="modal-column">
                                 <div class="modal-section-title">VERSION</div>
                                 <div class="modal-center release">${item.release_version || 'N/A'}</div>
                             </div>
+                            <div class="modal-column horizontal-separator"></div>
                             <div class="modal-column">
                                 <div class="modal-section-title">RELEASE DATE</div>
                                 <div class="modal-center">${item.release_date > 0 ? formattedTime : 'N/A'}</div>
