@@ -486,8 +486,8 @@ footer a {
 .flex-row-evenly {
     display:flex;
     flex-direction: row;
-    justify-content: space-evenly;
-    /*padding-top: 1.5em;*/
+    justify-content: space-between;
+    padding: 0 3em;
 }
 
 .flex-row-evenly .modal-column.horizontal-separator:not(:first-child) {
@@ -557,7 +557,7 @@ footer a {
 
 /* modal elements */
 .modal-container {
-    padding: 20px;
+    padding: 10px;
     margin: 10px;
     min-width: 850px;
     min-height: 550px;
@@ -567,7 +567,8 @@ footer a {
 .modal-header {
     display: flex;
     flex-direction: row-reverse;
-    justify-content: space-between
+    justify-content: space-between;
+    padding: 10px 10px 0 10px;
 }
 .modal-close {
     height: 1.6rem;
@@ -575,7 +576,7 @@ footer a {
 }
 
 .modal-content {
-    margin:20px;
+    margin:20px; /*0 20px 20px 20px;*/
 }
 .modal-section-title {
     font-size: 1.1rem;
@@ -607,8 +608,8 @@ footer a {
     font-size: 0.9rem;
 }
 .modal-link {
-    padding: 5px;
-    margin: 5px;
+    padding: 5px 5px 0 5px;
+    margin: 5px 5px 0 5px;
     display: flex;
     justify-content: center;
     align-items: center;
