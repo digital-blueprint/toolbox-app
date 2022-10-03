@@ -452,6 +452,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
         }),
         pagination({
             container: '#pagination',
+            scrollTo: '#top',
         }),
     ]);
 
