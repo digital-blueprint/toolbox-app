@@ -244,7 +244,7 @@ a {
     font-size: 1.1rem;
     font-weight: bold;
     margin-top: 10px;
-    display: flex;
+    display: block;
     align-items: center;
 }
 .hit-name-img {
@@ -544,6 +544,10 @@ footer a {
 .modal-container {
     padding: 10px;
     margin: 10px;
+    min-width: 850px;
+    min-height: 800px;
+    height: 850px;
+    width: 800px;
 }
 .modal-header {
     display: flex;
