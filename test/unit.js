@@ -20,6 +20,7 @@ suite('dbp-overview-app integration', () => {
     let pagination;
     let cb;
     let sel;
+    let anker;
 
     suiteSetup(async () => {
         searchbox = document.createElement('div');
@@ -73,6 +74,9 @@ suite('dbp-overview-app integration', () => {
         sel = document.createElement('select');
         sel.id = 'timespan';
         document.body.append(sel);
+        anker = document.createElement('a');
+        anker.id = 'top';
+        document.body.append(anker);
     });
 
     suiteTeardown(() => {
