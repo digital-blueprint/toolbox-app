@@ -139,7 +139,8 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                                 title="close"
                                 aria-label="Close modal"
                                 onclick="MicroModal.close('detail-${item.id}');">
-                            <img src="${privatePath}/close.svg" alt="close">                            
+<!--                            <img src="${privatePath}/close.svg" alt="close">-->
+                            <div id="svg"></div>                     
                         </button>
                         <div class="flex-row"> 
                             <img class="hit-name-img" src=${item.link_icon || `${privatePath}/icons8-missing-32.png`} alt="icon">
