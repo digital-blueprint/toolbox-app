@@ -143,6 +143,7 @@ a {
     margin: 0 6rem;
     padding: 7rem 1rem 1rem;
     background: white;
+    flex-basis: 100%;
 }
 
 .hierarchical-blueprints-item {
