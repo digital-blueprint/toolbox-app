@@ -81,7 +81,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
 
                     return `
         <div class="click-collector"
-             onclick="MicroModal.show('detail-${item.id}', {disableFocus: true}); window.setupSlider('${item.id}')">
+             onclick="MicroModal.show('detail-${item.id}', {disableFocus: true}); setupSlider('${item.id}')">
             <div class="flex-row"> 
                 <img class="hit-name-img" src=${item.link_icon || `${privatePath}/icons8-missing-32.png`} alt="icon">
                 <div class="flex-column">

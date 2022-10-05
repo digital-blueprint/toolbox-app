@@ -37,6 +37,7 @@
     <title>dbp toolbox</title>
 
     <script>
+        // mobile layout: display filter section
         function view_filters() {
             if (document.getElementsByClassName('search-panel__filters')[0].classList.contains('mobile-hidden')) {
                 document.getElementsByClassName('search-panel__filters')[0].classList.remove('mobile-hidden');
@@ -44,6 +45,71 @@
                 document.getElementsByClassName('search-panel__filters')[0].classList.add('mobile-hidden');
             }
             console.log('view_filters()');
+        }
+
+        // slider
+        function setupSlider(id) {
+            const items = Array.from(document.getElementsByClassName("nav-item-" + id));
+            const leftPaddle = document.getElementById("left-paddle-" + id);
+            const rightPaddle = document.getElementById("right-paddle-" + id);
+
+            function adjustPaddles() {
+                if (items.length > 1 && items[0].classList.contains("hidden")) {
+                    leftPaddle.classList.remove("paddle-faded");
+                } else {
+                    leftPaddle.classList.add("paddle-faded");
+                }
+                if (items.length > 1 && items[items.length - 1].classList.contains("hidden")) {
+                    rightPaddle.classList.remove("paddle-faded");
+                } else {
+                    rightPaddle.classList.add("paddle-faded");
+                }
+            }
+
+            leftPaddle.onclick = () => {
+                if (leftPaddle.classList.contains("paddle-faded")) {
+                    return;
+                }
+                let action = "hide";
+                for (let i = items.length - 1; i >= 0; --i) {
+                    let item = items[i];
+                    let hidden = item.classList.contains("hidden");
+                    if (action === "hide" && !hidden) {
+                        item.classList.add("hidden");
+                        action = "show";
+                        continue;
+                    }
+
+                    if (action === "show" && hidden) {
+                        item.classList.remove("hidden");
+                        break;
+                    }
+                }
+                adjustPaddles();
+            };
+
+            rightPaddle.onclick = () => {
+                if (rightPaddle.classList.contains("paddle-faded")) {
+                    return;
+                }
+                let action = "hide";
+                for (let i = 0; i < items.length; ++i) {
+                    let item = items[i];
+                    let hidden = item.classList.contains("hidden");
+                    if (action === "hide" && !hidden) {
+                        item.classList.add("hidden");
+                        action = "show";
+                        continue;
+                    }
+
+                    if (action === "show" && hidden) {
+                        item.classList.remove("hidden");
+                        break;
+                    }
+                }
+                adjustPaddles();
+            };
+            adjustPaddles();
         }
     </script>
 
@@ -101,78 +167,6 @@
                 }
             }
         });
-
-        // slider
-        function setupSlider(id) {
-            const items = Array.from(document.getElementsByClassName("nav-item-" + id));
-            const leftPaddle = document.getElementById("left-paddle-" + id);
-            const rightPaddle = document.getElementById("right-paddle-" + id);
-
-            function adjustPaddles() {
-                //console.log('adjustPaddles: items.length=' + items.length);
-                if (items.length > 1 && items[0].classList.contains("hidden")) {
-                    leftPaddle.classList.remove("paddle-faded");
-                } else {
-                    leftPaddle.classList.add("paddle-faded");
-                }
-                if (items.length > 1 && items[items.length - 1].classList.contains("hidden")) {
-                    rightPaddle.classList.remove("paddle-faded");
-                } else {
-                    rightPaddle.classList.add("paddle-faded");
-                }
-            }
-
-            leftPaddle.onclick = () => {
-                //console.log("click on left paddle");
-                if (leftPaddle.classList.contains("paddle-faded")) {
-                    return;
-                }
-                let action = "hide";
-                for (let i = items.length - 1; i >= 0; --i) {
-                    let item = items[i];
-                    let hidden = item.classList.contains("hidden");
-                    if (action === "hide" && !hidden) {
-                        item.classList.add("hidden");
-                        action = "show";
-                        continue;
-                    }
-
-                    if (action === "show" && hidden) {
-                        item.classList.remove("hidden");
-                        break;
-                    }
-                }
-                adjustPaddles();
-            };
-
-            rightPaddle.onclick = () => {
-                //console.log("click on right paddle");
-                if (rightPaddle.classList.contains("paddle-faded")) {
-                    return;
-                }
-                let action = "hide";
-                for (let i = 0; i < items.length; ++i) {
-                    let item = items[i];
-                    let hidden = item.classList.contains("hidden");
-                    //console.log(` i: ${i}, hidden: ${hidden}, action: ${action}`);
-                    if (action === "hide" && !hidden) {
-                        item.classList.add("hidden");
-                        //console.log("hide " + i);
-                        action = "show";
-                        continue;
-                    }
-
-                    if (action === "show" && hidden) {
-                        item.classList.remove("hidden");
-                        //console.log("show " + i);
-                        break;
-                    }
-                }
-                adjustPaddles();
-            };
-            adjustPaddles();
-        }
-        window.setupSlider = setupSlider;
     </script>
 
     <!-- Prevent Chrome/Edge from suggesting to translate the page -->
