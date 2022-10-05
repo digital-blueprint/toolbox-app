@@ -115,10 +115,10 @@ export function init(typesenseConfig, dateFilter, privatePath) {
             </div>
             <div class="links">
               <span class="hit-links">Links:</span>
-              ${item.link_repo ? `<span class="hit-repo"><a href=${item.link_repo} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/code.svg" alt="source code" title="source code"></a></span>` : ''}
-              ${item.link_doc ? `<span class="hit-doc"><a href=${item.link_doc} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/dbp-icons-documentation.svg" alt="documentation" title="documentation"></a></span>` : ''}
-              ${item.link_demo ? `<span class="hit-demo"><a href=${item.link_demo} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/dbp-icons-demo.svg" alt="demo" title="demo"></a></span>` : ''}
-              ${item.link_changelog ? `<span class="hit-changelog"><a href=${item.link_changelog} rel="noopener noreferrer" target="_blank"><img src="${privatePath}/changelog.png" alt="changelog" title="changelog"></a></span>` : ''}
+              ${item.link_repo ? `<span class="hit-repo"><a href="${item.link_repo}" rel="noopener noreferrer" target="_blank"><img src="${privatePath}/code.svg" alt="source code" title="source code"></a></span>` : ''}
+              ${item.link_doc ? `<span class="hit-doc"><a href="${item.link_doc}" rel="noopener noreferrer" target="_blank"><img src="${privatePath}/dbp-icons-documentation.svg" alt="documentation" title="documentation"></a></span>` : ''}
+              ${item.link_demo ? `<span class="hit-demo"><a href="${item.link_demo}" rel="noopener noreferrer" target="_blank"><img src="${privatePath}/dbp-icons-demo.svg" alt="demo" title="demo"></a></span>` : ''}
+              ${item.link_changelog ? `<span class="hit-changelog"><a href="${item.link_changelog}" rel="noopener noreferrer" target="_blank"><img src="${privatePath}/changelog.png" alt="changelog" title="changelog"></a></span>` : ''}
               <span class="hit-email"><a href="mailto:${item.contact_email}" rel="noopener noreferrer" target="_blank"><img src="${privatePath}/mail2.svg" alt="email" title="email"></a></span>
           </div>
             <!-- --
@@ -139,7 +139,6 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                                 title="close"
                                 aria-label="Close modal"
                                 onclick="MicroModal.close('detail-${item.id}');">
-<!--                            <img src="${privatePath}/close.svg" alt="close">-->
                             <div id="svg"></div>                     
                         </button>
                         <div class="flex-row"> 
@@ -178,7 +177,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                             </div>
                             <nav class="modal-nav">
                                 ${item._highlightResult.blueprint.map(
-                        a => `<div class="nav-item nav-item-${item.id} ${slideIndex++ < MAXITEMSVISIBLE ? '' : 'hidden'}">
+                                    a => `<div class="nav-item nav-item-${item.id} ${slideIndex++ < MAXITEMSVISIBLE ? '' : 'hidden'}">
                                         <div class="modal-blueprint modal-fancy"
                                              onclick="
                                                 let id1 = 'hierarchical-blueprint-item-${a.value.toLowerCase().replaceAll(' ', '-').replaceAll('(', '--').replaceAll(')', '')}';
@@ -200,7 +199,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                                                 setTimeout(() => this.classList.remove('modal-clicked'), 300);"
                                         >${a.value.split('(')[0] || 'N/A'}</div>
                                     </div>`
-                    ).join('')}
+                                ).join('')}
                             </nav>
                           <div class="right-paddle paddle" id="right-paddle-${item.id}">
                               <img src="${privatePath}/chevron-right.svg" alt="right">                         
@@ -241,13 +240,11 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                     </main>
                 </div>
             </div>
-        </div>
-      `;
+        </div>`;
                 },
             },
         }),
         configure({
-            // facets: ['document_type', 'content_type', 'used_programming_languages', 'license'],
             facets: [],
             maxValuesPerFacet: 20,
         }),
@@ -306,13 +303,12 @@ export function init(typesenseConfig, dateFilter, privatePath) {
             templates: {
                 item(item) {
                     return `
-                      <a class="hierarchical-blueprints-item${item.isRefined ? '-is-refined' : ''}"
-                         id="hierarchical-blueprint-item-${item.value.toLowerCase().replaceAll(' ', '-').replaceAll('>', '-')}" 
-                         href="${item.url}">
-                        <span class="ais-RefinementList-labelText">${item.label}</span>
-                        <span class="ais-RefinementList-count">(${item.count})</span>
-                      </a>
-                    `;
+                        <a class="hierarchical-blueprints-item${item.isRefined ? '-is-refined' : ''}"
+                           id="hierarchical-blueprint-item-${item.value.toLowerCase().replaceAll(' ', '-').replaceAll('>', '-')}" 
+                           href="${item.url}">
+                            <span class="ais-RefinementList-labelText">${item.label}</span>
+                            <span class="ais-RefinementList-count">(${item.count})</span>
+                        </a>`;
                 }
             },
             showParentLevel: false,
@@ -328,6 +324,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
 
                         return i;
                     });
+
                     return item;
                 });
             },
@@ -336,7 +333,9 @@ export function init(typesenseConfig, dateFilter, privatePath) {
             container: '#clear-refinements',
             templates: {
                 resetLabel(obj) {
-                    return obj.hasRefinements ? `<span class="flex-row"><img src="${privatePath}/reset.svg" alt="reset"><span id="cf-label">Clear filters</span></span> ` : '';
+                    return obj.hasRefinements
+                        ? `<span class="flex-row"><img src="${privatePath}/reset.svg" alt="reset"><span id="cf-label">Clear filters</span></span>`
+                        : '';
                 },
             }
         }),
