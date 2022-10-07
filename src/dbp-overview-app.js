@@ -300,6 +300,10 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                 'hierarchicalBlueprints.lvl0',
                 'hierarchicalBlueprints.lvl1',
             ],
+            showMore: true,
+            cssClasses: {
+                "showMore": ["HierarchicalMenu-showMore"]
+            },
             templates: {
                 item(item) {
                     return `
@@ -309,7 +313,15 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                             <span class="ais-RefinementList-labelText">${item.label}</span>
                             <span class="ais-RefinementList-count">(${item.count})</span>
                         </a>`;
-                }
+                },
+                showMoreText: `
+        {{#isShowingMore}}
+          show less… ^
+        {{/isShowingMore}}
+        {{^isShowingMore}}
+          show more… >
+        {{/isShowingMore}}
+        `,
             },
             showParentLevel: false,
         }),

@@ -236,6 +236,17 @@ a {
     display: none;
 }
 
+.HierarchicalMenu-showMore {
+    background-color: white !important;
+    color: black !important;
+    border-radius: 0;
+}
+.HierarchicalMenu-showMore:hover {
+    background-color: black !important;
+    color: white !important;
+    border-radius: 0;
+}
+
 #pagination {
     margin: 2rem auto;
     text-align: center;
