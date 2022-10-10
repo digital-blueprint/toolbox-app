@@ -63,7 +63,9 @@ export function init(typesenseConfig, dateFilter, privatePath) {
         }),
         configure({
             hitsPerPage: 8,
-            numericFilters: ['release_date >= ' + (dateFilter.active ? Math.floor(Date.now()/1000 - dateFilter.range) : 1546300800 /* 2019-01-01 00:00:00 */)]
+            numericFilters: [
+                'release_date >= ' + (dateFilter.active ? Math.floor(Date.now()/1000 - dateFilter.range) : 1546300800 /* 2019-01-01 00:00:00 */)
+            ]
         }),
         hits({
             container: '#hits',
@@ -262,7 +264,8 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                     return `
                         <div>
                             <label class="ais-RefinementList-label">
-                                <input type="checkbox" class="ais-RefinementList-checkbox" value="${item.value}" ${item.isRefined ? 'checked' : ''}>
+                                <input type="checkbox" class="ais-RefinementList-checkbox" value="${item.value}"
+                                       ${item.isRefined ? 'checked' : ''}>
                                 <span class="ais-RefinementList-labelText">${item.highlighted}</span>
                                 <span class="ais-RefinementList-count">(${item.count})</span>
                             </label>
@@ -308,9 +311,11 @@ export function init(typesenseConfig, dateFilter, privatePath) {
             },
             templates: {
                 item(item) {
+                    const value2id = item.value.toLowerCase().replaceAll(' ', '-').replaceAll('>', '-');
+
                     return `
                         <a class="hierarchical-blueprints-item${item.isRefined ? '-is-refined' : ''}"
-                           id="hierarchical-blueprint-item-${item.value.toLowerCase().replaceAll(' ', '-').replaceAll('>', '-')}" 
+                           id="hierarchical-blueprint-item-${value2id}" 
                            href="${item.url}">
                             <span class="ais-RefinementList-labelText">${item.label}</span>
                             <span class="ais-RefinementList-count">(${item.count})</span>
@@ -329,7 +334,9 @@ export function init(typesenseConfig, dateFilter, privatePath) {
         }),
         currentRefinements({
             container: '#current-refinements',
-            cssClasses: { list: ['flex']},
+            cssClasses: {
+                list: ['flex']
+            },
             transformItems: function (items) {
                 return items.map(item => {
                     item.refinements = item.refinements.map(i => {
@@ -348,7 +355,10 @@ export function init(typesenseConfig, dateFilter, privatePath) {
             templates: {
                 resetLabel(obj) {
                     return obj.hasRefinements
-                        ? `<span class="flex-row"><img src="${privatePath}/reset.svg" alt="reset"><span id="cf-label">Clear filters</span></span>`
+                        ? `<span class="flex-row">
+                                <img src="${privatePath}/reset.svg" alt="reset">
+                                <span id="cf-label">Clear filters</span>
+                           </span>`
                         : '';
                 },
             }
@@ -361,7 +371,8 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                     return `
                         <div>
                             <label class="ais-RefinementList-label">
-                                <input type="checkbox" class="ais-RefinementList-checkbox" value="${item.value}" ${item.isRefined ? 'checked' : ''} id="document-type-${item.value}">
+                                <input type="checkbox" class="ais-RefinementList-checkbox" value="${item.value}"
+                                       id="document-type-${item.value}" ${item.isRefined ? 'checked' : ''}>
                                 <span class="ais-RefinementList-labelText">${item.highlighted}</span>
                                 <span class="ais-RefinementList-count">(${item.count})</span>
                             </label>
@@ -377,7 +388,8 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                     return `
                         <div>
                             <label class="ais-RefinementList-label">
-                                <input type="checkbox" class="ais-RefinementList-checkbox" value="${item.value}" ${item.isRefined ? 'checked' : ''} id="content-type-${item.value}">
+                                <input type="checkbox" class="ais-RefinementList-checkbox" value="${item.value}"
+                                       id="content-type-${item.value}" ${item.isRefined ? 'checked' : ''}>
                                 <span class="ais-RefinementList-labelText">${item.highlighted}</span>
                                 <span class="ais-RefinementList-count">(${item.count})</span>
                             </label>
@@ -393,7 +405,8 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                     return `
                         <div>
                             <label class="ais-RefinementList-label">
-                                <input type="checkbox" class="ais-RefinementList-checkbox" value="${item.value}" ${item.isRefined ? 'checked' : ''} id="prog-lang-${item.value}">
+                                <input type="checkbox" class="ais-RefinementList-checkbox" value="${item.value}"
+                                       id="prog-lang-${item.value}" ${item.isRefined ? 'checked' : ''}>
                                 <span class="ais-RefinementList-labelText">${item.highlighted}</span>
                                 <span class="ais-RefinementList-count">(${item.count})</span>
                             </label>
@@ -415,7 +428,8 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                     return `
                         <div>
                             <label class="ais-RefinementList-label">
-                                <input type="checkbox" class="ais-RefinementList-checkbox" value="${item.value}" ${item.isRefined ? 'checked' : ''}>
+                                <input type="checkbox" class="ais-RefinementList-checkbox" value="${item.value}"
+                                       ${item.isRefined ? 'checked' : ''}>
                                 <span class="ais-RefinementList-labelText">${item.highlighted}</span>
                                 <span class="ais-RefinementList-count">(${item.count})</span>
                             </label>
@@ -431,7 +445,8 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                     return `
                         <div>
                             <label class="ais-RefinementList-label">
-                                <input type="checkbox" class="ais-RefinementList-checkbox" value="${item.value}" ${item.isRefined ? 'checked' : ''}>
+                                <input type="checkbox" class="ais-RefinementList-checkbox" value="${item.value}"
+                                       ${item.isRefined ? 'checked' : ''}>
                                 <span class="ais-RefinementList-labelText">${item.highlighted}</span>
                                 <span class="ais-RefinementList-count">(${item.count})</span>
                             </label>
@@ -447,7 +462,8 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                     return `
                         <div>
                             <label class="ais-RefinementList-label">
-                                <input type="checkbox" class="ais-RefinementList-checkbox" value="${item.value}" ${item.isRefined ? 'checked' : ''}>
+                                <input type="checkbox" class="ais-RefinementList-checkbox" value="${item.value}"
+                                       ${item.isRefined ? 'checked' : ''}>
                                 <span class="ais-RefinementList-labelText">${item.highlighted}</span>
                                 <span class="ais-RefinementList-count">(${item.count})</span>
                             </label>
