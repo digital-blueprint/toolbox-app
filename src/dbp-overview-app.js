@@ -301,6 +301,8 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                 'hierarchicalBlueprints.lvl1',
             ],
             showMore: true,
+            limit: 8, // TODO increase default display count?
+            showMoreLimit: 20, // TODO discuss this hard limit without further refinements
             cssClasses: {
                 "showMore": ["HierarchicalMenu-showMore"]
             },

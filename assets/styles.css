@@ -246,6 +246,9 @@ a {
     color: white !important;
     border-radius: 0;
 }
+.HierarchicalMenu-showMore[disabled] {
+    display: none;
+}
 
 #pagination {
     margin: 2rem auto;
