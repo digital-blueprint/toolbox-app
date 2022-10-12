@@ -63,20 +63,46 @@ a {
     font-weight: 700;
 }
 
-.header {
-    display: flex;
-    flex-direction: column;
-    min-height: 340px;
+#hero {
     background-color: white;
-    padding-left: 15rem; /*10*/
-    padding-top: 7rem;
-    background-image: url('dbp_logo_chevrons_on_white.svg');
-    background-repeat: no-repeat;
-    background-position: 22rem -20px; /*17*/
-    background-size: 30rem;
+    height: calc(100vh - 102px);
+    width: 100%;
+    display: flex;
+    /*justify-content: flex-start;*/
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+    /*position: relative;*/
+    min-height: calc(100vh - 102px);
     position: sticky;
-    top: -348px;
+    top: calc(202px - 100vh);
     z-index: 10;
+}
+
+.hero-logo {
+    width: 100%;
+    max-width: 800px;
+    /*padding-left: 30em;*/
+}
+
+.scroll-down {
+    height: 40px;
+    width: 40px;
+}
+
+#hero a {
+    position: absolute;
+    bottom: 40px;
+    height: 40px;
+    width: 40px;
+    color: #222120;
+    -webkit-animation: mover 0.5s infinite alternate;
+    animation: mover 0.5s infinite alternate;
+}
+
+#main-section {
+    height: 100px;
 }
 
 .border-shadow {
@@ -134,7 +160,7 @@ a {
 }
 
 .header-top .contact img {
-    width: 1.7rem;
+    width: 2rem;
 }
 
 .container {
