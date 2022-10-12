@@ -129,12 +129,11 @@ a {
 }
 
 .header-top .contact {
-    padding-right: 5rem; /* 2 */
+    margin-right: 6.9rem;
     padding-top: 2.5rem;
 }
 
 .header-top .contact img {
-    padding-right: 0.5rem;
     width: 1.7rem;
 }
 
