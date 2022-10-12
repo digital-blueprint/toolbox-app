@@ -80,6 +80,8 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                     // slider
                     const MAXITEMSVISIBLE = 3;
                     let slideIndex=0;
+                    const rect = document.getElementById('top').getBoundingClientRect();
+                    const yTop = rect.top + window.scrollY;
 
                     return `
         <div class="click-collector"
@@ -172,34 +174,61 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                             </div>
                         </div>
                         <hr class="modal-separator">
-                        <div class="modal-section-title">USED IN</div>
+                        <div class="modal-section-title">USED IN BLUEPRINT${item.blueprint.length !== 1 ? 'S' : ''}</div>
                         <div class="nav-wrapper">
                             <div class="left-paddle paddle paddle-faded" id="left-paddle-${item.id}">
                                 <img src="${privatePath}/chevron-left.svg" alt="left">                         
                             </div>
                             <nav class="modal-nav">
                                 ${item._highlightResult.blueprint.map(
-                                    a => `<div class="nav-item nav-item-${item.id} ${slideIndex++ < MAXITEMSVISIBLE ? '' : 'hidden'}">
-                                        <div class="modal-blueprint modal-fancy"
-                                             onclick="
-                                                let id1 = 'hierarchical-blueprint-item-${a.value.toLowerCase().replaceAll(' ', '-').replaceAll('(', '--').replaceAll(')', '')}';
-                                                if (null === document.getElementById(id1)) {
-                                                document.getElementById('hierarchical-blueprint-item-${a.value.split('(')[0].toLowerCase().trim().replaceAll(' ', '-')}').click();
-                                                setTimeout(
-                                                    () => document.getElementById(id1).click(),
-                                                    100);
+                                    a => `<div class="nav-item nav-item-${item.id} ${slideIndex++ < MAXITEMSVISIBLE ? '' : 'hidden'}"
+                                         onclick="
+                                            const id1 = 'hierarchical-blueprint-item-${a.value.toLowerCase().replaceAll(' ', '-').replaceAll('(', '--').replaceAll(')', '')}';
+                                            if (null === document.getElementById(id1)) {
+                                                const id2 = 'hierarchical-blueprint-item-${a.value.split('(')[0].toLowerCase().trim().replaceAll(' ', '-')}';
+                                                if (null === document.getElementById(id2)) {
+                                                    Array.from(document.getElementsByClassName('HierarchicalMenu-showMore'))[0].click();
+                                                    setTimeout(
+                                                        () => {
+                                                            console.log('id2.click() #193');
+                                                            document.getElementById(id2).click();
+                                                            setTimeout(
+                                                                () => {
+                                                                    console.log('id1.click() #196');
+                                                                    document.getElementById(id1).click();
+                                                                    MicroModal.close('detail-${item.id}');
+                                                                    window.scrollTo(0, ${yTop});
+                                                                },
+                                                                200
+                                                            );
+                                                        },
+                                                        200
+                                                    );
                                                 } else {
-                                                    document.getElementById(id1).click();
+                                                    document.getElementById(id2).click();
+                                                    setTimeout(
+                                                        () => {
+                                                            console.log('id1.click() #210');
+                                                            document.getElementById(id1).click();
+                                                            MicroModal.close('detail-${item.id}');
+                                                            window.scrollTo(0, ${yTop});
+                                                        },
+                                                        200
+                                                    );
                                                 }
-                                                this.classList.add('modal-clicked');
-                                                setTimeout(() => this.classList.remove('modal-clicked'), 300);"
-                                        >${a.value.replace(')', '').split('(')[1] || 'N/A'}</div>
-                                        <div class="modal-blueprint modal-category"
-                                             onclick="
-                                                document.getElementById('hierarchical-blueprint-item-${a.value.split('(')[0].toLowerCase().trim().replaceAll(' ', '-')}').click();
-                                                this.classList.add('modal-clicked');
-                                                setTimeout(() => this.classList.remove('modal-clicked'), 300);"
-                                        >${a.value.split('(')[0] || 'N/A'}</div>
+                                            } else {
+                                                console.log('id1.click() #218');
+                                                document.getElementById(id1).click();
+                                                MicroModal.close('detail-${item.id}');
+                                                window.scrollTo(0, ${yTop});
+                                            }"
+                                        >
+                                            <div class="modal-blueprint modal-fancy">
+                                                ${a.value.replace(')', '').split('(')[1] || 'N/A'}
+                                            </div>
+                                            <div class="modal-blueprint modal-category">
+                                                ${a.value.split('(')[0] || 'N/A'}
+                                            </div>
                                     </div>`
                                 ).join('')}
                             </nav>
@@ -217,17 +246,32 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                             <div class="hit-types-subtypes">
                                 <div class="hit-document-type">
                                     <div>Categor${item.document_type.length > 1 ? 'ies' : 'y'}:</div>
-                                    ${item._highlightResult.document_type.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'document-type-' + a.value}').click();">${a.value}</div>`).join('')}
+                                    ${item._highlightResult.document_type.map(
+                                        a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}"
+                                                   onclick="document.getElementById('${'document-type-' + a.value}').click();
+                                                            MicroModal.close('detail-${item.id}');
+                                                            window.scrollTo(0, ${yTop});"
+                                            >${a.value}</div>`).join('')}
                                 </div>
                                 <div class="hit-content-type">
                                     <div>Type${item.content_type.length > 1 ? 's' : ''}:</div>
-                                    ${item._highlightResult.content_type.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'content-type-' + a.value}').click();">${a.value}</div>`).join('')}
+                                    ${item._highlightResult.content_type.map(
+                                        a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}"
+                                                   onclick="document.getElementById('${'content-type-' + a.value}').click();
+                                                            MicroModal.close('detail-${item.id}');
+                                                            window.scrollTo(0, ${yTop});"
+                                           >${a.value}</div>`).join('')}
                                 </div>
                             </div>
                         </div>
                         <div class="hit-used-programming-languages">
                             <div>Used programming languages:</div>
-                            ${item._highlightResult.used_programming_languages.map(a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}" onclick="document.getElementById('${'prog-lang-' + a.value}').click();">${a.value}</div>`).join('')}
+                            ${item._highlightResult.used_programming_languages.map(
+                                a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}"
+                                           onclick="document.getElementById('${'prog-lang-' + a.value}').click();
+                                                    MicroModal.close('detail-${item.id}');
+                                                    window.scrollTo(0, ${yTop});"
+                                    >${a.value}</div>`).join('')}
                         </div>
                         <hr class="modal-separator">
                         <div class="modal-section-title">LINKS</div>

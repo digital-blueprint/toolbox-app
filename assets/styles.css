@@ -91,7 +91,7 @@ a {
 
 .header-title {
     font-size: 2.5rem;
-    letter-spacing: 0.5rem;
+    letter-spacing: 0.2rem;
     font-weight: 600;
     margin-bottom: 0;
 }
@@ -219,11 +219,11 @@ a {
     display: inline;
 }
 .ais-ClearRefinements-button:hover {
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: black;
 }
 .ais-ClearRefinements-button:hover img {
-    filter: invert();
+    /* filter: invert(); */
 }
 .ais-ClearRefinements-button--disabled {
     padding: 0;
@@ -242,8 +242,8 @@ a {
     border-radius: 0;
 }
 .HierarchicalMenu-showMore:hover {
-    background-color: black !important;
-    color: white !important;
+    background-color: white !important;
+    color: black !important;
     border-radius: 0;
 }
 .HierarchicalMenu-showMore[disabled] {
@@ -261,6 +261,7 @@ a {
     margin-top: 10px;
     display: block;
     align-items: center;
+    cursor: pointer;
 }
 .hit-name-img {
     height: 48px;
@@ -281,6 +282,7 @@ a {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
+    cursor: pointer;
 }
 
 .filter-heading .labs-img {
@@ -483,9 +485,8 @@ footer a {
 }
 
 .ais-Pagination-link:hover {
-    color: #ffffff;
-    background-color: #222120;
-    border-color: #222120;
+    color: black;
+    background-color: white;
 }
 
 .flex {
@@ -568,6 +569,7 @@ footer a {
     position: relative;
     height: 100%;
     width: 100%;
+    cursor: pointer;
 }
 
 /* modal elements */
