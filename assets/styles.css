@@ -164,7 +164,7 @@ a {
 }
 
 #intro {
-  margin: 2rem 7rem 0;
+  margin: 4rem 7rem 0;
 }
 
 .container {
@@ -536,7 +536,7 @@ footer a {
 }
 
 .flex-row-evenly .modal-column.horizontal-separator:not(:first-child) {
-    border-left: 2px solid #ddd;
+    border-left: 1px solid #767676;
 }
 
 .flex-column {
