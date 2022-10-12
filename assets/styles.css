@@ -82,8 +82,8 @@ a {
 
 .hero-logo {
     width: 100%;
-    max-width: 800px;
-    /*padding-left: 30em;*/
+    max-width: 10000px;
+    padding-left: 30em;
 }
 
 .scroll-down {
