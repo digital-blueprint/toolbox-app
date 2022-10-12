@@ -365,7 +365,7 @@ a {
     padding: 20px;
     box-shadow: none;
     border: 1px solid lightgray;
-    width: calc(50% - 1rem);
+    width: calc(25% - 1rem);
 }
 
 .release {
@@ -699,7 +699,18 @@ footer a {
     mask-image: url('close.svg');
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1864px) {
+    .ais-Hits-item {
+        width: calc(33% - 1rem);
+    }
+}
+@media (max-width: 1432px) {
+    .ais-Hits-item {
+        width: calc(50% - 1rem);
+    }
+}
+
+@media (max-width: 896px) {
 
     .container {
         max-width: unset;

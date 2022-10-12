@@ -62,7 +62,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
             autofocus: false,
         }),
         configure({
-            hitsPerPage: 8,
+            hitsPerPage: 12,
             numericFilters: [
                 'release_date >= ' + (dateFilter.active ? Math.floor(Date.now()/1000 - dateFilter.range) : 1546300800 /* 2019-01-01 00:00:00 */)
             ]
