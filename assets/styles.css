@@ -188,7 +188,7 @@ a {
     font-weight: 700;
     line-height: 1.5;
     text-decoration: none;
-    color: red;
+    color: #9e1e4d;
 }
 
 .search-panel {
@@ -679,16 +679,6 @@ footer a {
 .modal-column {
     display: flex;
     flex-direction: column;
-}
-@keyframes turnred {
-    from {background-color: white; color:black;}
-    to {background-color: red; color:white;}
-}
-.modal-clicked {
-    background-color: red;
-    color: white;
-    animation-duration: 1.5s;
-    animation-name: turnred;
 }
 
 .undecorated-link {
