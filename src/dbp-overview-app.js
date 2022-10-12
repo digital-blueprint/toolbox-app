@@ -173,7 +173,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                                 <div class="modal-center">${item.release_date > 0 ? formattedTime : 'N/A'}</div>
                             </div>
                         </div>
-                        <hr class="modal-separator">
+                        <div class="modal-separator"></div>
                         <div class="modal-section-title">USED IN BLUEPRINT${item.blueprint.length !== 1 ? 'S' : ''}</div>
                         <div class="nav-wrapper">
                             <div class="left-paddle paddle paddle-faded" id="left-paddle-${item.id}">
@@ -236,7 +236,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                               <img src="${privatePath}/chevron-right.svg" alt="right">                         
                           </div>
                         </div>
-                        <hr class="modal-separator">
+                        <div class="modal-separator"></div>
                         <div class="modal-section-title">ADDITIONAL INFO</div>
                         <div class="hit-license">
                             <div>License:</div>
@@ -273,7 +273,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                                                     window.scrollTo(0, ${yTop});"
                                     >${a.value}</div>`).join('')}
                         </div>
-                        <hr class="modal-separator">
+                        <div class="modal-separator"></div>
                         <div class="modal-section-title">LINKS</div>
                         <div class="flex-row">
                             ${item.link_repo ? `<div class="modal-link"><a href="${item.link_repo}" rel="noopener noreferrer" target="_blank"><div class="modal-column"><img src="${privatePath}/code.svg" alt="repository" class="modal-center"><div>source code</div></div></a></div>` : ''}

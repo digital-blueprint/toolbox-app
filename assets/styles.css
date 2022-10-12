@@ -671,7 +671,7 @@ footer a {
 .modal-separator {
     margin-top: 2rem;
     margin-bottom: 1rem;
-    color: #dddddd;
+    border-top: 1px solid #767676;
 }
 .modal-center {
     margin: 0 auto;
