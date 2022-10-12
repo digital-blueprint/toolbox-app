@@ -3,6 +3,7 @@ import {assert} from 'chai';
 import {init} from '../src/dbp-overview-app.js';
 
 suite('dbp-overview-app integration', () => {
+    let mainSection;
     let searchbox;
     let currentRefinements;
     let clearRefinements;
@@ -23,6 +24,9 @@ suite('dbp-overview-app integration', () => {
     let anker;
 
     suiteSetup(async () => {
+        mainSection = document.createElement('div');
+        mainSection.id = 'main-section';
+        document.body.append(mainSection);
         searchbox = document.createElement('div');
         searchbox.id = 'searchbox';
         document.body.append(searchbox);
@@ -80,6 +84,7 @@ suite('dbp-overview-app integration', () => {
     });
 
     suiteTeardown(() => {
+        mainSection.remove();
         searchbox.remove();
         hits.remove();
         targetAudience.remove();
