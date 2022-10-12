@@ -59,7 +59,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
     search.addWidgets([
         searchBox({
             container: '#searchbox',
-            autofocus: true,
+            autofocus: false,
         }),
         configure({
             hitsPerPage: 8,
@@ -79,8 +79,8 @@ export function init(typesenseConfig, dateFilter, privatePath) {
 
                     // slider
                     const MAXITEMSVISIBLE = 3;
-                    let slideIndex=0;
-                    const rect = document.getElementById('top').getBoundingClientRect();
+                    let slideIndex = 0;
+                    const rect = document.getElementById('main-section').getBoundingClientRect();
                     const yTop = rect.top + window.scrollY;
 
                     return `
@@ -525,7 +525,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
         }),
         pagination({
             container: '#pagination',
-            scrollTo: '#top',
+            scrollTo: '#main-section',
         }),
     ]);
 
