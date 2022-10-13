@@ -1,6 +1,6 @@
 # DBP Overview App
 
-[GitLab Repository](https://gitlab.tugraz.at/vpu-private/dbp-overview/dbp-overview-app)
+[GitLab Repository](https://gitlab.tugraz.at/dbp/toolbox/toolbox)
 
 This is an experimental app to display search results for a typesense instance updated by GitLab's CI.
 See [DBP Overview Feeder](https://gitlab.tugraz.at/vpu-private/dbp-overview/dbp-overview-feeder)
@@ -9,7 +9,7 @@ See [DBP Overview Feeder](https://gitlab.tugraz.at/vpu-private/dbp-overview/dbp-
 
 ```bash
 # get the source
-git clone git@gitlab.tugraz.at/vpu-private/dbp-overview/dbp-overview-app
+git clone git@gitlab.tugraz.at/dbp/toolbox/toolbox
 cd dbp-overview-app
 git submodule update --init
 
