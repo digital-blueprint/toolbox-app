@@ -49,4 +49,14 @@ export default {
         },
         email: 'hello@digitalblueprint.at'
     },
+    production_test: {
+        basePath: '/',
+        typesense: {
+            host: 'search-backend.digital-blueprint.org',
+            port: '443',
+            protocol: 'https',
+            key: 'LNBGCWzDnnu4gvBhFfrYtFUW7HXDGWuj34zdnHYmZz',
+        },
+        email: 'hello@digitalblueprint.at'
+    },
 };
