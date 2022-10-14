@@ -111,7 +111,7 @@
             };
             adjustPaddles();
         }
-        // cklick on filter tags
+        // click on filter tags
         function clearAllFilter(func, wait=100 /* ms */) {
             const el = document.getElementById('clear-refinements');
             if (null !== el) {
@@ -125,6 +125,9 @@
             const el = document.getElementById(id);
             if (null !== el) {
                 el.click();
+                //console.log('automatic click on id ' + id);
+            } else {
+                //console.log('el id=' + id + ' not found.');
             }
         }
     </script>

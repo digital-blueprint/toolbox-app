@@ -18,6 +18,7 @@ import MicroModal from './micromodal.es';
 import { licenses } from '../assets/licenses/spdx.json';
 const spdxLicenses = licenses;
 
+// helper functions
 function formatLicense(license) {
     const spdxInfo = spdxLicenses.find(item => item.licenseId === license);
     if (spdxInfo === undefined) {
@@ -25,6 +26,23 @@ function formatLicense(license) {
         return license;
     }
     return `<a class="undecorated-link" href="${spdxInfo.reference}">${spdxInfo.name}</a>`;
+}
+function cssClassFromValue(value) {
+    return value.replace(/\s+/g, '-').toLowerCase();
+}
+function blueprint2topic(blueprint) {
+    return blueprint.split('(')[0] || 'N/A';
+}
+function blueprint2fancy(blueprint) {
+    return blueprint.replace(')', '').split('(')[1] || 'N/A';
+}
+function hierarchicalMenuIdFromValue(value) {
+    return 'hierarchical-blueprint-item-'
+        + value.toLowerCase()
+            .replaceAll(' ', '-')
+            .replaceAll('>', '-')
+            .replaceAll('(', '--')
+            .replaceAll(')', '');
 }
 
 export function init(typesenseConfig, dateFilter, privatePath) {
@@ -102,7 +120,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                     <div class="hit-document-type">
                         <div>Categor${item.document_type.length > 1 ? 'ies' : 'y'}:</div>
                         ${item._highlightResult.document_type.map(
-                        a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}"
+                        a => `<div class="type ${cssClassFromValue(a.value)}"
                                    onclick="event.stopPropagation();
                                             clearAllFilter(() => clickElementById('document-type-${a.value}'));"
                                   >${a.value}</div>`
@@ -112,7 +130,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                     <div class="hit-content-type">
                         <div>Type${item.content_type.length > 1 ? 's' : ''}:</div>
                         ${item._highlightResult.content_type.map(
-                        a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}"
+                        a => `<div class="type ${cssClassFromValue(a.value)}"
                                    onclick="event.stopPropagation();
                                             clearAllFilter(() => clickElementById('content-type-${a.value}'));"
                        >${a.value}</div>`).join('')}
@@ -183,22 +201,23 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                             </div>
                             <nav class="modal-nav">
                                 ${item._highlightResult.blueprint.map(
-                                    a => `<div class="nav-item nav-item-${item.id} ${slideIndex++ < MAXITEMSVISIBLE ? '' : 'hidden'}"
-                                         onclick="
+                                    a => {
+                                        const id1 = hierarchicalMenuIdFromValue(a.value);
+                                        const id2 = hierarchicalMenuIdFromValue(a.value.split('(')[0].trim());
+                                        return `<div class="nav-item nav-item-${item.id} ${slideIndex++ < MAXITEMSVISIBLE ? '' : 'hidden'}"
+                                        onclick="
                                             clearAllFilter( () => {
-                                                const id1 = 'hierarchical-blueprint-item-${a.value.toLowerCase().replaceAll(' ', '-').replaceAll('(', '--').replaceAll(')', '')}';
-                                                if (null === document.getElementById(id1)) {
-                                                    const id2 = 'hierarchical-blueprint-item-${a.value.split('(')[0].toLowerCase().trim().replaceAll(' ', '-')}';
-                                                    if (null === document.getElementById(id2)) {
+                                                if (null === document.getElementById('${id1}')) {
+                                                    if (null === document.getElementById('${id2}')) {
                                                         Array.from(document.getElementsByClassName('HierarchicalMenu-showMore'))[0].click();
                                                         setTimeout(
                                                             () => {
-                                                                console.log('id2.click() #193');
-                                                                clickElementById(id2);
+                                                                //console.log('id2.click() #211 ${id2}');
+                                                                clickElementById('${id2}');
                                                                 setTimeout(
                                                                     () => {
-                                                                        console.log('id1.click() #196');
-                                                                        clickElementById(id1);
+                                                                        //console.log('id1.click() #215 ${id1}');
+                                                                        clickElementById('${id1}');
                                                                         MicroModal.close('detail-${item.id}');
                                                                         window.scrollTo(0, ${yTop});
                                                                     },
@@ -208,11 +227,12 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                                                             200
                                                         );
                                                     } else {
-                                                        clickElementById(id2);
+                                                        //console.log('id2.click() #226 ${id2}');
+                                                        clickElementById('${id2}');
                                                         setTimeout(
                                                             () => {
-                                                                console.log('id1.click() #210');
-                                                                clickElementById(id1);
+                                                                //console.log('id1.click() #230 ${id1}');
+                                                                clickElementById('${id1}');
                                                                 MicroModal.close('detail-${item.id}');
                                                                 window.scrollTo(0, ${yTop});
                                                             },
@@ -220,20 +240,21 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                                                         );
                                                     }
                                                 } else {
-                                                    console.log('id1.click() #218');
-                                                    clickElementById(id1);
+                                                    //console.log('id1.click() #218 ${id1}');
+                                                    clickElementById('${id1}');
                                                     MicroModal.close('detail-${item.id}');
                                                     window.scrollTo(0, ${yTop});
                                                 }
                                             });"
                                         >
                                             <div class="modal-blueprint modal-fancy">
-                                                ${a.value.replace(')', '').split('(')[1] || 'N/A'}
+                                                ${blueprint2fancy(a.value)}
                                             </div>
                                             <div class="modal-blueprint modal-category">
-                                                ${a.value.split('(')[0] || 'N/A'}
+                                                ${blueprint2topic(a.value)}
                                             </div>
-                                    </div>`
+                                    </div>`;
+                                    }
                                 ).join('')}
                             </nav>
                           <div class="right-paddle paddle" id="right-paddle-${item.id}">
@@ -251,7 +272,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                                 <div class="hit-document-type">
                                     <div>Categor${item.document_type.length > 1 ? 'ies' : 'y'}:</div>
                                     ${item._highlightResult.document_type.map(
-                                        a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}"
+                                        a => `<div class="type ${cssClassFromValue(a.value)}"
                                                    onclick="clearAllFilter(() => {
                                                             clickElementById('document-type-${a.value}');
                                                             MicroModal.close('detail-${item.id}');
@@ -262,7 +283,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                                 <div class="hit-content-type">
                                     <div>Type${item.content_type.length > 1 ? 's' : ''}:</div>
                                     ${item._highlightResult.content_type.map(
-                                        a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}"
+                                        a => `<div class="type ${cssClassFromValue(a.value)}"
                                                    onclick="clearAllFilter(() => {
                                                             clickElementById('content-type-${a.value}');
                                                             MicroModal.close('detail-${item.id}');
@@ -275,7 +296,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
                         <div class="hit-used-programming-languages">
                             <div>Used programming languages:</div>
                             ${item._highlightResult.used_programming_languages.map(
-                                a => `<div class="type ${a.value.replace(/\s+/g, '-').toLowerCase()}"
+                                a => `<div class="type ${cssClassFromValue(a.value)}"
                                            onclick="clearAllFilter(() => {
                                                     clickElementById('prog-lang-${a.value}');
                                                     MicroModal.close('detail-${item.id}');
@@ -365,11 +386,11 @@ export function init(typesenseConfig, dateFilter, privatePath) {
             },
             templates: {
                 item(item) {
-                    const value2id = item.value.toLowerCase().replaceAll(' ', '-').replaceAll('>', '-');
+                    const value2id = hierarchicalMenuIdFromValue(item.value);
 
                     return `
                         <a class="hierarchical-blueprints-item${item.isRefined ? '-is-refined' : ''}"
-                           id="hierarchical-blueprint-item-${value2id}" 
+                           id="${value2id}" 
                            href="${item.url}">
                             <span class="ais-RefinementList-labelText">${item.label}</span>
                             <span class="ais-RefinementList-count">(${item.count})</span>
