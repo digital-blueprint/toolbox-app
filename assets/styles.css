@@ -583,7 +583,9 @@ footer a {
 .ais-CurrentRefinements-label {
     display: none;
 }
-
+#current-refinements-list-and-button {
+    height: 36px; /* a little larger than the height of a filter tag */
+}
 .ais-SearchBox-input {
     border-radius: 0;
 }

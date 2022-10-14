@@ -111,6 +111,22 @@
             };
             adjustPaddles();
         }
+        // cklick on filter tags
+        function clearAllFilter(func, wait=100 /* ms */) {
+            const el = document.getElementById('clear-refinements');
+            if (null !== el) {
+                el.querySelector('button').click();
+                setTimeout(func, wait);
+            } else {
+                func();
+            }
+        }
+        function clickElementById(id) {
+            const el = document.getElementById(id);
+            if (null !== el) {
+                el.click();
+            }
+        }
     </script>
 
     <!-- App bundles-->
