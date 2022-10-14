@@ -10,7 +10,7 @@ See [DBP Overview Feeder](https://gitlab.tugraz.at/vpu-private/dbp-overview/dbp-
 ```bash
 # get the source
 git clone git@gitlab.tugraz.at/dbp/toolbox/toolbox
-cd dbp-overview-app
+cd toolbox
 git submodule update --init
 
 # install dependencies
