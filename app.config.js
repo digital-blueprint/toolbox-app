@@ -55,7 +55,7 @@ export default {
             host: 'search-backend.digital-blueprint.org',
             port: '443',
             protocol: 'https',
-            key: 'LNBGCWzDnnu4gvBhFfrYtFUW7HXDGWuj34zdnHYmZz',
+            key: 'qbBrf1jfxSlm25vuzrLWCnJwtnWhixDL',
         },
         email: 'hello@digitalblueprint.at'
     },
