@@ -364,7 +364,7 @@ a {
 .ais-Hits-item {
     padding: 20px;
     box-shadow: none;
-    border: 1px solid lightgray;
+    border: 1px solid #767676;
     width: calc(25% - 1rem);
 }
 
@@ -588,6 +588,7 @@ footer a {
 }
 .ais-SearchBox-input {
     border-radius: 0;
+    border: 1px solid #767676;
 }
 
 .hit-types-subtypes {
