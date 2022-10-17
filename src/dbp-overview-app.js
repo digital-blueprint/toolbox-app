@@ -66,12 +66,6 @@ export function init(typesenseConfig, dateFilter, privatePath) {
     let search = instantsearch({
         searchClient,
         indexName: 'software-overview',
-        // onStateChange({ uiState, setUiState }) {
-        //     // Custom logic
-        //     console.dir([uiState, setUiState]);
-        //
-        //     setUiState(uiState);
-        // },
     });
 
     search.addWidgets([
@@ -550,7 +544,7 @@ export function init(typesenseConfig, dateFilter, privatePath) {
             container: "#stats",
             templates: {
                 body(hit) {
-                    return `${hit.nbHits} results found in ${hit.processingTimeMS}ms`;
+                    return `${hit.nbHits} results found`; // in ${hit.processingTimeMS}ms`;
                 }
             }
         }),
