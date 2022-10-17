@@ -134,3 +134,25 @@ li.ais-Hits-item > div:first-child {
     display: grid;
     grid-template-rows: auto min-content auto;
 }
+
+@media (max-width: 1864px) {
+    .ribbon span {
+        padding: 12px 0;
+    }
+}
+@media (max-width: 1432px) {
+    .ribbon span {
+        padding: 8px 0;
+    }
+}
+@media (max-width: 896px) {
+    .ribbon span {
+        padding: 4px 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .ribbon span {
+        padding: 15px 0;
+    }
+}
