@@ -914,6 +914,46 @@ footer a {
         margin-bottom: 1rem;
     }
 
+    .flex-row {
+        flex-direction: column;
+    }
+
+    .nav-item {
+        border-left: none;
+        width: unset;
+    }
+
+    .modal-fancy {
+        font-size: 1rem;
+    }
+
+    .nav-wrapper {
+        flex-direction: column;
+    }
+
+    .modal-category {
+        padding-bottom: 1em;
+    }
+
+    .paddle img:first-child {
+        padding-bottom: 1em;
+    }
+
+    .modal-close {
+        height: 3rem;
+        width: 3rem;
+    }
+
+    .modal-nav {
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .hit-description {
+        height: 100%;
+        padding-bottom: 1em;
+    }
+
     .hit-name {
         margin-top: 0;
     }
