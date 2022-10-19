@@ -136,6 +136,12 @@
     <script type="module">
         import {init} from "<%= getUrl(name + '.js') %>";
 
+        // get url params
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+            get: (searchParams, prop) => searchParams.get(prop),
+        });
+        let searchString = params.q;
+
         let typesenseConfig = {
             host: '<%= typesense.host %>',
             port: '<%= typesense.port %>',
@@ -144,7 +150,7 @@
         };
         const privatePath = '<%= getPrivateUrl('')%>';
 
-        init(typesenseConfig, {active: false, range: 86400}, privatePath);
+        init(typesenseConfig, {active: false, range: 86400}, privatePath, searchString);
 
         function filter_changed() {
             const dateFilter = {

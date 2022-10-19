@@ -45,7 +45,7 @@ function hierarchicalMenuIdFromValue(value) {
             .replaceAll(')', '');
 }
 
-export function init(typesenseConfig, dateFilter, privatePath) {
+export function init(typesenseConfig, dateFilter, privatePath, searchString='') {
     const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
         server: {
             apiKey: typesenseConfig.key, // Be sure to use an API key that only allows searches, in production
@@ -555,6 +555,10 @@ export function init(typesenseConfig, dateFilter, privatePath) {
     ]);
 
     search.start();
+
+    if (searchString) {
+        search.helper.setQuery(searchString).search();
+    }
 
     return true;
 }
