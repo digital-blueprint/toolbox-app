@@ -45,7 +45,8 @@ function hierarchicalMenuIdFromValue(value) {
             .replaceAll(')', '');
 }
 
-const rect = document.getElementById('main-section').getBoundingClientRect();
+const div = document.getElementById('main-section');
+const rect = div ? div.getBoundingClientRect() : {top: 100};
 const yTop = rect.top + window.scrollY;
 
 export function init(typesenseConfig, dateFilter, privatePath, searchString='') {
