@@ -122,7 +122,7 @@ a {
 }
 
 #main-section {
-    height: 100px;
+    /*height: 100px;*/
 }
 
 .border-shadow {
@@ -184,7 +184,7 @@ a {
 }
 
 #intro {
-  margin: 4rem 7rem 0;
+  margin: 0 7rem;
 }
 
 .container {
