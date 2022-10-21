@@ -45,6 +45,9 @@ function hierarchicalMenuIdFromValue(value) {
             .replaceAll(')', '');
 }
 
+const rect = document.getElementById('main-section').getBoundingClientRect();
+const yTop = rect.top + window.scrollY;
+
 export function init(typesenseConfig, dateFilter, privatePath, searchString='') {
     const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
         server: {
@@ -92,8 +95,6 @@ export function init(typesenseConfig, dateFilter, privatePath, searchString='') 
                     // slider
                     const MAXITEMSVISIBLE = 3;
                     let slideIndex = 0;
-                    const rect = document.getElementById('main-section').getBoundingClientRect();
-                    const yTop = rect.top + window.scrollY;
 
                     return `
         <div class="click-collector"
@@ -559,6 +560,18 @@ export function init(typesenseConfig, dateFilter, privatePath, searchString='') 
     if (searchString) {
         search.helper.setQuery(searchString).search();
     }
+    search.helper.on('change', (res) => {
+        const searchString = res.state.query;
+        //console.log(searchString);
+        let url = window.location.href;
+        const q = url.indexOf('?q=');
+        if (q > -1) {
+            url = url.substring(0, q+3) + searchString;
+        } else {
+            url += '?q=' + searchString;
+        }
+        window.history.replaceState(null, document.title, url);
+    });
 
     return true;
 }

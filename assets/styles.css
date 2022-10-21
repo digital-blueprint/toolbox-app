@@ -121,6 +121,56 @@ a {
     animation: mover 0.5s infinite alternate;
 }
 
+/* starter page */
+
+#line-1 {
+    font-size: 1.1em;
+    letter-spacing: 2px;
+    font-weight: 400;
+    margin: 1rem 0;
+}
+#line-2 {
+    font-size: 2rem;
+    letter-spacing: 6px;
+    font-weight: 700;
+    margin: 1rem 0;
+}
+#line-3 {
+    font-size: 3em;
+    letter-spacing: normal;
+    font-weight: 400;
+    line-height: 1.2rem;
+    margin: 1.5rem 0;
+}
+#line-4 {
+    width: 40%;
+    line-height: 1.1rem;
+    margin: 1rem 0;
+}
+#starter-search {
+    height: 32px;
+    width: 40%;
+    line-height: 1.2rem;
+    margin: 1rem 0;
+    padding: 0.2rem;
+    border: 1px solid #767676;
+}
+#this-in-runner {
+    height: 32px;
+    width: 32px;
+    padding: 0.2rem;
+    margin: 0;
+    background-color: #3775c1;
+    color: white;
+}
+#all-in-runner {
+    margin: 1rem 0;
+    padding: 0.2rem 1rem;
+    background-color: #3775c1;
+    color: white;
+}
+/* runner page */
+
 #main-section {
     /*height: 100px;*/
 }
