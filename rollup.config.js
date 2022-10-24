@@ -100,8 +100,6 @@ export default (async () => {
                 'process.env.NODE_ENV': JSON.stringify('production'),
             }),
             resolve({
-                // ignore node_modules from vendored packages
-                moduleDirectories: [path.join(process.cwd(), 'node_modules')],
                 browser: true,
                 preferBuiltins: true,
                 exportConditions: !prodBuild ? ['development'] : [],
