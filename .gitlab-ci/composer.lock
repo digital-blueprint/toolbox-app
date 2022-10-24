@@ -147,9 +147,6 @@
             "require": {
                 "php": "~7.0"
             },
-            "replace": {
-                "deployer/recipes": "self.version"
-            },
             "require-dev": {
                 "deployer/deployer": "^6.3"
             },
@@ -185,6 +182,10 @@
                 "slack",
                 "yarn"
             ],
+            "support": {
+                "issues": "https://github.com/deployphp/recipes/issues",
+                "source": "https://github.com/deployphp/recipes"
+            },
             "abandoned": true,
             "time": "2019-06-27T06:47:18+00:00"
         },
