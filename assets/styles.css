@@ -156,18 +156,23 @@ a {
     border: 1px solid #767676;
 }
 #this-in-runner {
-    height: 32px;
-    width: 32px;
-    padding: 0.2rem;
+    /*height: 32px;*/
+    /*width: 32px;*/
+    padding: 0.51rem;
     margin: 0;
     background-color: #3775c1;
     color: white;
+    cursor: pointer;
+}
+#or {
+    margin: 0.2rem 0 1rem;
 }
 #all-in-runner {
     margin: 1rem 0;
     padding: 0.2rem 1rem;
     background-color: #3775c1;
     color: white;
+    cursor: pointer;
 }
 /* runner page */
 
