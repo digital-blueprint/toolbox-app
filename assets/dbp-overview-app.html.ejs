@@ -247,6 +247,8 @@
         </a>
     </div>
 </div>
+
+<div class="header border-shadow"></div>
 <!--
 <header id="hero" class="border-shadow">
     <div class="hero-content">
@@ -262,17 +264,23 @@
 </header>
 -->
 <div class="header-bottom"></div>
-<div id="starter" style="margin: 4rem;">
-    <div id="line-1">digital blueprint</div>
-    <div id="line-2">toolbox</div>
-    <div id="line-3">What do you want to find?</div>
-    <div id="line-4">Search for digital blueprints and their components in
-        all repositories, search for tool, used programming
-        language or much more</div>
-    <input type="text" id="starter-search" placeholder="keyword, digital blueprints, tools, languages ...">
-    <a id="this-in-runner">Go</a>
-    <div id="or">or</div>
-    <a id="all-in-runner">show all</a>
+<div id="starter">
+    <div class="contents">
+        <div id="line-1">digital blueprint</div>
+        <div id="line-2">toolbox</div>
+        <div id="line-3">What do you want to find?</div>
+        <div id="line-4">Search for digital blueprints and their components in
+            all repositories, search for tool, used programming
+            language or much more</div>
+        <div class="starter-searchbar">
+            <input type="text" id="starter-search" placeholder="keyword, digital blueprints, tools, languages ...">
+            <button class="button is-primary" id="this-in-runner">
+                <img src="<%= getPrivateUrl('search-iconoir-white.svg') %>" alt="go">
+            </button>
+        </div>
+        <div id="or">or</div>
+        <button class="button" id="all-in-runner">show all</button>
+    </div>
 </div>
 <div id="runner" style="display:none;">
 <div id="main-section"></div>
