@@ -410,7 +410,10 @@ export function init(typesenseConfig, dateFilter, privatePath, searchString='') 
             },
             transformItems: function (items) {
                 if (items.length <= 0) {
-                    document.getElementById('current-refinements-list-and-button').classList.add('hidden');
+                    const button = document.getElementById('current-refinements-list-and-button');
+                    if (button) {
+                        button.classList.add('hidden');
+                    }
                 }
                 return items.map(item => {
                     if (item.refinements.length > 0) {
