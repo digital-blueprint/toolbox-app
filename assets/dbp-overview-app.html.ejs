@@ -55,6 +55,7 @@
                 //console.log('page load: q=' + params.q);
                 document.getElementById('starter').style.display = 'none';
                 document.getElementById('runner').style.display = 'block';
+                document.getElementsByClassName('header-top')[0].classList.add('border-shadow');
             }
             document.getElementById('this-in-runner').onclick = showThis;
             document.getElementById('all-in-runner').onclick = showAll;
@@ -248,21 +249,6 @@
     </div>
 </div>
 
-<div class="header border-shadow"></div>
-<!--
-<header id="hero" class="border-shadow">
-    <div class="hero-content">
-        <img class="hero-logo" src="<%= getPrivateUrl('dbp_logo_chevrons_on_white.svg') %>" alt="Logo">
-        <div class="hero-text">dbp toolbox</div>
-        <div class="hero-subtext">assemble your digital service</div>
-    </div>
-    <a href="#main-section" title="">
-        <svg class="scroll-down" width="24" height="24" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
-        </svg>
-    </a>
-</header>
--->
 <div class="header-bottom"></div>
 <div id="starter">
     <div class="contents">
@@ -284,6 +270,8 @@
 </div>
 <div id="runner" style="display:none;">
 <div id="main-section"></div>
+<div id="headline">digital blueprints</div>
+<div id="subheadline">What do you want to find?</div>
 <div id="intro">
     <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
     <p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>

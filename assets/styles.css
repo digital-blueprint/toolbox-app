@@ -246,13 +246,12 @@ body {
 
 /* runner page */
 
-#main-section {
-    /*height: 100px;*/
-}
-
 .border-shadow {
-    -webkit-box-shadow: 0 10px 35px rgb(212, 212, 212);
-    box-shadow: 0 10px 35px rgb(212, 212, 212);
+    /*-webkit-box-shadow: 0 10px 35px rgb(212, 212, 212);*/
+    /*box-shadow: 0 10px 35px rgb(212, 212, 212);*/
+    -webkit-box-shadow: 0px 0px 35px rgb(212 212 212);
+    box-shadow: 0px 0px 35px rgb(212 212 212);
+    margin-bottom: 4em;
 }
 
 .header a {
@@ -309,7 +308,22 @@ body {
 }
 
 #intro {
-  margin: 0 7rem;
+    margin: 0 7rem;
+}
+
+#headline {
+    font-size: 2em;
+    letter-spacing: 8px;
+    font-weight: 700;
+    margin: 0 7rem;
+}
+
+#subheadline {
+    font-size: 1.3em;
+    letter-spacing: 2px;
+    font-weight: 400;
+    font-style: italic;
+    margin: 0 7rem;
 }
 
 .container {
@@ -713,7 +727,6 @@ footer a {
 }
 
 .ais-CurrentRefinements-item {
-    margin: 5px;
     padding: 5px;
     color: black;
     background-color: white;
@@ -734,6 +747,25 @@ footer a {
 .ais-SearchBox-input {
     border-radius: 0;
     border: 1px solid #767676;
+    height: 40px;
+}
+
+.ais-SearchBox button {
+    display: inherit;
+    margin: inherit;
+}
+
+.ais-SearchBox button[hidden] {
+    display: none;
+}
+
+#current-refinements .ais-CurrentRefinements-category button {
+    margin: 0 0 0 .3em;
+    height: unset;
+}
+
+#clear-refinements button {
+    height: unset;
 }
 
 .hit-types-subtypes {

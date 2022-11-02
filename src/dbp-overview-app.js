@@ -409,7 +409,15 @@ export function init(typesenseConfig, dateFilter, privatePath, searchString='') 
                 list: ['flex']
             },
             transformItems: function (items) {
+                if (items.length <= 0) {
+                    document.getElementById('current-refinements-list-and-button').classList.add('hidden');
+                }
                 return items.map(item => {
+                    if (item.refinements.length > 0) {
+                        document.getElementById('current-refinements-list-and-button').classList.remove('hidden');
+                    } else {
+                        document.getElementById('current-refinements-list-and-button').classList.add('hidden');
+                    }
                     item.refinements = item.refinements.map(i => {
                         const nameParts = i.value.split('(');
                         i.label = nameParts.shift();
