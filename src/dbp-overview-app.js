@@ -573,15 +573,19 @@ export function init(typesenseConfig, dateFilter, privatePath, searchString='') 
         search.helper.setQuery(searchString).search();
     }
     search.helper.on('change', (res) => {
-        const searchString = res.state.query;
-        //console.log(searchString);
+        // clear the search box ?
+        if (window.clearSerchBox) {
+            res.state.query = '';
+            window.clearSerchBox = false;
+        }
+        //console.log(res.state.query);
+        // save the search query to the location bar
         let url = window.location.href;
         const q = url.indexOf('?q=');
         if (q > -1) {
-            url = url.substring(0, q+3) + searchString;
-        } else {
-            url += '?q=' + searchString;
+            url = url.substring(0, q);
         }
+        url += '?q=' + res.state.query;
         window.history.replaceState(null, document.title, url);
     });
 

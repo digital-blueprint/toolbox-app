@@ -50,6 +50,9 @@
             }
         }
 
+        // globals
+        window.clearSerchBox = false;
+
         // select page
         window.onload = function () {
             // get url params
@@ -150,14 +153,17 @@
             } else {
                 func();
             }
+
+            // clear search box also
+            window.clearSerchBox = true;
         }
         function clickElementById(id) {
             const el = document.getElementById(id);
             if (null !== el) {
                 el.click();
-                //console.log('automatic click on id ' + id);
-            } else {
-                //console.log('el id=' + id + ' not found.');
+            //     console.log('automatic click on id ' + id);
+            // } else {
+            //     console.log('el id=' + id + ' not found.');
             }
         }
     </script>
