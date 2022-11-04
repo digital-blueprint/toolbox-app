@@ -239,22 +239,25 @@ body {
     z-index: 10;
 }
 
-.header-top .logo {
-    padding-left: 6rem; /* 4 */
-    padding-top: 1rem;
-}
-
 .header-top .logo img {
-    width: 270px;
+    width: 240px; /*270px;*/
 }
 
-.header-top .contact {
-    margin-right: 6.9rem;
-    padding-top: 2.5rem;
+.header-top .logo {
+    padding-left: 1rem;
+    padding-top: 1rem;
+/*    padding-left: 6rem; !* 4 *!*/
 }
 
 .header-top .contact img {
-    width: 2rem;
+    width: 1.5rem; /*2rem*/
+}
+
+.header-top .contact {
+    margin-right: 2.5rem;
+    padding-top: 2.5rem;
+    /*margin-right: 6.9rem;
+    padding-top: 2.5rem;*/
 }
 
 #intro {
@@ -851,60 +854,171 @@ footer a {
     }
 }
 
-@media only screen and (max-width: 1024px) {
-    #starter {
-        padding: 2rem 4rem 4rem;
-        background-size: 34rem;
-        background-position: right -10em bottom -10em;
-    }
+@media (max-width: 1920px) {
 
-    #starter .contents {
-        margin: auto;
+    #starter {
+        padding: 4rem 4rem 6rem; /*2rem 4rem 4rem;*/
+        background-position: right -17em bottom -15em;
+        background-size: 45rem;
     }
 
     #line-1 {
         font-size: 1em;
-        letter-spacing: 3px;
-        padding: 0;
+        letter-spacing: 5px;
     }
 
     #line-2 {
-        font-size: 2.5rem;
-        letter-spacing: 8px;
-        font-weight: 700;
-        padding: 0;
+        font-size: 2rem;
+        /* TODO bold? */
     }
 
     #line-3 {
         font-size: 2.3em;
-        padding: 1rem 0;
+        padding: 0.9rem 0;
     }
 
     #line-4 {
-        width: 22em;
+        width: 24em;
         font-size: 1em;
-        margin: 0.6rem 0;
+        margin: 0.5rem 0;
+    }
+
+    #starter-search {
+        width: 28em;
+    }
+
+    .starter-searchbar {
+        padding: 0.9rem 0;
     }
 
     #or {
-        margin: 0.1rem 0 1rem;
+        margin: 0 0 1rem;
         font-size: 1.7em;
     }
 
     #all-in-runner {
-        font-size: 1.2em;
-        height: 40px;
+        font-size: 1.4em;
+        height: 45px;
     }
 
     #starter-search {
-        height: 38px;
-        /*width: 23em;*/
-        width: 18em;
-        padding: 0 1rem;
+        height: 44px;
     }
 
     #this-in-runner {
-        height: 40px;
+        height: 45px;
+    }
+
+    .header-top .logo img {
+        width: 240px;
+    }
+
+    .header-top .logo {
+        padding-left: 1rem;
+        padding-top: 1rem;
+    }
+
+    .header-top .contact img {
+        width: 1.5rem;
+    }
+
+    .header-top .contact {
+        margin-right: 2.5rem;
+        padding-top: 2.5rem;
+    }
+}
+
+
+@media only screen and (max-width: 1024px) {
+    #starter {
+        padding: 4rem 4rem 6rem; /*2rem 4rem 4rem;*/
+        background-size: 34rem;
+        background-position: right -10em bottom -10em;
+    }
+
+    #line-1 {
+        font-size: 1em;
+        letter-spacing: 5px; /*3px*/
+        padding: 0;
+    }
+
+    #line-2 {
+        font-size: 2rem;
+        letter-spacing: 8px;
+
+        font-weight: 700;
+        padding: 0;
+        /* TODO bold? */
+    }
+
+    #line-3 {
+        font-size: 2.3em;
+        padding: 0.9rem 0;
+    }
+
+    #line-4 {
+        width: 24em;
+        font-size: 1em;
+        margin: 0.5rem 0;
+    }
+
+    #starter-search {
+        width: 28em;
+    }
+
+    .starter-searchbar {
+        padding: 0.9rem 0;
+    }
+
+    #or {
+        margin: 0 0 1rem;
+        font-size: 1.7em;
+    }
+
+    #all-in-runner {
+        font-size: 1.4em;
+        height: 45px;
+    }
+
+    /*#all-in-runner {*/
+    /*    font-size: 1.2em;*/
+    /*    height: 40px;*/
+    /*}*/
+
+    #starter-search {
+        height: 44px;
+    }
+
+    /*#starter-search {
+        height: 38px;
+        width: 18em;
+        padding: 0 1rem;
+    }*/
+
+    #this-in-runner {
+        height: 45px;
+    }
+
+    /*#this-in-runner {*/
+    /*    height: 40px;*/
+    /*}*/
+
+    .header-top .logo img {
+        width: 240px;
+    }
+
+    .header-top .logo {
+        padding-left: 1rem;
+        padding-top: 1rem;
+    }
+
+    .header-top .contact img {
+        width: 1.5rem;
+    }
+
+    .header-top .contact {
+        margin-right: 2.5rem;
+        padding-top: 2.5rem;
     }
 }
 
