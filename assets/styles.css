@@ -656,6 +656,12 @@ footer a {
     padding: 0 3em;
 }
 
+.flex-row-items-center {
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 .flex-row-evenly .modal-column.horizontal-separator:not(:first-child) {
     border-left: 1px solid #767676;
 }

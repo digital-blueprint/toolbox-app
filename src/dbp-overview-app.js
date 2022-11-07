@@ -436,7 +436,7 @@ export function init(typesenseConfig, searchIndexName, dateFilter, privatePath, 
             templates: {
                 resetLabel(obj) {
                     return obj.hasRefinements
-                        ? `<span class="flex-row">
+                        ? `<span class="flex-row-items-center">
                                 <img src="${privatePath}/reset.svg" alt="reset">
                                 <span id="cf-label">Clear filters</span>
                            </span>`
