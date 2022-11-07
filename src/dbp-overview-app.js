@@ -573,7 +573,7 @@ export function init(typesenseConfig, searchIndexName, dateFilter, privatePath, 
     }
     search.helper.on('change', (res) => {
         // clear the search box ?
-        if (window.clearSerchBox) {
+        if (window.clearSearchBox) {
             res.state.query = '';
             window.clearSerchBox = false;
         }

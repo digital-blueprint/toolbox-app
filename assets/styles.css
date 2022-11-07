@@ -777,6 +777,7 @@ footer a {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    text-align: center;
 }
 .modal-category {
     height: 2.1rem;
@@ -1162,7 +1163,7 @@ footer a {
     }
 
     .nav-wrapper {
-        flex-direction: column;
+        flex-direction: row;
     }
 
     .modal-category {
@@ -1293,5 +1294,10 @@ footer a {
 
     #current-refinements-list-and-button .flex-row {
         flex-direction: row;
+    }
+
+    .paddle {
+        margin-top: auto;
+        margin-bottom: auto;
     }
 }
