@@ -108,6 +108,10 @@ body {
     min-height: 100vh;
 }
 
+.ais-SearchBox-submit {
+    left: .6rem;
+}
+
 /* starter page */
 
 #starter {
