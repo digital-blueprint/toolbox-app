@@ -122,10 +122,8 @@ body {
     background-repeat: no-repeat;
     background-size: 80rem;
     background-position: right -25em bottom -22em;
-}
 
-#starter .contents {
-    max-width: 2000px;
+    max-width: 2650px;
 }
 
 #line-1 {
@@ -262,6 +260,7 @@ body {
 
 #intro {
     margin: 0 7rem;
+    max-width: 2000px;
 }
 
 #headline {
@@ -854,6 +853,14 @@ footer a {
     }
 }
 
+@media (min-width: 2800px) {
+    #starter {
+        margin-left: auto;
+        margin-right: 0;
+        width: 100%;
+    }
+}
+
 @media (max-width: 1920px) {
 
     #starter {
@@ -885,6 +892,7 @@ footer a {
 
     #starter-search {
         width: 28em;
+        height: 44px;
     }
 
     .starter-searchbar {
@@ -899,10 +907,6 @@ footer a {
     #all-in-runner {
         font-size: 1.4em;
         height: 45px;
-    }
-
-    #starter-search {
-        height: 44px;
     }
 
     #this-in-runner {
