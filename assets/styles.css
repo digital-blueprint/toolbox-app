@@ -380,11 +380,13 @@ body {
     background-color: white !important;
     color: black !important;
     border-radius: 0;
+    font-size: 1rem;
 }
 .HierarchicalMenu-showMore:hover {
     background-color: white !important;
     color: black !important;
     border-radius: 0;
+    font-size: 1rem;
 }
 .HierarchicalMenu-showMore[disabled] {
     display: none;
