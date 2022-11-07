@@ -245,7 +245,7 @@ body {
 
 .header-top .logo {
     padding-left: 1rem;
-    padding-top: 1rem;
+    padding-top: 0.4rem;
 /*    padding-left: 6rem; !* 4 *!*/
 }
 
@@ -255,7 +255,7 @@ body {
 
 .header-top .contact {
     margin-right: 2.5rem;
-    padding-top: 2.5rem;
+    padding-top: 2.1rem;
     /*margin-right: 6.9rem;
     padding-top: 2.5rem;*/
 }
@@ -858,7 +858,7 @@ footer a {
 
     #starter {
         padding: 4rem 4rem 6rem; /*2rem 4rem 4rem;*/
-        background-position: right -17em bottom -15em;
+        background-position: right -13em bottom -14em;
         background-size: 45rem;
     }
 
@@ -915,7 +915,7 @@ footer a {
 
     .header-top .logo {
         padding-left: 1rem;
-        padding-top: 1rem;
+        padding-top: 0.4rem;
     }
 
     .header-top .contact img {
@@ -924,7 +924,7 @@ footer a {
 
     .header-top .contact {
         margin-right: 2.5rem;
-        padding-top: 2.5rem;
+        padding-top: 2.1rem;
     }
 }
 
@@ -997,28 +997,7 @@ footer a {
 
     #this-in-runner {
         height: 45px;
-    }
-
-    /*#this-in-runner {*/
-    /*    height: 40px;*/
-    /*}*/
-
-    .header-top .logo img {
-        width: 240px;
-    }
-
-    .header-top .logo {
-        padding-left: 1rem;
-        padding-top: 1rem;
-    }
-
-    .header-top .contact img {
-        width: 1.5rem;
-    }
-
-    .header-top .contact {
-        margin-right: 2.5rem;
-        padding-top: 2.5rem;
+        /*    height: 40px;*/
     }
 }
 
@@ -1056,7 +1035,7 @@ footer a {
     }
 
     #starter-search {
-        width: 190px;
+        width: 100%;
     }
 
     #headline,
@@ -1127,7 +1106,7 @@ footer a {
 
     .header-top .logo {
         padding-left: 0.5rem;
-        padding-top: 0.7rem;
+        padding-top: 0.4rem;
     }
 
     .header-top .logo img {
@@ -1137,7 +1116,7 @@ footer a {
     }
 
     .header-top .contact {
-        padding-top: 1.7rem;
+        padding-top: 1.4em;
         margin-right: 1rem;
     }
 
