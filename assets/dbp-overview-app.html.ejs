@@ -54,7 +54,7 @@
         }
 
         // globals
-        window.clearSerchBox = false;
+        window.clearSearchBox = false;
 
         // select page
         window.onload = function () {
@@ -86,11 +86,9 @@
                 destinationElement.appendChild(elementToAppend);
                 let elementAfter = document.getElementsByClassName('search-panel__results')[0];
                 elementToAppend.after(elementAfter);
-
                 document.getElementsByClassName('search-panel__filters')[0].classList.add('mobile-hidden');
             }
-            console.log('view_filters()');
-        }
+         }
 
         // slider
         function setupSlider(id) {
