@@ -351,7 +351,7 @@ body {
 .ais-ClearRefinements-button {
     background-color: transparent;
     color: black;
-    font-size: 0.8rem;
+    font-size: 1rem;
     border-radius: 0;
 }
 .ais-ClearRefinements-button img {
@@ -432,12 +432,12 @@ body {
 }
 
 .hit-used-programming-languages {
-    font-size: 0.8rem;
+    font-size: 1rem;
     margin: 10px 0;
 }
 
 .hit-document-type, .hit-content-type, .hit-release {
-    font-size: 0.8rem;
+    font-size: 1rem;
     flex: 2;
 }
 
@@ -454,22 +454,22 @@ body {
 }
 
 .hit-license {
-    font-size: 0.8rem;
+    font-size: 1rem;
     margin-top: 10px;
 }
 
 .hit-used-prog-langs {
-    font-size: 0.8rem;
+    font-size: 1rem;
     margin-top: 20px;
 }
 
 .hit-links {
-    font-size: 0.8rem;
+    font-size: 1rem;
 }
 
 .hit-rating {
     margin-top: 1rem;
-    font-size: 0.8rem;
+    font-size: 1rem;
 }
 
 .ais-Hits-item {
@@ -783,7 +783,7 @@ footer a {
 }
 .modal-fancy {
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 .modal-link {
     padding: 5px 5px 0 5px;
@@ -1198,13 +1198,13 @@ footer a {
 
     .hit-document-type, .hit-content-type{
         /* margin-top: 16px; */
-        font-size: 0.8rem;
+        font-size: 1rem;
         flex: 2;
     }
 
     .filter-mobile {
         color: #222120;
-        font-size: .8rem;
+        font-size: 1rem;
         box-sizing: border-box;
         display: flex;
         flex-direction: row;
