@@ -112,6 +112,10 @@ body {
     left: .6rem;
 }
 
+.ais-SearchBox-input {
+    padding: .9rem 1.7rem .9rem 1.9rem;
+}
+
 /* starter page */
 
 #starter {
