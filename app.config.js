@@ -7,6 +7,8 @@ export default {
             protocol: 'https',
             key: 'bRQ0Hrg9SAPGR3CVu5hm5bBTggUhsq0e',
         },
+        searchIndexName: 'software-overview',
+        daysStillNew: 31,
         email: 'test@localhost.lan'
     },
     local: {
@@ -17,6 +19,8 @@ export default {
             protocol: 'http',
             key: 'xyz',
         },
+        searchIndexName: 'software-overview',
+        daysStillNew: 31,
         email: 'test@localhost.lan'
     },
     development: {
@@ -27,6 +31,8 @@ export default {
             protocol: 'https',
             key: 'bRQ0Hrg9SAPGR3CVu5hm5bBTggUhsq0e',
         },
+        searchIndexName: 'software-overview',
+        daysStillNew: 31,
         email: 'eugen.neuber@tugraz.at'
     },
     demo: {
@@ -37,6 +43,8 @@ export default {
             protocol: 'https',
             key: '8TuZ6RG3HZicFLIf7KjmHG2GJwYTWepk',
         },
+        searchIndexName: 'software-overview',
+        daysStillNew: 31,
         email: 'hello@digitalblueprint.at'
     },
     production: {
@@ -47,6 +55,8 @@ export default {
             protocol: 'https',
             key: 'ejtFEuR6LsYabwb9m4yEi4KHlmvWXagU',
         },
+        searchIndexName: 'software-overview',
+        daysStillNew: 31,
         email: 'hello@digitalblueprint.at'
     },
     production_test: {
@@ -57,6 +67,8 @@ export default {
             protocol: 'https',
             key: 'qbBrf1jfxSlm25vuzrLWCnJwtnWhixDL',
         },
+        searchIndexName: 'software-overview',
+        daysStillNew: 31,
         email: 'hello@digitalblueprint.at'
     },
 };

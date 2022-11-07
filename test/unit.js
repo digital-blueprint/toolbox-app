@@ -105,8 +105,10 @@ suite('dbp-overview-app integration', () => {
             protocol: 'https',
             key: 'bRQ0Hrg9SAPGR3CVu5hm5bBTggUhsq0e',
         };
+        const searchIndexName = 'software-overview';
+        const daysStillNew = 31;
 
-        let ok = init(typesenseConfig, {active: false, range: 86400}, '');
+        let ok = init(typesenseConfig, searchIndexName,{active: false, range: 86400}, '', daysStillNew);
         assert(ok);
     });
 });

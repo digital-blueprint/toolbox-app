@@ -91,6 +91,8 @@ export default (async () => {
                     CSP: config.CSP,
                     buildInfo: getBuildInfo(appEnv),
                     typesense: config.typesense,
+                    searchIndexName: config.searchIndexName,
+                    daysStillNew: config.daysStillNew,
                     email: config.email
                 },
             }),

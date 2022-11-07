@@ -49,7 +49,7 @@ const div = document.getElementById('main-section');
 const rect = div ? div.getBoundingClientRect() : {top: 100};
 const yTop = rect.top + window.scrollY;
 
-export function init(typesenseConfig, dateFilter, privatePath, searchString='') {
+export function init(typesenseConfig, searchIndexName, dateFilter, privatePath, searchString='', daysStillNew=31) {
     const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
         server: {
             apiKey: typesenseConfig.key, // Be sure to use an API key that only allows searches, in production
@@ -69,7 +69,7 @@ export function init(typesenseConfig, dateFilter, privatePath, searchString='') 
 
     let search = instantsearch({
         searchClient,
-        indexName: 'software-overview',
+        indexName: searchIndexName,
     });
 
     search.addWidgets([
@@ -90,7 +90,6 @@ export function init(typesenseConfig, dateFilter, privatePath, searchString='') 
                 item(item) {
                     const d = new Date(item.release_date*1000);
                     const formattedTime = d.getFullYear() + '-' + ('0' + (d.getMonth()+1)).substr(-2) + '-'  + ('0' + d.getDate()).substr(-2);
-                    const daysStillNew = 31;
                     const isNew = ((new Date()).valueOf() - daysStillNew*86400000) < d.valueOf();
 
                     // slider

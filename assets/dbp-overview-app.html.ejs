@@ -37,13 +37,16 @@
     <title>dbp toolbox</title>
 
     <script>
+        // proceed to results page and search for query
         function showThis() {
             const q = document.getElementById('starter-search').value;
             window.location.href += '?q=' + q;
         }
+        // proceed to results page and show all
         function showAll() {
             window.location.href += '?q=';
         }
+        // search on "Enter" key
         function searchEnter(event) {
             if (event.key === 'Enter') {
                 showThis();
@@ -157,6 +160,7 @@
             // clear search box also
             window.clearSerchBox = true;
         }
+        // click an element safely (could be unreachable)
         function clickElementById(id) {
             const el = document.getElementById(id);
             if (null !== el) {
@@ -184,18 +188,20 @@
             protocol: '<%= typesense.protocol %>',
             key: '<%= typesense.key %>'
         };
-        const privatePath = '<%= getPrivateUrl('')%>';
+        const privatePath = '<%= getPrivateUrl('')%>'; // path to local images
+        const searchIndexName = '<%= searchIndexName %>'; // name of search index in typesense
+        const daysStillNew = parseInt('<%= daysStillNew %>'); // component marked still new
 
-        init(typesenseConfig, {active: false, range: 86400}, privatePath, searchString);
+        init(typesenseConfig, searchIndexName, {active: false, range: 86400}, privatePath, searchString, daysStillNew);
 
         function filter_changed() {
             const dateFilter = {
                 active: document.getElementById('filter-changed').checked,
                 range: document.getElementById('timespan').value,
             };
-            console.log('filter_changed()');
-            console.dir(dateFilter);
-            init(typesenseConfig, dateFilter, privatePath);
+            // console.log('filter_changed()');
+            // console.dir(dateFilter);
+            init(typesenseConfig, searchIndexName, dateFilter, privatePath, searchString, daysStillNew);
         }
         document.getElementById('filter-changed').onchange = filter_changed;
         document.getElementById('timespan').onchange = filter_changed;
@@ -435,7 +441,6 @@
         Version <a href="<%= buildInfo.url %>"><%= buildInfo.info %></a>
         built for environment <span title="built at <%= buildInfo.time %>"><em><%= buildInfo.env %></em></span> .
     </p>
-
 </footer>
 <!-- Error handling for too old browsers -->
 <noscript>This application requires Javascript</noscript>
