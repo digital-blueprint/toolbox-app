@@ -76,8 +76,17 @@
         // mobile layout: display filter section
         function view_filters() {
             if (document.getElementsByClassName('search-panel__filters')[0].classList.contains('mobile-hidden')) {
+                let destinationElement = document.getElementsByClassName('stats-container')[0];
+                let elementToInsert = document.getElementsByClassName('search-panel__filters')[0];
+                destinationElement.after(elementToInsert);
                 document.getElementsByClassName('search-panel__filters')[0].classList.remove('mobile-hidden');
             } else {
+                let destinationElement = document.getElementsByClassName('search-panel')[0];
+                let elementToAppend = document.getElementsByClassName('search-panel__filters')[0];
+                destinationElement.appendChild(elementToAppend);
+                let elementAfter = document.getElementsByClassName('search-panel__results')[0];
+                elementToAppend.after(elementAfter);
+
                 document.getElementsByClassName('search-panel__filters')[0].classList.add('mobile-hidden');
             }
             console.log('view_filters()');
@@ -407,7 +416,7 @@
                 <div class="stats-container">
                     <div id="stats"></div>
                     <div class="filter-mobile">
-                        <div class="description">Filter Results</div>
+                        <div class="description">Show Filters</div>
                         <div id="mobile-filter-btn" onclick="view_filters()">
                             <img src="<%= getPrivateUrl('filter.svg') %>" alt="Filter">
                         </div>

@@ -1219,7 +1219,7 @@ footer a {
     }
 
     .filter-mobile img {
-        width: 1.5rem;
+        width: 2rem;
     }
 
     .stats-container {
@@ -1284,5 +1284,14 @@ footer a {
 
     #mobile-filter-btn {
         cursor: pointer;
+        padding: 0.2em 0.4em;
+    }
+
+    #current-refinements-list-and-button {
+        height: unset;
+    }
+
+    #current-refinements-list-and-button .flex-row {
+        flex-direction: row;
     }
 }
