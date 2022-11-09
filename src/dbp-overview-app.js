@@ -575,7 +575,7 @@ export function init(typesenseConfig, searchIndexName, dateFilter, privatePath, 
         // clear the search box ?
         if (window.clearSearchBox) {
             res.state.query = '';
-            window.clearSerchBox = false;
+            window.clearSearchBox = false;
         }
         //console.log(res.state.query);
         // save the search query to the location bar
