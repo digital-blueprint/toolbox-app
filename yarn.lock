@@ -4139,16 +4139,16 @@ type-is@~1.6.18:
     mime-types "~2.1.24"
 
 typesense-instantsearch-adapter@^2.4.0:
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/typesense-instantsearch-adapter/-/typesense-instantsearch-adapter-2.4.2.tgz#80df6e96bb01ef07609c84ef06e648937f46b882"
-  integrity sha512-2pAeKwAHEOVwNpQQhcc4sOzL7I6zIQmo09qR+fs0Y5r8l7Zg/4KvxuwIWjAJJtQVeJFAmFqkk8ylxLRkrZs4ng==
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/typesense-instantsearch-adapter/-/typesense-instantsearch-adapter-2.5.0.tgz#8e977468e206772a1064c3b19fd2767654ae1661"
+  integrity sha512-pcSWg501X5wTNGNrqPLP6Owu7/WsPbrQOdDPyQo6Hi9vTAimO47lpk/FMAyfpYX4bRywEFSMHKGZv8Mvvr42zA==
   dependencies:
-    typesense "^1.4.1"
+    typesense "^1.5.0"
 
-typesense@^1.4.1:
-  version "1.4.6"
-  resolved "https://registry.yarnpkg.com/typesense/-/typesense-1.4.6.tgz#0fb5480f37c62255ae5b3af8b0e3892ce6103051"
-  integrity sha512-8Be8UPmlDJIauc6TEo1pHhBTlueM4U18nJ7pIzL0OvVqqDtyyEyXrBo0296T512lo9PFxLG+Gk2B5/muc22L8g==
+typesense@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/typesense/-/typesense-1.5.0.tgz#ce18cb249b6cff1e660574ce8f329d29f4cc13aa"
+  integrity sha512-eP24iqHdTFAPIxHdu6HtqIlA/pxygmk+rpY8Szjo6UEB4INXJIs/GNQ04R9pFFY2BDo0WlHBIsbNgYZOj/Gjog==
   dependencies:
     axios "^0.26.0"
     loglevel "^1.8.0"
