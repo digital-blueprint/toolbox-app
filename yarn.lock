@@ -2578,9 +2578,9 @@ i18next-scanner@^4.0.0:
     vinyl-fs "^3.0.1"
 
 i18next@*, i18next@^22.0.0:
-  version "22.4.9"
-  resolved "https://registry.yarnpkg.com/i18next/-/i18next-22.4.9.tgz#98c8384c6bd41ff937da98b1e809ba03d3b41053"
-  integrity sha512-8gWMmUz460KJDQp/ob3MNUX84cVuDRY9PLFPnV8d+Qezz/6dkjxwOaH70xjrCNDO+JrUL25iXfAIN9wUkInNZw==
+  version "22.4.10"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-22.4.10.tgz#cfbfc412c6bc83e3c16564f47e6a5c145255960e"
+  integrity sha512-3EqgGK6fAJRjnGgfkNSStl4mYLCjUoJID338yVyLMj5APT67HUtWoqSayZewiiC5elzMUB1VEUwcmSCoeQcNEA==
   dependencies:
     "@babel/runtime" "^7.20.6"
 
@@ -4141,9 +4141,9 @@ type-is@~1.6.18:
     mime-types "~2.1.24"
 
 typesense-instantsearch-adapter@^2.4.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/typesense-instantsearch-adapter/-/typesense-instantsearch-adapter-2.5.0.tgz#8e977468e206772a1064c3b19fd2767654ae1661"
-  integrity sha512-pcSWg501X5wTNGNrqPLP6Owu7/WsPbrQOdDPyQo6Hi9vTAimO47lpk/FMAyfpYX4bRywEFSMHKGZv8Mvvr42zA==
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/typesense-instantsearch-adapter/-/typesense-instantsearch-adapter-2.5.1.tgz#18a4e60604d97344fd0ff339b3cf6bcade95ce43"
+  integrity sha512-oAt6P6lXv321vtYCfp8Z9KGjAaht5f0cLs2qWDNgTLrc0wWZ7QxCmBrNkpRAATKeg9HnSOVZlbSRrcpJIXqksg==
   dependencies:
     typesense "^1.5.0"
 
