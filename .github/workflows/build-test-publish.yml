@@ -82,18 +82,18 @@ jobs:
           restore-keys: |
             yarn-
 
-      - name: Publish to NPM
-        if: github.ref == 'refs/heads/main'
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          # https://www.npmjs.com/settings/dbp-deploy/tokens
-          # NPM_TOKEN needs to be a "Publish" token with 2FA disabled!
-          echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > ~/.npmrc
-          yarn install
-          yarn run build
-          # yarn always reports "https://registry.yarnpkg.com/@dbp-topics%2fsignature - Not found", so we are using npm directly
-          npm run publish
+#      - name: Publish to NPM
+#        if: github.ref == 'refs/heads/main'
+#        env:
+#          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+#        run: |
+#          # https://www.npmjs.com/settings/dbp-deploy/tokens
+#          # NPM_TOKEN needs to be a "Publish" token with 2FA disabled!
+#          echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > ~/.npmrc
+#          yarn install
+#          yarn run build
+#          # yarn always reports "https://registry.yarnpkg.com/@dbp-topics%2fsignature - Not found", so we are using npm directly
+#          npm run publish
 
       - name: Deploy
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/demo' || github.ref == 'refs/heads/production'
@@ -103,7 +103,7 @@ jobs:
           curl -X POST --fail \
               -F "token=${DEPLOY_TRIGGER_TOKEN}" \
               -F "ref=main" \
-              -F "variables[UPSTREAM_PROJECT_PATH]=dbp/dispatch/dispatch" \
+              -F "variables[UPSTREAM_PROJECT_PATH]=dbp/toolbox/toolbox" \
               -F "variables[UPSTREAM_COMMIT_BRANCH]=${{ github.ref_name }}" \
               -F "variables[UPSTREAM_COMMIT_SHA]=${{ github.ref_name }}" \
               https://gitlab.tugraz.at/api/v4/projects/21238/trigger/pipeline
