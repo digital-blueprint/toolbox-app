@@ -1,15 +1,17 @@
 # DBP Overview App
 
-[GitLab Repository](https://gitlab.tugraz.at/dbp/toolbox/toolbox)
+[GitLab Repository](https://github.com/digital-blueprint/toolbox)
 
 This is an experimental app to display search results for a typesense instance updated by GitLab's CI.
 See [DBP Overview Feeder](https://gitlab.tugraz.at/vpu-private/dbp-overview/dbp-overview-feeder)
+
+[Search icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/search)
 
 ## Local development
 
 ```bash
 # get the source
-git clone git@gitlab.tugraz.at/dbp/toolbox/toolbox
+git clone git@github.com/digital-blueprint/toolbox
 cd toolbox
 git submodule update --init
 
