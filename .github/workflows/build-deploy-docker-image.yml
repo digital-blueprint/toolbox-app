@@ -24,6 +24,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Set up git config
+        run: |
+          git config --global --add safe.directory "$(pwd)"
+
       - name: Log in to the Container registry
         uses: docker/login-action@v2
         with:
