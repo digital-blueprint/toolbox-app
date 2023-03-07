@@ -132,20 +132,17 @@
         },
         {
             "name": "deployer/recipes",
-            "version": "6.2.2",
+            "version": "6.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/deployphp/recipes.git",
-                "reference": "84b3229c518c094a950e1fe785b7b8f9598770fe"
+                "reference": "4c2470771249fbff55eb56429c29d74590768fa0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/deployphp/recipes/zipball/84b3229c518c094a950e1fe785b7b8f9598770fe",
-                "reference": "84b3229c518c094a950e1fe785b7b8f9598770fe",
+                "url": "https://api.github.com/repos/deployphp/recipes/zipball/4c2470771249fbff55eb56429c29d74590768fa0",
+                "reference": "4c2470771249fbff55eb56429c29d74590768fa0",
                 "shasum": ""
-            },
-            "require": {
-                "php": "~7.0"
             },
             "require-dev": {
                 "deployer/deployer": "^6.3"
@@ -187,7 +184,7 @@
                 "source": "https://github.com/deployphp/recipes"
             },
             "abandoned": true,
-            "time": "2019-06-27T06:47:18+00:00"
+            "time": "2019-01-17T06:03:27+00:00"
         },
         {
             "name": "pimple/pimple",
@@ -382,25 +379,25 @@
         },
         {
             "name": "symfony/deprecation-contracts",
-            "version": "v2.5.2",
+            "version": "v3.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/deprecation-contracts.git",
-                "reference": "e8b495ea28c1d97b5e0c121748d6f9b53d075c66"
+                "reference": "e2d1534420bd723d0ef5aec58a22c5fe60ce6f5e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/e8b495ea28c1d97b5e0c121748d6f9b53d075c66",
-                "reference": "e8b495ea28c1d97b5e0c121748d6f9b53d075c66",
+                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/e2d1534420bd723d0ef5aec58a22c5fe60ce6f5e",
+                "reference": "e2d1534420bd723d0ef5aec58a22c5fe60ce6f5e",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.1"
+                "php": ">=8.1"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "2.5-dev"
+                    "dev-main": "3.3-dev"
                 },
                 "thanks": {
                     "name": "symfony/contracts",
@@ -429,7 +426,7 @@
             "description": "A generic function and convention to trigger deprecation notices",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/deprecation-contracts/tree/v2.5.2"
+                "source": "https://github.com/symfony/deprecation-contracts/tree/v3.2.1"
             },
             "funding": [
                 {
@@ -445,7 +442,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-01-02T09:53:40+00:00"
+            "time": "2023-03-01T10:25:55+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
