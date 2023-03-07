@@ -1,6 +1,6 @@
 # DBP Overview App
 
-[GitLab Repository](https://github.com/digital-blueprint/toolbox)
+[GitHub](https://github.com/digital-blueprint/toolbox)
 
 This is an experimental app to display search results for a typesense instance updated by GitLab's CI.
 See [DBP Overview Feeder](https://gitlab.tugraz.at/vpu-private/dbp-overview/dbp-overview-feeder)
