@@ -2,7 +2,7 @@ FROM node:14-alpine as node
 RUN apk add --no-cache git
 ADD . /build
 WORKDIR /build
-RUN git config --global --add safe.directory /build
+RUN git config --global --add safe.directory '*'
 RUN yarn install && APP_ENV=production_test yarn run build
 
 FROM httpd:2.4
