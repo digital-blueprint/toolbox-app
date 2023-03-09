@@ -8,5 +8,11 @@
     "cloneSubmodules": true,
     "docker": {
         "enabled": false
-    }
+    },
+    "packageRules": [
+        {
+          "matchPackageNames": ["find-cache-dir"],
+          "allowedVersions": "<4"
+        }
+    ]
 }
