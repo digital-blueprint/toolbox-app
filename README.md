@@ -2,6 +2,9 @@
 
 [GitHub](https://github.com/digital-blueprint/toolbox)
 
+[![? Build, Test and Publish](https://github.com/digital-blueprint/toolbox-app/actions/workflows/build-test-publish.yml/badge.svg)](https://github.com/digital-blueprint/toolbox-app/actions/workflows/build-test-publish.yml)
+[![? Create and publish Production Docker image](https://github.com/digital-blueprint/toolbox-app/actions/workflows/build-deploy-docker-image.yml/badge.svg)](https://github.com/digital-blueprint/toolbox-app/actions/workflows/build-deploy-docker-image.yml)
+
 This is an experimental app to display search results for a typesense instance updated by GitLab's CI.
 See [DBP Overview Feeder](https://gitlab.tugraz.at/vpu-private/dbp-overview/dbp-overview-feeder)
 
