@@ -19,7 +19,7 @@ import {
     getBuildInfo,
     generateTLSConfig,
     getDistPath,
-} from './rollup.utils.js';
+} from './vendor/toolkit/rollup.utils.js';
 
 let appName = 'dbp-overview-app';
 const pkg = require('./package.json');
