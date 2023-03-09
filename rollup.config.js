@@ -1,6 +1,6 @@
 import path from 'path';
 import url from 'url';
-import glob from 'glob';
+import {globSync} from 'glob';
 import replace from "rollup-plugin-replace";
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
@@ -54,7 +54,7 @@ export default (async () => {
         input:
             appEnv !== 'test'
                 ? ['src/' + appName + '.js']
-                : glob.sync('test/**/*.js'),
+                : globSync('test/**/*.js'),
         output: {
             dir: 'dist',
             entryFileNames: '[name].js',
