@@ -2,7 +2,7 @@ FROM node:14-alpine as node
 RUN apk add --no-cache git
 ADD . /build
 WORKDIR /build
-RUN yarn install && APP_ENV=production_test yarn run build
+RUN npm ci && APP_ENV=production_test npm run build
 
 FROM httpd:2.4
 COPY --from=node /build/dist /usr/local/apache2/htdocs
