@@ -38,9 +38,9 @@ npm test
 npm build
 ```
 
-Jump to <https://localhost:8001> and you should get the search/result page.
+Jump to <https://localhost:8001>, and you should get the search/result page.
 
-Setup your local Typesense service instance as described in `README.md`
+Set up your local Typesense service instance as described in `README.md`
 of [DBP Overview Feeder](https://gitlab.tugraz.at/vpu-private/dbp-overview/dbp-overview-feeder)
 
 ## Documentation
