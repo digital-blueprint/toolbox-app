@@ -25,6 +25,9 @@ npm install
 # constantly build dist/bundle.js and run a local web-server on port 8001 
 npm run watch
 
+# same as watch, but using the development environment with the development Typesense server 
+APP_ENV=development npm run watch
+
 # same as watch, but with babel, terser, etc active -> very slow
 npm run watch-full
 
