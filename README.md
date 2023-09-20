@@ -1,6 +1,7 @@
 # DBP Overview App
 
-[GitHub](https://github.com/digital-blueprint/toolbox)
+[GitHub](https://github.com/digital-blueprint/toolbox) |
+[Demo](https://toolbox-demo.tugraz.at/)
 
 [![? Build, Test and Publish](https://github.com/digital-blueprint/toolbox-app/actions/workflows/build-test-publish.yml/badge.svg)](https://github.com/digital-blueprint/toolbox-app/actions/workflows/build-test-publish.yml)
 [![? Create and publish Production Docker image](https://github.com/digital-blueprint/toolbox-app/actions/workflows/build-deploy-docker-image.yml/badge.svg)](https://github.com/digital-blueprint/toolbox-app/actions/workflows/build-deploy-docker-image.yml)
