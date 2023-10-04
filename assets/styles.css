@@ -5,6 +5,7 @@ body {
     font-family: NunitoSans, 'Calibri', 'Arial', 'sans-serif';
     font-weight: 300;
     margin: 0;
+    font-size: clamp(0.5rem,1.5vw,1rem);/* Fonts to grow with the size of the viewport */
 }
 
 .light-theme {
@@ -69,16 +70,15 @@ a {
     height: 1px;
     padding-bottom: 40px;
     background-color: white;
-
     position: sticky;
     top: 63px;
     z-index: 10;
 }
 
 button {
-    border: 1px black solid;
+    border: 2px #d94d15 solid;
     background-color: white;
-    color: black;
+    color:#d94d15;
     font-family: 'NunitoSans', 'Calibri', 'Arial', 'sans-serif';
     font-size: 1em;
     border-radius: 0;
@@ -92,8 +92,8 @@ button {
 
 .is-primary {
     padding: 0.2rem 1rem;
-    border: 1px solid #3775c1;
-    background-color: #3775c1;
+    border: 1px solid #d94d15;
+    background-color: #d94d15;
     color: white;
 }
 
@@ -115,30 +115,33 @@ body {
 .ais-SearchBox-input {
     padding: .9rem 1.7rem .9rem 1.9rem;
 }
-
+.ais-SearchBox-input:hover {
+    border-color: #d94d15;
+    border-style: solid;
+    border-width: 2px;
+}
 /* starter page */
 
 #starter {
     flex: 1;
     padding: 8rem;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
-
-    background-image: url('dbp_logo_small_on_white.svg');
     background-repeat: no-repeat;
     background-size: 80rem;
     background-position: right -25em bottom -22em;
-
     max-width: 2650px;
 }
-
+#contents{
+    margin-bottom: 15rem;
+    margin-left: 2rem;
+}
 #line-1 {
-    font-size: 1.2em;
+    font-size: 10rem;
     letter-spacing: 4px;
-    font-weight: 400;
-    padding: 0.5rem 0;
+    font-weight: 700;
+    color:#d94d15 ;
 }
 
 #line-2 {
@@ -165,14 +168,16 @@ body {
 .starter-searchbar {
     display: flex;
     padding: 1rem 0;
+
 }
 
 #starter-search {
-    height: 48px;
+    height: 47px;
     width: 40em;
     line-height: 1.2rem;
     padding: 0 1.5rem;
-    border: 1px solid #767676;
+    border: 2px solid #d94d15;
+    caret-color: #d94d15;
     font-size: 1.2em;
     font-weight: 300;
     font-family: 'NunitoSans', 'Calibri', 'Arial', 'sans-serif'
@@ -180,7 +185,7 @@ body {
 
 #this-in-runner {
     margin: 0;
-    background-color: #3775c1;
+    background-color: #d94d15;
     color: white;
     cursor: pointer;
     padding: 0.2rem 0.6rem;
@@ -194,12 +199,29 @@ body {
 #or {
     margin: 0.4rem 0 1.2rem;
     font-size: 1.2em;
+    color:#d94d15;
 }
 #all-in-runner {
     font-size: 1.2em;
     height: 50px;
 }
+#logo-container-BR{
+    position: fixed;
+    right: 25px;
+    bottom: 1rem;
 
+}
+#DNA-container {
+    position: fixed;
+    left: 25px;
+    bottom: 2rem;
+    color: black;
+    font-weight: bold;
+    font-size: medium;
+}
+#DNA-footer{
+    display: none;
+}
 /* runner page */
 
 .border-shadow {
@@ -209,7 +231,21 @@ body {
     box-shadow: 0 0 35px rgb(212 212 212);
     margin-bottom: 4em;
 }
-
+.short-line{
+    position: relative;
+    width: 303px;
+    height: 3px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 0;
+    margin-bottom: 8px;
+    background-color: rgba(237, 109, 70, 1);
+}
+.header-seperation-line{
+    width:100%;
+    height: 3px;
+    background-color: rgba(217, 77, 21, 1);
+}
 .header a {
     color: var(--dbp-override-content);
     text-decoration: none;
@@ -246,11 +282,11 @@ body {
 }
 
 .header-top .logo img {
-    width: 240px; /*270px;*/
+    width: 340px; /*270px;*/
 }
 
 .header-top .logo {
-    padding-left: 1rem;
+    padding-left: 0;
     padding-top: 0.4rem;
 /*    padding-left: 6rem; !* 4 *!*/
 }
@@ -330,6 +366,17 @@ body {
     padding-left: 0;
     margin-bottom: 5px;
     font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+.filter-heading-title {
+    width: 80%;
+    background-color: white; /** var(--dbp-override-background); */
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 0;
+    margin-bottom: 8px;
+    font-size: 2rem;
     font-weight: 700;
     cursor: pointer;
 }
@@ -485,7 +532,7 @@ body {
 .ais-Hits-item {
     padding: 20px;
     box-shadow: none;
-    border: 1px solid #767676;
+    border: 1px solid #767675;
     width: calc(25% - 1rem);
 }
 
@@ -932,6 +979,7 @@ footer a {
 
     .header-top .logo img {
         width: 240px;
+
     }
 
     .header-top .logo {

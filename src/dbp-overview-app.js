@@ -104,7 +104,7 @@ export function init(typesenseConfig, searchIndexName, dateFilter, privatePath, 
                 <div class="flex-column">
                     <div class="hit-name">
                         ${item._highlightResult.name.value}
-                        ${item.labs.includes('yes') ? `<img class="labs-img" src="${privatePath}/lab_flask.svg" alt="labs">` : ''}
+                        //${item.labs.includes('yes') ? `<img class="labs-img" src="${privatePath}/lab_flask.svg" alt="labs">` : ''}
                     </div>
                     <div class="hit-description">${item._highlightResult.description.value}</div>
                 </div>
