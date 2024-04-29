@@ -1304,3 +1304,35 @@ footer a {
         margin-bottom: auto;
     }
 }
+/* Additional footer for copyrights and social media accounts*/
+
+footer {
+    text-align: center;
+    color: #ffffff;
+}
+.additional-footer .footer-container{
+    display: flex;
+    justify-content: space-between;
+    background-color: #222120;
+}
+.footer-column{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+}
+.footer-column a {
+    text-decoration: none;
+    color: #ffffff;
+    padding: 0 10px;
+}
+.footer-column:first-child {
+    justify-content: flex-start;
+}
+
+.footer-column:last-child {
+    justify-content: flex-end;
+}
+.copy-right{
+    padding: 15px;
+}
