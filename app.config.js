@@ -9,7 +9,7 @@ export default {
         },
         searchIndexName: 'software-overview',
         daysStillNew: 31,
-        email: 'test@localhost.lan'
+        email: 'hello@digitalblueprint.at'
     },
     local: {
         basePath: '/',
@@ -21,7 +21,7 @@ export default {
         },
         searchIndexName: 'software-overview',
         daysStillNew: 31,
-        email: 'test@localhost.lan'
+        email: 'hello@digitalblueprint.at'
     },
     development: {
         basePath: '/',
@@ -33,7 +33,7 @@ export default {
         },
         searchIndexName: 'software-overview',
         daysStillNew: 31,
-        email: 'eugen.neuber@tugraz.at'
+        email: 'hello@digitalblueprint.at'
     },
     demo: {
         basePath: '/',
