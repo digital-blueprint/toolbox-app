@@ -1,5 +1,4 @@
-import path from 'path';
-import url from 'url';
+import url from 'node:url';
 import {globSync} from 'glob';
 import replace from "rollup-plugin-replace";
 import resolve from '@rollup/plugin-node-resolve';
@@ -20,7 +19,10 @@ import {
     generateTLSConfig,
     getDistPath,
 } from './vendor/toolkit/rollup.utils.js';
+import { createRequire } from "node:module";
+import process from "node:process";
 
+const require = createRequire(import.meta.url);
 let appName = 'dbp-overview-app';
 const pkg = require('./package.json');
 const appEnv = typeof process.env.APP_ENV !== 'undefined' ? process.env.APP_ENV : 'local';
@@ -37,11 +39,6 @@ if (appEnv in appConfig) {
 
 if (watch) {
     config.basePath = '/dist/';
-}
-
-function getOrigin(url) {
-    if (url) return new URL(url).origin;
-    return '';
 }
 
 config.CSP = `default-src 'self' 'unsafe-eval' 'unsafe-inline' \
