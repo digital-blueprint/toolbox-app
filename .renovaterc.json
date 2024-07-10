@@ -10,17 +10,5 @@
         "enabled": false
     },
     "packageRules": [
-        {
-          "matchPackageNames": ["find-cache-dir"],
-          "allowedVersions": "<4"
-        },
-        {
-          "matchPackageNames": ["rollup-plugin-serve"],
-          "allowedVersions": "<3"
-        },
-        {
-          "matchPackageNames": ["eslint"],
-          "allowedVersions": "<9"
-        }
     ]
 }
