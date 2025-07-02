@@ -1,6 +1,6 @@
 import url from 'node:url';
 import {globSync} from 'glob';
-import replace from "rollup-plugin-replace";
+import replace from 'rollup-plugin-replace';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import copy from 'rollup-plugin-copy';
@@ -13,14 +13,9 @@ import del from 'rollup-plugin-delete';
 import emitEJS from 'rollup-plugin-emit-ejs';
 import appConfig from './app.config.js';
 import {getBabelOutputPlugin} from '@rollup/plugin-babel';
-import {
-    getPackagePath,
-    getBuildInfo,
-    generateTLSConfig,
-    getDistPath,
-} from '@dbp-toolkit/dev-utils';
-import { createRequire } from "node:module";
-import process from "node:process";
+import {getPackagePath, getBuildInfo, generateTLSConfig, getDistPath} from '@dbp-toolkit/dev-utils';
+import {createRequire} from 'node:module';
+import process from 'node:process';
 
 const require = createRequire(import.meta.url);
 let appName = 'dbp-overview-app';
@@ -48,10 +43,7 @@ config.CSP = `default-src 'self' 'unsafe-eval' 'unsafe-inline' \
 export default (async () => {
     let privatePath = await getDistPath(pkg.name);
     return {
-        input:
-            appEnv !== 'test'
-                ? ['src/' + appName + '.js']
-                : globSync('test/**/*.js'),
+        input: appEnv !== 'test' ? ['src/' + appName + '.js'] : globSync('test/**/*.js'),
         output: {
             dir: 'dist',
             entryFileNames: '[name].js',
@@ -90,7 +82,7 @@ export default (async () => {
                     typesense: config.typesense,
                     searchIndexName: config.searchIndexName,
                     daysStillNew: config.daysStillNew,
-                    email: config.email
+                    email: config.email,
                 },
             }),
             replace({
@@ -128,7 +120,10 @@ export default (async () => {
             json(),
             urlPlugin({
                 limit: 0,
-                include: ['node_modules/suggestions/**/*.css', 'node_modules/instantsearch.css/**/*.css'],
+                include: [
+                    'node_modules/suggestions/**/*.css',
+                    'node_modules/instantsearch.css/**/*.css',
+                ],
                 emitFiles: true,
                 fileName: 'shared/[name].[hash][extname]',
             }),
@@ -156,10 +151,10 @@ export default (async () => {
                     // },
                     {src: 'assets/manifest.json', dest: 'dist', rename: appName + '.manifest.json'},
                     {src: 'assets/*.metadata.json', dest: 'dist'},
-                //     {
-                //         src: await getPackagePath('@dbp-toolkit/common', 'assets/icons/*.svg'),
-                //         dest: 'dist/' + (await getDistPath('@dbp-toolkit/common', 'icons')),
-                //     },
+                    //     {
+                    //         src: await getPackagePath('@dbp-toolkit/common', 'assets/icons/*.svg'),
+                    //         dest: 'dist/' + (await getDistPath('@dbp-toolkit/common', 'icons')),
+                    //     },
                 ],
             }),
             prodBuild &&

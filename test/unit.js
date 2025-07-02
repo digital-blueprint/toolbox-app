@@ -108,7 +108,13 @@ suite('dbp-overview-app integration', () => {
         const searchIndexName = 'software-overview';
         const daysStillNew = 31;
 
-        let ok = init(typesenseConfig, searchIndexName,{active: false, range: 86400}, '', daysStillNew);
+        let ok = init(
+            typesenseConfig,
+            searchIndexName,
+            {active: false, range: 86400},
+            '',
+            daysStillNew,
+        );
         assert(ok);
     });
 });

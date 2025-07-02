@@ -1,4 +1,4 @@
-import instantsearch from "instantsearch.js";
+import instantsearch from 'instantsearch.js';
 import {
     searchBox,
     configure,
@@ -15,12 +15,12 @@ import TypesenseInstantSearchAdapter from 'typesense-instantsearch-adapter';
 // eslint-disable-next-line no-unused-vars
 import MicroModal from './micromodal.es';
 
-import { licenses } from '../assets/licenses/spdx.json';
+import {licenses} from '../assets/licenses/spdx.json';
 const spdxLicenses = licenses;
 
 // helper functions
 function formatLicense(license) {
-    const spdxInfo = spdxLicenses.find(item => item.licenseId === license);
+    const spdxInfo = spdxLicenses.find((item) => item.licenseId === license);
     if (spdxInfo === undefined) {
         console.log('license "' + license + '" not found.');
         return license;
@@ -37,19 +37,29 @@ function blueprint2fancy(blueprint) {
     return blueprint.replace(')', '').split('(')[1] || 'N/A';
 }
 function hierarchicalMenuIdFromValue(value) {
-    return 'hierarchical-blueprint-item-'
-        + value.toLowerCase()
+    return (
+        'hierarchical-blueprint-item-' +
+        value
+            .toLowerCase()
             .replaceAll(' ', '-')
             .replaceAll('>', '-')
             .replaceAll('(', '--')
-            .replaceAll(')', '');
+            .replaceAll(')', '')
+    );
 }
 
 const div = document.getElementById('main-section');
 const rect = div ? div.getBoundingClientRect() : {top: 100};
 const yTop = rect.top + window.scrollY;
 
-export function init(typesenseConfig, searchIndexName, dateFilter, privatePath, searchString='', daysStillNew=31) {
+export function init(
+    typesenseConfig,
+    searchIndexName,
+    dateFilter,
+    privatePath,
+    searchString = '',
+    daysStillNew = 31,
+) {
     const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
         server: {
             apiKey: typesenseConfig.key, // Be sure to use an API key that only allows searches, in production
@@ -62,7 +72,8 @@ export function init(typesenseConfig, searchIndexName, dateFilter, privatePath, 
             ],
         },
         additionalSearchParameters: {
-            query_by: "name,description,target_audience,document_type,content_type,maintained_by,used_programming_languages",
+            query_by:
+                'name,description,target_audience,document_type,content_type,maintained_by,used_programming_languages',
         },
     });
     const searchClient = typesenseInstantsearchAdapter.searchClient;
@@ -80,17 +91,25 @@ export function init(typesenseConfig, searchIndexName, dateFilter, privatePath, 
         configure({
             hitsPerPage: 12,
             numericFilters: [
-                'release_date >= ' + (dateFilter.active ? Math.floor(Date.now()/1000 - dateFilter.range) : 1546300800 /* 2019-01-01 00:00:00 */)
-            ]
+                'release_date >= ' +
+                    (dateFilter.active
+                        ? Math.floor(Date.now() / 1000 - dateFilter.range)
+                        : 1546300800) /* 2019-01-01 00:00:00 */,
+            ],
         }),
         hits({
             container: '#hits',
             sort: ['blueprint'],
             templates: {
                 item(item) {
-                    const d = new Date(item.release_date*1000);
-                    const formattedTime = d.getFullYear() + '-' + ('0' + (d.getMonth()+1)).substr(-2) + '-'  + ('0' + d.getDate()).substr(-2);
-                    const isNew = ((new Date()).valueOf() - daysStillNew*86400000) < d.valueOf();
+                    const d = new Date(item.release_date * 1000);
+                    const formattedTime =
+                        d.getFullYear() +
+                        '-' +
+                        ('0' + (d.getMonth() + 1)).substr(-2) +
+                        '-' +
+                        ('0' + d.getDate()).substr(-2);
+                    const isNew = new Date().valueOf() - daysStillNew * 86400000 < d.valueOf();
 
                     // slider
                     const MAXITEMSVISIBLE = 3;
@@ -114,21 +133,26 @@ export function init(typesenseConfig, searchIndexName, dateFilter, privatePath, 
                 <!--
                     <div class="hit-document-type">
                         <div>Categor${item.document_type.length > 1 ? 'ies' : 'y'}:</div>
-                        ${item._highlightResult.document_type.map(
-                        a => `<div class="type ${cssClassFromValue(a.value)}"
+                        ${item._highlightResult.document_type
+                            .map(
+                                (a) => `<div class="type ${cssClassFromValue(a.value)}"
                                    onclick="event.stopPropagation();
                                             clearAllFilter(() => clickElementById('document-type-${a.value}'));"
-                                  >${a.value}</div>`
-                    ).join('')}
+                                  >${a.value}</div>`,
+                            )
+                            .join('')}
                     </div>
                 -->
                     <div class="hit-content-type">
                         <div>Type${item.content_type.length > 1 ? 's' : ''}:</div>
-                        ${item._highlightResult.content_type.map(
-                        a => `<div class="type ${cssClassFromValue(a.value)}"
+                        ${item._highlightResult.content_type
+                            .map(
+                                (a) => `<div class="type ${cssClassFromValue(a.value)}"
                                    onclick="event.stopPropagation();
                                             clearAllFilter(() => clickElementById('content-type-${a.value}'));"
-                       >${a.value}</div>`).join('')}
+                       >${a.value}</div>`,
+                            )
+                            .join('')}
                     </div>
                 </div>
             </div>
@@ -195,10 +219,12 @@ export function init(typesenseConfig, searchIndexName, dateFilter, privatePath, 
                                 <img src="${privatePath}/chevron-left.svg" alt="left">                         
                             </div>
                             <nav class="modal-nav">
-                                ${item._highlightResult.blueprint.map(
-                                    a => {
+                                ${item._highlightResult.blueprint
+                                    .map((a) => {
                                         const id1 = hierarchicalMenuIdFromValue(a.value);
-                                        const id2 = hierarchicalMenuIdFromValue(a.value.split('(')[0].trim());
+                                        const id2 = hierarchicalMenuIdFromValue(
+                                            a.value.split('(')[0].trim(),
+                                        );
                                         return `<div class="nav-item nav-item-${item.id} ${slideIndex++ < MAXITEMSVISIBLE ? '' : 'hidden'}"
                                         onclick="
                                             clearAllFilter( () => {
@@ -249,8 +275,8 @@ export function init(typesenseConfig, searchIndexName, dateFilter, privatePath, 
                                                 ${blueprint2topic(a.value)}
                                             </div>
                                     </div>`;
-                                    }
-                                ).join('')}
+                                    })
+                                    .join('')}
                             </nav>
                           <div class="right-paddle paddle" id="right-paddle-${item.id}">
                               <img src="${privatePath}/chevron-right.svg" alt="right">                         
@@ -260,44 +286,53 @@ export function init(typesenseConfig, searchIndexName, dateFilter, privatePath, 
                         <div class="modal-section-title">ADDITIONAL INFO</div>
                         <div class="hit-license">
                             <div>License:</div>
-                            ${item.license.map(l => '<span>' + formatLicense(l) + '</span>').join('')}
+                            ${item.license.map((l) => '<span>' + formatLicense(l) + '</span>').join('')}
                         </div>
                         <div class="hit-types">
                             <div class="hit-types-subtypes">
                                 <div class="hit-document-type">
                                     <div>Categor${item.document_type.length > 1 ? 'ies' : 'y'}:</div>
-                                    ${item._highlightResult.document_type.map(
-                                        a => `<div class="type ${cssClassFromValue(a.value)}"
+                                    ${item._highlightResult.document_type
+                                        .map(
+                                            (a) => `<div class="type ${cssClassFromValue(a.value)}"
                                                    onclick="clearAllFilter(() => {
                                                             clickElementById('document-type-${a.value}');
                                                             MicroModal.close('detail-${item.id}');
                                                             window.scrollTo(0, ${yTop});
                                                             });"
-                                            >${a.value}</div>`).join('')}
+                                            >${a.value}</div>`,
+                                        )
+                                        .join('')}
                                 </div>
                                 <div class="hit-content-type">
                                     <div>Type${item.content_type.length > 1 ? 's' : ''}:</div>
-                                    ${item._highlightResult.content_type.map(
-                                        a => `<div class="type ${cssClassFromValue(a.value)}"
+                                    ${item._highlightResult.content_type
+                                        .map(
+                                            (a) => `<div class="type ${cssClassFromValue(a.value)}"
                                                    onclick="clearAllFilter(() => {
                                                             clickElementById('content-type-${a.value}');
                                                             MicroModal.close('detail-${item.id}');
                                                             window.scrollTo(0, ${yTop});
                                                             });"
-                                           >${a.value}</div>`).join('')}
+                                           >${a.value}</div>`,
+                                        )
+                                        .join('')}
                                 </div>
                             </div>
                         </div>
                         <div class="hit-used-programming-languages">
                             <div>Used programming languages:</div>
-                            ${item._highlightResult.used_programming_languages.map(
-                                a => `<div class="type ${cssClassFromValue(a.value)}"
+                            ${item._highlightResult.used_programming_languages
+                                .map(
+                                    (a) => `<div class="type ${cssClassFromValue(a.value)}"
                                            onclick="clearAllFilter(() => {
                                                     clickElementById('prog-lang-${a.value}');
                                                     MicroModal.close('detail-${item.id}');
                                                     window.scrollTo(0, ${yTop});
                                                     });"
-                                    >${a.value}</div>`).join('')}
+                                    >${a.value}</div>`,
+                                )
+                                .join('')}
                         </div>
                         <div class="modal-separator"></div>
                         <div class="modal-section-title">LINKS</div>
@@ -324,9 +359,10 @@ export function init(typesenseConfig, searchIndexName, dateFilter, privatePath, 
             container: '#targetaudience-list',
             attribute: 'target_audience',
             transformItems(items) {
-                return items.map(item => ({
+                return items.map((item) => ({
                     ...item,
-                    highlighted: item.highlighted.charAt(0).toUpperCase() + item.highlighted.slice(1),
+                    highlighted:
+                        item.highlighted.charAt(0).toUpperCase() + item.highlighted.slice(1),
                 }));
             },
             templates: {
@@ -340,7 +376,7 @@ export function init(typesenseConfig, searchIndexName, dateFilter, privatePath, 
                                 <span class="ais-RefinementList-count">(${item.count})</span>
                             </label>
                         </div>`;
-                }
+                },
             },
         }),
         // refinementList({
@@ -369,15 +405,12 @@ export function init(typesenseConfig, searchIndexName, dateFilter, privatePath, 
         // }),
         hierarchicalMenu({
             container: '#blueprint-menu',
-            attributes: [
-                'hierarchicalBlueprints.lvl0',
-                'hierarchicalBlueprints.lvl1',
-            ],
+            attributes: ['hierarchicalBlueprints.lvl0', 'hierarchicalBlueprints.lvl1'],
             showMore: true,
             limit: 8, // TODO increase default display count?
             showMoreLimit: 20, // TODO discuss this hard limit without further refinements
             cssClasses: {
-                "showMore": ["HierarchicalMenu-showMore"]
+                showMore: ['HierarchicalMenu-showMore'],
             },
             templates: {
                 item(item) {
@@ -405,7 +438,7 @@ export function init(typesenseConfig, searchIndexName, dateFilter, privatePath, 
         currentRefinements({
             container: '#current-refinements',
             cssClasses: {
-                list: ['flex']
+                list: ['flex'],
             },
             transformItems: function (items) {
                 if (items.length <= 0) {
@@ -414,13 +447,17 @@ export function init(typesenseConfig, searchIndexName, dateFilter, privatePath, 
                         button.classList.add('hidden');
                     }
                 }
-                return items.map(item => {
+                return items.map((item) => {
                     if (item.refinements.length > 0) {
-                        document.getElementById('current-refinements-list-and-button').classList.remove('hidden');
+                        document
+                            .getElementById('current-refinements-list-and-button')
+                            .classList.remove('hidden');
                     } else {
-                        document.getElementById('current-refinements-list-and-button').classList.add('hidden');
+                        document
+                            .getElementById('current-refinements-list-and-button')
+                            .classList.add('hidden');
                     }
-                    item.refinements = item.refinements.map(i => {
+                    item.refinements = item.refinements.map((i) => {
                         const nameParts = i.value.split('(');
                         i.label = nameParts.shift();
 
@@ -442,7 +479,7 @@ export function init(typesenseConfig, searchIndexName, dateFilter, privatePath, 
                            </span>`
                         : '';
                 },
-            }
+            },
         }),
         refinementList({
             container: '#document-type-list',
@@ -458,7 +495,7 @@ export function init(typesenseConfig, searchIndexName, dateFilter, privatePath, 
                                 <span class="ais-RefinementList-count">(${item.count})</span>
                             </label>
                         </div>`;
-                }
+                },
             },
         }),
         refinementList({
@@ -475,7 +512,7 @@ export function init(typesenseConfig, searchIndexName, dateFilter, privatePath, 
                                 <span class="ais-RefinementList-count">(${item.count})</span>
                             </label>
                         </div>`;
-                }
+                },
             },
         }),
         refinementList({
@@ -492,14 +529,14 @@ export function init(typesenseConfig, searchIndexName, dateFilter, privatePath, 
                                 <span class="ais-RefinementList-count">(${item.count})</span>
                             </label>
                         </div>`;
-                }
+                },
             },
         }),
         refinementList({
             container: '#license-list',
             attribute: 'license',
             transformItems(items) {
-                return items.map(item => ({
+                return items.map((item) => ({
                     ...item,
                     highlighted: item.highlighted.replaceAll('-', ' '),
                 }));
@@ -515,7 +552,7 @@ export function init(typesenseConfig, searchIndexName, dateFilter, privatePath, 
                                 <span class="ais-RefinementList-count">(${item.count})</span>
                             </label>
                         </div>`;
-                }
+                },
             },
         }),
         refinementList({
@@ -532,7 +569,7 @@ export function init(typesenseConfig, searchIndexName, dateFilter, privatePath, 
                                 <span class="ais-RefinementList-count">(${item.count})</span>
                             </label>
                         </div>`;
-                }
+                },
             },
         }),
         refinementList({
@@ -549,16 +586,16 @@ export function init(typesenseConfig, searchIndexName, dateFilter, privatePath, 
                                 <span class="ais-RefinementList-count">(${item.count})</span>
                             </label>
                         </div>`;
-                }
+                },
             },
         }),
         stats({
-            container: "#stats",
+            container: '#stats',
             templates: {
                 body(hit) {
                     return `${hit.nbHits} results found`; // in ${hit.processingTimeMS}ms`;
-                }
-            }
+                },
+            },
         }),
         pagination({
             container: '#pagination',

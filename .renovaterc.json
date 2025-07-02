@@ -9,6 +9,5 @@
     "docker": {
         "enabled": false
     },
-    "packageRules": [
-    ]
+    "packageRules": []
 }

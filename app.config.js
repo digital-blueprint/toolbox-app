@@ -9,7 +9,7 @@ export default {
         },
         searchIndexName: 'software-overview',
         daysStillNew: 31,
-        email: 'hello@digitalblueprint.at'
+        email: 'hello@digitalblueprint.at',
     },
     local: {
         basePath: '/',
@@ -21,7 +21,7 @@ export default {
         },
         searchIndexName: 'software-overview',
         daysStillNew: 31,
-        email: 'hello@digitalblueprint.at'
+        email: 'hello@digitalblueprint.at',
     },
     development: {
         basePath: '/',
@@ -33,7 +33,7 @@ export default {
         },
         searchIndexName: 'software-overview',
         daysStillNew: 31,
-        email: 'hello@digitalblueprint.at'
+        email: 'hello@digitalblueprint.at',
     },
     demo: {
         basePath: '/',
@@ -45,7 +45,7 @@ export default {
         },
         searchIndexName: 'software-overview',
         daysStillNew: 31,
-        email: 'hello@digitalblueprint.at'
+        email: 'hello@digitalblueprint.at',
     },
     production: {
         basePath: '/',
@@ -57,7 +57,7 @@ export default {
         },
         searchIndexName: 'software-overview',
         daysStillNew: 31,
-        email: 'hello@digitalblueprint.at'
+        email: 'hello@digitalblueprint.at',
     },
     production_test: {
         basePath: '/',
@@ -69,6 +69,6 @@ export default {
         },
         searchIndexName: 'software-overview',
         daysStillNew: 31,
-        email: 'hello@digitalblueprint.at'
+        email: 'hello@digitalblueprint.at',
     },
 };
