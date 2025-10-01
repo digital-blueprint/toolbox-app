@@ -60,18 +60,6 @@ jobs:
           node-version: 22
           cache: 'npm'
 
-#      - name: Publish to NPM
-#        if: github.ref == 'refs/heads/main'
-#        env:
-#          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-#        run: |
-#          # https://www.npmjs.com/settings/dbp-deploy/tokens
-#          # NPM_TOKEN needs to be a "Publish" token with 2FA disabled!
-#          echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > ~/.npmrc
-#          npm ci
-#          npm run build
-#          npm run publish
-
       - name: Deploy and wait for completion
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/demo' || github.ref == 'refs/heads/production'
         uses: digital-blueprint/gitlab-pipeline-trigger-action@v1
