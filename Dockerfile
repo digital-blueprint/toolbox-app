@@ -1,4 +1,4 @@
-FROM node:20-alpine as node
+FROM node:22-alpine AS node
 RUN apk add --no-cache git
 ADD . /build
 WORKDIR /build

@@ -12,6 +12,10 @@ import {
 } from 'instantsearch.js/es/widgets';
 import TypesenseInstantSearchAdapter from 'typesense-instantsearch-adapter';
 
+// rollup and rolldown resolve the import differently
+let TypesenseInstantSearchAdapterClass =
+    TypesenseInstantSearchAdapter.default ?? TypesenseInstantSearchAdapter;
+
 // eslint-disable-next-line no-unused-vars
 import MicroModal from './micromodal.es';
 
@@ -60,7 +64,7 @@ export function init(
     searchString = '',
     daysStillNew = 31,
 ) {
-    const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
+    const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapterClass({
         server: {
             apiKey: typesenseConfig.key, // Be sure to use an API key that only allows searches, in production
             nodes: [

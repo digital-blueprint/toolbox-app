@@ -38,6 +38,7 @@
         "playwright": "^1.34.0",
         "playwright-core": "^1.32.3",
         "prettier": "^3.0.0",
+        "rolldown": "^1.0.0-beta.42",
         "rollup": "^4.0.0",
         "rollup-plugin-copy": "^3.3.0",
         "rollup-plugin-delete": "^3.0.0",
@@ -63,11 +64,11 @@
         "prettier": "prettier \"**/*.{js,json,ts}\" --check",
         "i18next:fix": "i18next-cli extract",
         "i18next": "i18next-cli extract --ci --dry-run",
-        "build": "rollup -c",
-        "watch": "rollup -c --watch",
+        "build": "rolldown -c rollup.config.js",
+        "watch": "rolldown -c rollup.config.js --watch",
         "watch-local": "npm run watch",
-        "watch-full": "rollup -c --watch --environment FORCE_FULL",
-        "test": "rollup -c --environment APP_ENV:test && karma start karma.conf.cjs --singleRun",
-        "test-full": "rollup -c --environment FORCE_FULL,APP_ENV:test && karma start karma.conf.cjs --singleRun"
+        "watch-full": "rolldown -c rollup.config.js --watch --environment FORCE_FULL",
+        "test": "rolldown -c rollup.config.js --environment APP_ENV:test && karma start karma.conf.cjs --singleRun",
+        "test-full": "rolldown -c rollup.config.js --environment FORCE_FULL,APP_ENV:test && karma start karma.conf.cjs --singleRun"
     }
 }

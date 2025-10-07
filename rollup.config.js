@@ -23,6 +23,7 @@ const pkg = require('./package.json');
 const appEnv = typeof process.env.APP_ENV !== 'undefined' ? process.env.APP_ENV : 'local';
 const watch = process.env.ROLLUP_WATCH === 'true';
 const prodBuild = (!watch && appEnv !== 'test') || process.env.FORCE_FULL !== undefined;
+let isRolldown = process.argv.some((arg) => arg.includes('rolldown'));
 
 let config;
 if (appEnv in appConfig) {
@@ -47,12 +48,11 @@ export default (async () => {
         output: {
             dir: 'dist',
             entryFileNames: '[name].js',
-            chunkFileNames: 'shared/[name].[hash].[format].js',
+            chunkFileNames: 'shared/[name].[hash].js',
             format: 'esm',
             sourcemap: true,
         },
         treeshake: prodBuild,
-        preserveEntrySignatures: true,
         onwarn: function (warning, warn) {
             // ignore chai warnings
             if (warning.code === 'CIRCULAR_DEPENDENCY' && warning.message.includes('chai')) {
@@ -90,11 +90,12 @@ export default (async () => {
                 // Otherwise use 'production'
                 'process.env.NODE_ENV': JSON.stringify('production'),
             }),
-            resolve({
-                browser: true,
-                preferBuiltins: true,
-                exportConditions: !prodBuild ? ['development'] : [],
-            }),
+            !isRolldown &&
+                resolve({
+                    browser: true,
+                    preferBuiltins: true,
+                    exportConditions: !prodBuild ? ['development'] : [],
+                }),
             prodBuild &&
                 license({
                     banner: {
@@ -114,10 +115,11 @@ export default (async () => {
                         },
                     },
                 }),
-            commonjs({
-                include: 'node_modules/**',
-            }),
-            json(),
+            !isRolldown &&
+                commonjs({
+                    include: 'node_modules/**',
+                }),
+            !isRolldown && json(),
             urlPlugin({
                 limit: 0,
                 include: [
