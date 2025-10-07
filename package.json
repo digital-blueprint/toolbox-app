@@ -28,6 +28,7 @@
         "eslint-plugin-jsdoc": "^60.0.0",
         "glob": "^11.0.0",
         "globals": "^16.0.0",
+        "i18next-cli": "^1.9.0",
         "karma": "^6.0.0",
         "karma-chrome-launcher": "^3.1.0",
         "karma-firefox-launcher": "^2.1.0",
@@ -43,8 +44,7 @@
         "rollup-plugin-emit-ejs": "^3.1.0",
         "rollup-plugin-license": "^3.0.0",
         "rollup-plugin-replace": "^2.2.0",
-        "rollup-plugin-serve": "^3.0.0",
-        "i18next-parser": "^9.3.0"
+        "rollup-plugin-serve": "^3.0.0"
     },
     "dependencies": {
         "@babel/runtime": "^7.17.9",
@@ -61,8 +61,8 @@
         "eslint": "eslint \"**/*.{js,ts}\"",
         "prettier:fix": "prettier \"**/*.{js,json,ts}\" --write",
         "prettier": "prettier \"**/*.{js,json,ts}\" --check",
-        "i18next:fix": "i18next --silent",
-        "i18next": "i18next --fail-on-update --silent",
+        "i18next:fix": "i18next-cli extract",
+        "i18next": "i18next-cli extract --ci --dry-run",
         "build": "rollup -c",
         "watch": "rollup -c --watch",
         "watch-local": "npm run watch",
