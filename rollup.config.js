@@ -1,5 +1,5 @@
 import url from 'node:url';
-import {globSync} from 'glob';
+import {globSync} from 'node:fs';
 import replace from 'rollup-plugin-replace';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
