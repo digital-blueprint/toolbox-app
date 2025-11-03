@@ -1,13 +1,8 @@
 import url from 'node:url';
 import {globSync} from 'node:fs';
-import replace from 'rollup-plugin-replace';
-import resolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
-import terser from '@rollup/plugin-terser';
-import json from '@rollup/plugin-json';
+import {replacePlugin} from 'rolldown/experimental';
 import serve from 'rollup-plugin-serve';
 import license from 'rollup-plugin-license';
-import del from 'rollup-plugin-delete';
 import emitEJS from 'rollup-plugin-emit-ejs';
 import appConfig from './app.config.js';
 import {getBabelOutputPlugin} from '@rollup/plugin-babel';
@@ -27,7 +22,7 @@ const pkg = require('./package.json');
 const appEnv = typeof process.env.APP_ENV !== 'undefined' ? process.env.APP_ENV : 'local';
 const watch = process.env.ROLLUP_WATCH === 'true';
 const prodBuild = (!watch && appEnv !== 'test') || process.env.FORCE_FULL !== undefined;
-let isRolldown = process.argv.some((arg) => arg.includes('rolldown'));
+let nodeEnv = prodBuild ? 'production' : 'development';
 
 let config;
 if (appEnv in appConfig) {
@@ -55,6 +50,8 @@ export default (async () => {
             chunkFileNames: 'shared/[name].[hash].js',
             format: 'esm',
             sourcemap: true,
+            minify: prodBuild,
+            cleanDir: true,
         },
         treeshake: prodBuild,
         onwarn: function (warning, warn) {
@@ -66,9 +63,6 @@ export default (async () => {
             warn(warning);
         },
         plugins: [
-            del({
-                targets: 'dist/*',
-            }),
             emitEJS({
                 src: 'assets',
                 include: ['**/*.ejs', '**/.*.ejs'],
@@ -89,17 +83,14 @@ export default (async () => {
                     email: config.email,
                 },
             }),
-            replace({
-                // If you would like DEV messages, specify 'development'
-                // Otherwise use 'production'
-                'process.env.NODE_ENV': JSON.stringify('production'),
-            }),
-            !isRolldown &&
-                resolve({
-                    browser: true,
-                    preferBuiltins: true,
-                    exportConditions: !prodBuild ? ['development'] : [],
-                }),
+            replacePlugin(
+                {
+                    'process.env.NODE_ENV': JSON.stringify(nodeEnv),
+                },
+                {
+                    preventAssignment: true,
+                },
+            ),
             prodBuild &&
                 license({
                     banner: {
@@ -119,11 +110,6 @@ export default (async () => {
                         },
                     },
                 }),
-            !isRolldown &&
-                commonjs({
-                    include: 'node_modules/**',
-                }),
-            !isRolldown && json(),
             await assetPlugin(pkg.name, 'dist', {
                 copyTargets: [
                     {src: 'assets/silent-check-sso.html', dest: 'dist'},
@@ -160,7 +146,6 @@ export default (async () => {
                         ],
                     ],
                 }),
-            prodBuild ? terser() : false,
             watch
                 ? serve({
                       contentBase: '.',
