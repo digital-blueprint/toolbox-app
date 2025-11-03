@@ -3,17 +3,21 @@ import {globSync} from 'node:fs';
 import replace from 'rollup-plugin-replace';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-import copy from 'rollup-plugin-copy';
 import terser from '@rollup/plugin-terser';
 import json from '@rollup/plugin-json';
 import serve from 'rollup-plugin-serve';
-import urlPlugin from '@rollup/plugin-url';
 import license from 'rollup-plugin-license';
 import del from 'rollup-plugin-delete';
 import emitEJS from 'rollup-plugin-emit-ejs';
 import appConfig from './app.config.js';
 import {getBabelOutputPlugin} from '@rollup/plugin-babel';
-import {getPackagePath, getBuildInfo, generateTLSConfig, getDistPath} from '@dbp-toolkit/dev-utils';
+import {
+    getPackagePath,
+    getBuildInfo,
+    generateTLSConfig,
+    getDistPath,
+    assetPlugin,
+} from '@dbp-toolkit/dev-utils';
 import {createRequire} from 'node:module';
 import process from 'node:process';
 
@@ -120,17 +124,8 @@ export default (async () => {
                     include: 'node_modules/**',
                 }),
             !isRolldown && json(),
-            urlPlugin({
-                limit: 0,
-                include: [
-                    'node_modules/suggestions/**/*.css',
-                    'node_modules/instantsearch.css/**/*.css',
-                ],
-                emitFiles: true,
-                fileName: 'shared/[name].[hash][extname]',
-            }),
-            copy({
-                targets: [
+            await assetPlugin(pkg.name, 'dist', {
+                copyTargets: [
                     {src: 'assets/silent-check-sso.html', dest: 'dist'},
                     {src: 'assets/htaccess-shared', dest: 'dist/shared/', rename: '.htaccess'},
                     {src: 'assets/*.css', dest: 'dist/' + (await getDistPath(pkg.name))},
@@ -143,20 +138,8 @@ export default (async () => {
                         src: await getPackagePath('instantsearch.css', 'themes/algolia-min.css'),
                         dest: 'dist/',
                     },
-                    // {
-                    //     src: await getPackagePath('@dbp-toolkit/common', 'src/spinner.js'),
-                    //     dest: 'dist/' + (await getDistPath(pkg.name)),
-                    // },
-                    // {
-                    //     src: await getPackagePath('@dbp-toolkit/common', 'misc/browser-check.js'),
-                    //     dest: 'dist/' + (await getDistPath(pkg.name)),
-                    // },
                     {src: 'assets/manifest.json', dest: 'dist', rename: appName + '.manifest.json'},
                     {src: 'assets/*.metadata.json', dest: 'dist'},
-                    //     {
-                    //         src: await getPackagePath('@dbp-toolkit/common', 'assets/icons/*.svg'),
-                    //         dest: 'dist/' + (await getDistPath('@dbp-toolkit/common', 'icons')),
-                    //     },
                 ],
             }),
             prodBuild &&
