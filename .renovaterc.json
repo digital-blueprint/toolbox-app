@@ -10,5 +10,12 @@
     "docker": {
         "enabled": false
     },
-    "packageRules": []
+    "internalChecksFilter": "strict",
+    "minimumReleaseAge": "5 days",
+    "packageRules": [
+        {
+            "matchUpdateTypes": ["lockFileMaintenance"],
+            "minimumReleaseAge": null
+        }
+    ]
 }
