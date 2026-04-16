@@ -147,12 +147,13 @@ export default (async () => {
                         ],
                     ],
                 }),
-            sbom({
-                includeWellKnown: false,
-                outDir: '.',
-                outFilename: `${appName}.cdx`,
-                autodetect: false,
-            }),
+            prodBuild &&
+                sbom({
+                    includeWellKnown: false,
+                    outDir: '.',
+                    outFilename: `${appName}.cdx`,
+                    autodetect: false,
+                }),
             watch
                 ? serve({
                       contentBase: '.',
