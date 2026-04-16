@@ -6,6 +6,7 @@ import license from 'rollup-plugin-license';
 import emitEJS from 'rollup-plugin-emit-ejs';
 import appConfig from './app.config.js';
 import {getBabelOutputPlugin} from '@rollup/plugin-babel';
+import sbom from 'rollup-plugin-sbom';
 import {
     getPackagePath,
     getBuildInfo,
@@ -146,6 +147,12 @@ export default (async () => {
                         ],
                     ],
                 }),
+            sbom({
+                includeWellKnown: false,
+                outDir: '.',
+                outFilename: `${appName}.cdx`,
+                autodetect: false,
+            }),
             watch
                 ? serve({
                       contentBase: '.',
