@@ -15,7 +15,7 @@ See [DBP Overview Feeder](https://gitlab.tugraz.at/vpu-private/dbp-overview/dbp-
 
 ```bash
 # get the source
-git clone git@github.com/digital-blueprint/toolbox
+git clone git@github.com:digital-blueprint/toolbox-app.git
 cd toolbox
 git submodule update --init
 
