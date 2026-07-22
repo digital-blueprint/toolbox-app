@@ -10,9 +10,10 @@ import sbom from 'rollup-plugin-sbom';
 import {
     getPackagePath,
     getBuildInfo,
-    generateTLSConfig,
     getDistPath,
     assetPlugin,
+    getPort,
+    getResolveModules,
 } from '@dbp-toolkit/dev-utils';
 import {createRequire} from 'node:module';
 import process from 'node:process';
@@ -53,6 +54,9 @@ export default (async () => {
             sourcemap: true,
             minify: prodBuild,
             cleanDir: true,
+        },
+        resolve: {
+            modules: getResolveModules(),
         },
         treeshake: prodBuild,
         onwarn: function (warning, warn) {
@@ -156,9 +160,8 @@ export default (async () => {
                 ? serve({
                       contentBase: '.',
                       host: '127.0.0.1',
-                      port: 8009,
+                      port: await getPort('127.0.0.1', [8001, 8004]),
                       historyApiFallback: config.basePath + appName + '.html',
-                      https: await generateTLSConfig(),
                       headers: {
                           'Content-Security-Policy': config.CSP,
                       },
