@@ -5,7 +5,6 @@ import serve from 'rollup-plugin-serve';
 import license from 'rollup-plugin-license';
 import emitEJS from 'rollup-plugin-emit-ejs';
 import appConfig from './app.config.js';
-import {getBabelOutputPlugin} from '@rollup/plugin-babel';
 import sbom from 'rollup-plugin-sbom';
 import {
     getPackagePath,
@@ -45,6 +44,9 @@ config.CSP = `default-src 'self' 'unsafe-eval' 'unsafe-inline' \
 export default (async () => {
     let privatePath = await getDistPath(pkg.name);
     return {
+        transform: {
+            target: prodBuild ? ['chrome106', 'firefox110', 'safari16'] : 'esnext',
+        },
         input: appEnv !== 'test' ? ['src/' + appName + '.js'] : globSync('test/**/*.js'),
         output: {
             dir: 'dist',
@@ -133,22 +135,6 @@ export default (async () => {
                     {src: 'assets/*.metadata.json', dest: 'dist'},
                 ],
             }),
-            prodBuild &&
-                getBabelOutputPlugin({
-                    compact: false,
-                    presets: [
-                        [
-                            '@babel/preset-env',
-                            {
-                                modules: false,
-                                shippedProposals: true,
-                                targets: {
-                                    esmodules: true,
-                                },
-                            },
-                        ],
-                    ],
-                }),
             prodBuild &&
                 sbom({
                     includeWellKnown: false,
