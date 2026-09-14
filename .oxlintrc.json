@@ -1,0 +1,15 @@
+{
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "plugins": ["jsdoc"],
+    "categories": {
+        "correctness": "error"
+    },
+    "env": {
+        "browser": true,
+        "mocha": true
+    },
+    "ignorePatterns": ["dist/**", "vendor/**", "src/micromodal.es.js"],
+    "rules": {
+        "no-unused-vars": ["error", {"args": "none"}]
+    }
+}

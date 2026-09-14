@@ -16,7 +16,7 @@ import TypesenseInstantSearchAdapter from 'typesense-instantsearch-adapter';
 let TypesenseInstantSearchAdapterClass =
     TypesenseInstantSearchAdapter.default ?? TypesenseInstantSearchAdapter;
 
-// eslint-disable-next-line no-unused-vars
+// oxlint-disable-next-line no-unused-vars
 import MicroModal from './micromodal.es';
 
 import {licenses} from '../assets/licenses/spdx.json';
