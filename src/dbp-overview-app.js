@@ -16,6 +16,40 @@ import TypesenseInstantSearchAdapter from 'typesense-instantsearch-adapter';
 import MicroModal from './micromodal.es';
 
 import {licenses} from '../assets/licenses/spdx.json';
+
+/** @typedef {import('instantsearch.js').HitAttributeHighlightResult} HighlightResult */
+/**
+ * @typedef {{
+ *     id: string,
+ *     release_date: number,
+ *     release_version?: string,
+ *     link_icon?: string,
+ *     link_repo?: string,
+ *     link_doc?: string,
+ *     link_demo?: string,
+ *     link_changelog?: string,
+ *     contact_email: string,
+ *     labs: string,
+ *     maintained_by: string,
+ *     blueprint: string[],
+ *     content_type: string[],
+ *     document_type: string[],
+ *     license: string[],
+ *     sort: string | number,
+ *     used_programming_languages: string[],
+ *     _highlightResult: {
+ *         name: HighlightResult,
+ *         description: HighlightResult,
+ *         blueprint: HighlightResult[],
+ *         content_type: HighlightResult[],
+ *         document_type: HighlightResult[],
+ *         used_programming_languages: HighlightResult[]
+ *     }
+ * }} OverviewHit
+ */
+/** @typedef {import('instantsearch.js').Hit<OverviewHit>} SearchHit */
+/** @typedef {import('algoliasearch-helper').PlainSearchParameters} PlainSearchParameters */
+
 const spdxLicenses = licenses;
 
 // helper functions
@@ -83,25 +117,32 @@ export function init(
         indexName: searchIndexName,
     });
 
+    /** @type {PlainSearchParameters & {hitsPerPage: number, numericFilters: string[]}} */
+    const initialSearchParameters = {
+        hitsPerPage: 12,
+        numericFilters: [
+            'release_date >= ' +
+                (dateFilter.active
+                    ? Math.floor(Date.now() / 1000 - dateFilter.range)
+                    : 1546300800) /* 2019-01-01 00:00:00 */,
+        ],
+    };
+    /** @type {PlainSearchParameters & {facets: string[], maxValuesPerFacet: number}} */
+    const facetSearchParameters = {
+        facets: [],
+        maxValuesPerFacet: 20,
+    };
+
     search.addWidgets([
         searchBox({
             container: '#searchbox',
             autofocus: false,
         }),
-        configure({
-            hitsPerPage: 12,
-            numericFilters: [
-                'release_date >= ' +
-                    (dateFilter.active
-                        ? Math.floor(Date.now() / 1000 - dateFilter.range)
-                        : 1546300800) /* 2019-01-01 00:00:00 */,
-            ],
-        }),
+        configure(initialSearchParameters),
         hits({
             container: '#hits',
-            sort: ['blueprint'],
             templates: {
-                item(item) {
+                item(/** @type {SearchHit} */ item) {
                     const d = new Date(item.release_date * 1000);
                     const formattedTime =
                         d.getFullYear() +
@@ -351,18 +392,16 @@ export function init(
                 },
             },
         }),
-        configure({
-            facets: [],
-            maxValuesPerFacet: 20,
-        }),
+        configure(facetSearchParameters),
         refinementList({
             container: '#targetaudience-list',
             attribute: 'target_audience',
             transformItems(items) {
                 return items.map((item) => ({
                     ...item,
-                    highlighted:
-                        item.highlighted.charAt(0).toUpperCase() + item.highlighted.slice(1),
+                    highlighted: (item.highlighted ?? item.label).replace(/^./, (character) =>
+                        character.toUpperCase(),
+                    ),
                 }));
             },
             templates: {
@@ -414,7 +453,9 @@ export function init(
             },
             templates: {
                 item(item) {
-                    const value2id = hierarchicalMenuIdFromValue(item.value);
+                    const value = /** @type {{value: string}} */ (/** @type {unknown} */ (item))
+                        .value;
+                    const value2id = hierarchicalMenuIdFromValue(value);
 
                     return `
                         <a class="hierarchical-blueprints-item${item.isRefined ? '-is-refined' : ''}"
@@ -451,15 +492,15 @@ export function init(
                     if (item.refinements.length > 0) {
                         document
                             .getElementById('current-refinements-list-and-button')
-                            .classList.remove('hidden');
+                            ?.classList.remove('hidden');
                     } else {
                         document
                             .getElementById('current-refinements-list-and-button')
-                            .classList.add('hidden');
+                            ?.classList.add('hidden');
                     }
                     item.refinements = item.refinements.map((i) => {
-                        const nameParts = i.value.split('(');
-                        i.label = nameParts.shift();
+                        const nameParts = String(i.value).split('(');
+                        i.label = nameParts.shift() ?? '';
 
                         return i;
                     });
@@ -538,7 +579,7 @@ export function init(
             transformItems(items) {
                 return items.map((item) => ({
                     ...item,
-                    highlighted: item.highlighted.replaceAll('-', ' '),
+                    highlighted: (item.highlighted ?? item.label).replaceAll('-', ' '),
                 }));
             },
             templates: {
@@ -592,7 +633,7 @@ export function init(
         stats({
             container: '#stats',
             templates: {
-                body(hit) {
+                text(hit) {
                     return `${hit.nbHits} results found`; // in ${hit.processingTimeMS}ms`;
                 },
             },
@@ -605,14 +646,20 @@ export function init(
 
     search.start();
 
-    if (searchString) {
-        search.helper.setQuery(searchString).search();
+    const helper = search.helper;
+    if (!helper) {
+        throw new Error('Search helper was not initialized');
     }
-    search.helper.on('change', (res) => {
+
+    if (searchString) {
+        helper.setQuery(searchString).search();
+    }
+    helper.on('change', (res) => {
         // clear the search box ?
-        if (window.clearSearchBox) {
+        const appWindow = /** @type {Window & {clearSearchBox?: boolean}} */ (window);
+        if (appWindow.clearSearchBox) {
             res.state.query = '';
-            window.clearSearchBox = false;
+            appWindow.clearSearchBox = false;
         }
         //console.log(res.state.query);
         // save the search query to the location bar

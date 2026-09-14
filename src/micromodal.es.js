@@ -1,3 +1,5 @@
+// @ts-nocheck
+// Vendored MicroModal build; type-check the application code that consumes it instead.
 // see https://github.com/ghosh/Micromodal/pull/351
 
 function _classCallCheck(instance, Constructor) {
